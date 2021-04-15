@@ -1,4 +1,7 @@
+import axios from 'axios'
+import { useState } from 'react'
 import styled from 'styled-components'
+import api from './api'
 
 const Title = styled.h1`
   font-size: 50px;
@@ -14,9 +17,9 @@ const NavigationButton = styled.a`
 export default function Home() {
   return (
     <>
-    <Title>My page</Title>
-    <NavigationButton href='/login'>Go to Login</NavigationButton>
-    <NavigationButton href='/userForm'>Go to User Form</NavigationButton>
+      <Title>My page</Title>
+      <NavigationButton href='/login'>Go to Login</NavigationButton>
+      <NavigationButton href='/userForm'>Go to User Form</NavigationButton>
     </>
   )
 }

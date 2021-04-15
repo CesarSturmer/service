@@ -1,6 +1,6 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import {Button, TextField} from '@material-ui/core'
+import {TextField} from '@material-ui/core'
 import api from './api'
 
 const FormContainer = styled.form`
@@ -18,6 +18,11 @@ const TwoInputsContainer = styled.div`
     justify-content: space-between;
 `
 
+const Select = styled.select`
+    margin: 1rem 0;
+    align-self: flex-start;
+`
+
 const SubmitButton = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
@@ -28,6 +33,7 @@ const SubmitButton = styled.button`
 `
 
 function UserForm() {
+    const [cities, setCities] = useState([])
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
     const [password, setPassword] = useState('')
@@ -37,21 +43,34 @@ function UserForm() {
     const [street, setStreet] = useState('')
     const [number, setNumber] = useState('')
     const [neighborhood, setNeighborhood] = useState('')
+    const [city, setCity] = useState('')
+
+    useEffect(() => {
+        const getCities = async () => {
+            api.get('cidades')
+            .then((res) => setCities(res.data))
+            .catch(() => alert('Erro'))
+        }
+        getCities()
+    }, [])
 
     const postUser = async (e) => {
         e.preventDefault()
-        await api.post('/usuario', {
-            nomeCompleto: name,
+        await api.post('usuario', {
             cpf: cpf,
-            senha: password,
             email: email,
-            telefone: phone,
             endereco: {
+                bairro: neighborhood,
                 cep: cep,
+                cidade: {
+                    id: city
+                },
                 logradouro: street,
                 numero: number,
-                bairro: neighborhood
-            }
+            },
+            nomeCompleto: name,
+            senha: password,
+            telefone: phone,
         })
         .then(() => alert('usuario cadastrado com sucesso'))
         .catch(() => alert('Falha ao cadastrar usuário!'))
@@ -149,6 +168,12 @@ function UserForm() {
                 margin='normal'
                 fullWidth
             />
+            <Select onChange={(e) => setCity(e.target.value)}>
+                <option defaultChecked>Escolha sua cidade</option>
+                {cities.map((city) => {
+                    return <option key={city.id} value={city.id}>{city.nome}</option>
+                })}
+            </Select>
             <SubmitButton type='submit'>Cadastrar Usuário</SubmitButton>
         </FormContainer>
     )
