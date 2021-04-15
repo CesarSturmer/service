@@ -1,6 +1,8 @@
 import {useState} from 'react'
+import {useRouter} from 'next/router'
 import styled from 'styled-components'
 import {TextField} from '@material-ui/core'
+import api from './api'
 
 const FormContainer = styled.form`
     width: 15rem;
@@ -22,13 +24,21 @@ const SubmitButton = styled.button`
 `
 
 function Login() {
+    const router = useRouter()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(email)
-        console.log(password)
+        await api.post('auth', {
+            email: email,
+            senha: password
+        })
+        .then((res) => {
+            sessionStorage.setItem('token', res.data.token)
+            router.push('/')
+        })
+        .catch(() => alert('Erro'))
     }
 
     return (
