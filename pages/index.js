@@ -1,7 +1,4 @@
-import axios from 'axios'
-import { useState } from 'react'
 import styled from 'styled-components'
-import api from './api'
 
 const Title = styled.h1`
   font-size: 50px;
