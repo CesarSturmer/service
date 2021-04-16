@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {TextField} from '@material-ui/core'
 import api from './api'
+import SubmitButton from '../src/components/SubmitButton'
 
 const FormContainer = styled.form`
     width: 30rem;
@@ -23,15 +24,6 @@ const Select = styled.select`
     align-self: flex-start;
 `
 
-const SubmitButton = styled.button`
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.secondary};
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-`
-
 function UserForm() {
     const [cities, setCities] = useState([])
     const [name, setName] = useState('')
@@ -47,9 +39,8 @@ function UserForm() {
 
     useEffect(() => {
         const getCities = async () => {
-            api.get('cidades')
+            await api.get('cidades')
             .then((res) => setCities(res.data))
-            .catch(() => alert('Erro'))
         }
         getCities()
     }, [])
