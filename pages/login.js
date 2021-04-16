@@ -49,7 +49,7 @@ function Login() {
                 label='Email'
                 variant='outlined'
                 size='small'
-                type='text'
+                type='email'
                 margin='normal'
                 fullWidth
             />

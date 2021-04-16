@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import {TextField} from '@material-ui/core'
 import api from './api'
@@ -81,12 +82,12 @@ function UserForm() {
             />
             <TwoInputsContainer>
                 <TextField
-                    value={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
-                    label='CPF'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    label='Email'
                     variant='outlined'
                     size='small'
-                    type='number'
+                    type='email'
                     margin='normal'
                 />
                 <TextField
@@ -100,12 +101,12 @@ function UserForm() {
                 />
             </TwoInputsContainer>
             <TextField
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                label='Email'
+                value={cpf}
+                onChange={(e) => setCpf(e.target.value)}
+                label='CPF'
                 variant='outlined'
                 size='small'
-                type='text'
+                type='number'
                 margin='normal'
                 fullWidth
             />
