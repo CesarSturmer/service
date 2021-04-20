@@ -35,8 +35,8 @@ function Login() {
             senha: password
         })
         .then((res) => {
-            sessionStorage.setItem('token', res.data.token)
-            router.push('/')
+            localStorage.setItem('token', res.data.token)
+            router.push('/user')
         })
         .catch(() => alert('Erro'))
     }
