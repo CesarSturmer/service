@@ -33,6 +33,7 @@ function UserForm() {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [cep, setCep] = useState('')
+    const [cepError, setCepError] = useState({error: false, text: ''})
     const [street, setStreet] = useState('')
     const [number, setNumber] = useState('')
     const [neighborhood, setNeighborhood] = useState('')
@@ -45,6 +46,16 @@ function UserForm() {
         }
         getCities()
     }, [])
+
+    const cepValidator = async () => {
+        await axios.get(`https://viacep.com.br/ws/${cep}/json`)
+        .then((res) => {
+            setStreet(res.data.logradouro)
+            setNeighborhood(res.data.bairro)
+            setCepError({error: false, text: ''})
+        })
+        .catch(() => setCepError({error: true, text: 'CEP inválido!'}))
+    }
 
     const postUser = async (e) => {
         e.preventDefault()
@@ -123,6 +134,9 @@ function UserForm() {
                 <TextField
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
+                    onBlur={cepValidator}
+                    error={cepError.error}
+                    helperText={cepError.text}
                     label='CEP'
                     variant='outlined'
                     size='small'
