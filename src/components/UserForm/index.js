@@ -13,6 +13,7 @@ const FormContainer = styled.form`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background: ${({ theme }) => theme.colors.backgroundWhite};
 `
 
 const TwoInputsContainer = styled.div`
