@@ -5,13 +5,17 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: no-repeat url('/background.svg') ;
+    background-size: cover;
   }
 `
 
 const theme = {
   colors: {
     primary: '#0070f3',
-    secondary: '#fefefe'
+    title: '#FFFFFF',
+    secondary: '#fefefe',
+    backgroundWhite: '#FFFFFF',
   },
 }
 
