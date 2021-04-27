@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {TextField} from '@material-ui/core'
+import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
 import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
@@ -43,7 +43,7 @@ function UserForm(props) {
     const [complement, setComplement] = useState('')
 
     if (typeof window !== 'undefined') {
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -131,41 +131,45 @@ function UserForm(props) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 label='Nome completo'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
+                required
             />
             <TextField
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 label='Email'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='email'
                 margin='normal'
                 fullWidth
+                required
             />
             {!props.edit &&
                 <TwoInputsContainer>
                     <TextField
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
-                        label='CPF'
-                        variant='outlined'
-                        size='small'
-                        type='number'
-                        margin='normal'
-                    />
-                    <TextField
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         label='Senha'
-                        variant='outlined'
+                        variant='filled'
                         size='small'
                         type='password'
                         margin='normal'
+                        required
+                    />
+                    <TextField
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        label='CPF'
+                        variant='filled'
+                        size='small'
+                        type='number'
+                        margin='normal'
+                        required
                     />
                 </TwoInputsContainer>
             }
@@ -174,10 +178,11 @@ function UserForm(props) {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     label='Telefone'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
                 <TextField
                     value={cep}
@@ -186,59 +191,76 @@ function UserForm(props) {
                     error={cepError.error}
                     helperText={cepError.text}
                     label='CEP'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
             </TwoInputsContainer>
             <TextField
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
                 label='Bairro'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
+                required
             />
             <TwoInputsContainer>
                 <TextField
                     value={street}
                     onChange={(e) => setStreet(e.target.value)}
                     label='Rua'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='text'
                     margin='normal'
+                    required
                 />
                 <TextField
                     value={number}
                     onChange={(e) => setNumber(e.target.value)}
                     label='Número'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
             </TwoInputsContainer>
             <TextField
                 value={complement}
                 onChange={(e) => setComplement(e.target.value)}
                 label='Complemento'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
             />
             
-            <Select value={city} onChange={(e) => setCity(e.target.value)}>
-                <option defaultChecked>Escolha sua cidade</option>
-                {cities.map((city) => {
-                    return <option key={city.id} value={city.id}>{city.nome}</option>
-                })}
-            </Select>
+            <TextField
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                label='Cidade'
+                variant='filled'
+                size='small'
+                type='number'
+                margin='normal'
+                style={{backgroundColor: '#fefefe', borderRadius: '8px'}}
+                select
+                required
+                fullWidth
+            >
+                {
+                    cities.map((city) => {
+                        return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
+                    })
+                }
+            </TextField>
             <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
         </FormContainer>
     )
