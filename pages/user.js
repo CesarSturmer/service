@@ -9,7 +9,7 @@ function User() {
     const [editUser, setEditUser] = useState(false)
     
     if (typeof window !== 'undefined') {
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -23,6 +23,15 @@ function User() {
         }
         getUserInfo()
     }, [])
+
+    const deleteUser = async () => {
+        await api.delete('usuario')
+        .then(() => {
+            alert('Usuário excluído com sucesso!')
+            sessionStorage.removeItem('token')
+        })
+        .catch(() => alert('falha ao cadastrar usuário!'))
+    }
 
     return (
         <div>
@@ -43,10 +52,11 @@ function User() {
                 />
             }
             {editUser ? 
-                <UserForm edited data={userInfo} />
+                <UserForm edit data={userInfo} />
             :
                 <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
             }
+            <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
         </div>
     )
 }

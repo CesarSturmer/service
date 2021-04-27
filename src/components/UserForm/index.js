@@ -1,10 +1,12 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {TextField} from '@material-ui/core'
+import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
 import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
+import FormValidations from '../../contexts/FormValidations'
+import useError from '../../hooks/useError'
 
 const FormContainer = styled.form`
     width: 30rem;
@@ -19,11 +21,6 @@ const TwoInputsContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-`
-
-const Select = styled.select`
-    margin: 1rem 0;
-    align-self: flex-start;
 `
 
 function UserForm(props) {
@@ -41,9 +38,11 @@ function UserForm(props) {
     const [neighborhood, setNeighborhood] = useState('')
     const [city, setCity] = useState('')
     const [complement, setComplement] = useState('')
+    const validations = useContext(FormValidations)
+    const [error, fieldValidator, canSend] = useError(validations)
 
     if (typeof window !== 'undefined') {
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -126,46 +125,59 @@ function UserForm(props) {
     }
 
     return (
-        <FormContainer onSubmit={props.edited ? editUser : postUser}>
+        <FormContainer onSubmit={props.edit ? editUser : postUser}>
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 label='Nome completo'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
+                required
             />
             <TextField
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 label='Email'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='email'
                 margin='normal'
                 fullWidth
+                required
             />
-            {!props.edited &&
+            {!props.edit &&
                 <TwoInputsContainer>
-                    <TextField
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
-                        label='CPF'
-                        variant='outlined'
-                        size='small'
-                        type='number'
-                        margin='normal'
-                    />
                     <TextField
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onBlur={fieldValidator}
+                        error={error.password.error}
+                        helperText={error.password.text}
                         label='Senha'
-                        variant='outlined'
+                        name='password'
+                        variant='filled'
                         size='small'
                         type='password'
                         margin='normal'
+                        style={{maxWidth: '14rem'}}
+                        required
+                    />
+                    <TextField
+                        value={cpf}
+                        onChange={(e) => setCpf(e.target.value)}
+                        onBlur={fieldValidator}
+                        error={error.cpf.error}
+                        helperText={error.cpf.text}
+                        label='CPF'
+                        name='cpf'
+                        variant='filled'
+                        size='small'
+                        type='number'
+                        margin='normal'
+                        required
                     />
                 </TwoInputsContainer>
             }
@@ -173,11 +185,16 @@ function UserForm(props) {
                 <TextField
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    onBlur={fieldValidator}
+                    error={error.phone.error}
+                    helperText={error.phone.text}
                     label='Telefone'
-                    variant='outlined'
+                    name='phone'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
                 <TextField
                     value={cep}
@@ -186,60 +203,77 @@ function UserForm(props) {
                     error={cepError.error}
                     helperText={cepError.text}
                     label='CEP'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
             </TwoInputsContainer>
             <TextField
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
                 label='Bairro'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
+                required
             />
             <TwoInputsContainer>
                 <TextField
                     value={street}
                     onChange={(e) => setStreet(e.target.value)}
                     label='Rua'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='text'
                     margin='normal'
+                    required
                 />
                 <TextField
                     value={number}
                     onChange={(e) => setNumber(e.target.value)}
                     label='Número'
-                    variant='outlined'
+                    variant='filled'
                     size='small'
                     type='number'
                     margin='normal'
+                    required
                 />
             </TwoInputsContainer>
             <TextField
                 value={complement}
                 onChange={(e) => setComplement(e.target.value)}
                 label='Complemento'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='text'
                 margin='normal'
                 fullWidth
             />
             
-            <Select value={city} onChange={(e) => setCity(e.target.value)}>
-                <option defaultChecked>Escolha sua cidade</option>
-                {cities.map((city) => {
-                    return <option key={city.id} value={city.id}>{city.nome}</option>
-                })}
-            </Select>
-            <SubmitButton type='submit'>{props.edited ? 'Editar' : 'Cadastrar'}</SubmitButton>
+            <TextField
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                label='Cidade'
+                variant='filled'
+                size='small'
+                type='number'
+                margin='normal'
+                style={{backgroundColor: '#fefefe', borderRadius: '8px'}}
+                select
+                required
+                fullWidth
+            >
+                {
+                    cities.map((city) => {
+                        return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
+                    })
+                }
+            </TextField>
+            <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
         </FormContainer>
     )
 }

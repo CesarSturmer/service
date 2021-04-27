@@ -35,10 +35,10 @@ function Login() {
             senha: password
         })
         .then((res) => {
-            localStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('token', res.data.token)
             router.push('/user')
         })
-        .catch(() => alert('Erro'))
+        .catch(() => alert('Usuário ou senha incorretos!'))
     }
 
     return (
@@ -47,7 +47,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 label='Email'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='email'
                 margin='normal'
@@ -57,7 +57,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 label='Senha'
-                variant='outlined'
+                variant='filled'
                 size='small'
                 type='password'
                 margin='normal'
