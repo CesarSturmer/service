@@ -9,7 +9,7 @@ function User() {
     const [editUser, setEditUser] = useState(false)
     
     if (typeof window !== 'undefined') {
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -28,7 +28,7 @@ function User() {
         await api.delete('usuario')
         .then(() => {
             alert('Usuário excluído com sucesso!')
-            localStorage.removeItem('token')
+            sessionStorage.removeItem('token')
         })
         .catch(() => alert('falha ao cadastrar usuário!'))
     }
