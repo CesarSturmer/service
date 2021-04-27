@@ -1,6 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import FormValidations from '../src/contexts/FormValidations'
-import {passwordValidator} from '../src/models/Form'
+import {passwordValidator, cpfValidator,phoneValidator} from '../src/models/Form'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <FormValidations.Provider value={{password: passwordValidator}}>
+        <FormValidations.Provider value={{password: passwordValidator, cpf: cpfValidator, phone: phoneValidator}}>
           <Component {...pageProps} />
         </FormValidations.Provider>
       </ThemeProvider>
