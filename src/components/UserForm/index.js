@@ -162,6 +162,7 @@ function UserForm(props) {
                         size='small'
                         type='password'
                         margin='normal'
+                        style={{maxWidth: '14rem'}}
                         required
                     />
                     <TextField
