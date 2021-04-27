@@ -1,10 +1,12 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
 import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
+import FormValidations from '../../contexts/FormValidations'
+import useError from '../../hooks/useError'
 
 const FormContainer = styled.form`
     width: 30rem;
@@ -19,11 +21,6 @@ const TwoInputsContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-`
-
-const Select = styled.select`
-    margin: 1rem 0;
-    align-self: flex-start;
 `
 
 function UserForm(props) {
@@ -41,6 +38,8 @@ function UserForm(props) {
     const [neighborhood, setNeighborhood] = useState('')
     const [city, setCity] = useState('')
     const [complement, setComplement] = useState('')
+    const validations = useContext(FormValidations)
+    const [error, fieldValidator, canSend] = useError(validations)
 
     if (typeof window !== 'undefined') {
         const token = sessionStorage.getItem('token')
@@ -154,7 +153,12 @@ function UserForm(props) {
                     <TextField
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onBlur={fieldValidator}
+                        error={error.password.error}
+                        helperText={error.password.text}
                         label='Senha'
+                        name='password'
+                        id='password'
                         variant='filled'
                         size='small'
                         type='password'
