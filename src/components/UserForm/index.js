@@ -126,7 +126,7 @@ function UserForm(props) {
     }
 
     return (
-        <FormContainer onSubmit={props.edited ? editUser : postUser}>
+        <FormContainer onSubmit={props.edit ? editUser : postUser}>
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -147,7 +147,7 @@ function UserForm(props) {
                 margin='normal'
                 fullWidth
             />
-            {!props.edited &&
+            {!props.edit &&
                 <TwoInputsContainer>
                     <TextField
                         value={cpf}
@@ -239,7 +239,7 @@ function UserForm(props) {
                     return <option key={city.id} value={city.id}>{city.nome}</option>
                 })}
             </Select>
-            <SubmitButton type='submit'>{props.edited ? 'Editar' : 'Cadastrar'}</SubmitButton>
+            <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
         </FormContainer>
     )
 }
