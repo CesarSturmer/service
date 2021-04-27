@@ -24,6 +24,15 @@ function User() {
         getUserInfo()
     }, [])
 
+    const deleteUser = async () => {
+        await api.delete('usuario')
+        .then(() => {
+            alert('Usuário excluído com sucesso!')
+            localStorage.removeItem('token')
+        })
+        .catch(() => alert('falha ao cadastrar usuário!'))
+    }
+
     return (
         <div>
             {userInfo.length !== 0 &&
@@ -43,10 +52,11 @@ function User() {
                 />
             }
             {editUser ? 
-                <UserForm edited data={userInfo} />
+                <UserForm edit data={userInfo} />
             :
                 <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
             }
+            <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
         </div>
     )
 }
