@@ -17,6 +17,7 @@ function Admin() {
     const [city, setCity] = useState('')
     const [stateId, setStateId] = useState('')
     const [category, setCategory] = useState('')
+    const [categories, setCategories] = useState([])
 
     const getStates = async () => {
         await api.get('estados')
@@ -62,18 +63,27 @@ function Admin() {
         .catch(() => alert('Falha ao cadastrar categoria'))
     }
 
+    const getCategories = async () => {
+        await api.get('categorias')
+        .then((res) => setCategories(res.data))
+        .catch(() => alert('erro ao pegar categorias'))
+    }
+
     return (
         <>
             <ButtonsContainer>
-                <button onClick={() => setForm(1)}>Cadastrar Estado</button>
-                <button onClick={() => { 
+                <SubmitButton onClick={() => setForm(1)}>Cadastrar Estado</SubmitButton>
+                <SubmitButton onClick={() => { 
                     getStates()
                     setForm(2)
-                }}>Cadastrar Cidade</button>
-                <button onClick={() => setForm(3)}>Cadastrar categoria</button>
+                }}>Cadastrar Cidade</SubmitButton>
+                <SubmitButton onClick={() => setForm(3)}>Cadastrar categoria</SubmitButton>
+                <SubmitButton onClick={() => {
+                    getCategories()
+                    setForm(4)
+                }}>Listar categoria</SubmitButton>
             </ButtonsContainer>
-            {
-                form === 1 &&
+            {form === 1 &&
                 <form onSubmit={postState}>
                     <TextField
                         value={state}
@@ -89,8 +99,7 @@ function Admin() {
                 </form>
             }
 
-            {
-                form === 2 &&
+            {form === 2 &&
                 <form onSubmit={postCity}>
                     <select onChange={(e) => setStateId(e.target.value)}>
                         <option>Selecione um estado</option>
@@ -111,8 +120,7 @@ function Admin() {
                     <SubmitButton type='submit'>Cadastrar Cidade</SubmitButton>
                 </form>
             }
-            {
-                form === 3 &&
+            {form === 3 &&
                 <form onSubmit={postCategory}>
                     <TextField
                         value={category}
@@ -126,6 +134,16 @@ function Admin() {
                     />
                     <SubmitButton type='submit'>Cadastrar Categoria</SubmitButton>
                 </form>
+            }
+            {form === 4 &&
+                <>
+                    <ul style={{color: '#fff'}}>
+                        {categories.map((category) => {
+                            return <li key={category.id}>{category.categoria}</li>
+                        })}
+                    </ul>
+                    <SubmitButton onClick={() => setForm(0)}>Esconder categorias</SubmitButton>
+                </>
             }
         </>
     )
