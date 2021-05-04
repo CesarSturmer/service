@@ -15,14 +15,14 @@ function useError(validations) {
 
     const [error, setError] = useState(initialState)
 
-    function fieldValidator(e) {
+    const fieldValidator = (e) => {
         const {name, value} = e.target
         const newState = {...error}
         newState[name] = validations[name](value)
         setError(newState)
     }
 
-    function canSend() {
+    const canSend = () => {
         for(let field in error) {
             if(error[field].error) {
                 return false

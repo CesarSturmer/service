@@ -1,3 +1,9 @@
+import styled from 'styled-components'
+
+const UserInfoList = styled.ul`
+  color: ${({ theme }) => theme.colors.title};
+`
+
 function UserInfoBox({
   cpf,
   email,
@@ -13,7 +19,7 @@ function UserInfoBox({
   phone,
 }) {
   return (
-    <ul>
+    <UserInfoList>
       <li>CPF: {cpf}</li>
       <li>email: {email}</li>
       <li>
@@ -31,7 +37,7 @@ function UserInfoBox({
       <li>Id: {id}</li>
       <li>Nome: {name}</li>
       <li>Telefone: {phone}</li>
-    </ul>
+    </UserInfoList>
   );
 }
 

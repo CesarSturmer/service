@@ -1,7 +1,7 @@
 import {createContext} from 'react'
 
 const FormValidations = createContext(
-    {password:noValidation}
+    {password:noValidation, cpf:noValidation, phone:noValidation}
 )
 
 function noValidation(data) {

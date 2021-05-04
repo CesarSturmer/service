@@ -158,17 +158,21 @@ function UserForm(props) {
                         helperText={error.password.text}
                         label='Senha'
                         name='password'
-                        id='password'
                         variant='filled'
                         size='small'
                         type='password'
                         margin='normal'
+                        style={{maxWidth: '14rem'}}
                         required
                     />
                     <TextField
                         value={cpf}
                         onChange={(e) => setCpf(e.target.value)}
+                        onBlur={fieldValidator}
+                        error={error.cpf.error}
+                        helperText={error.cpf.text}
                         label='CPF'
+                        name='cpf'
                         variant='filled'
                         size='small'
                         type='number'
@@ -181,7 +185,11 @@ function UserForm(props) {
                 <TextField
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    onBlur={fieldValidator}
+                    error={error.phone.error}
+                    helperText={error.phone.text}
                     label='Telefone'
+                    name='phone'
                     variant='filled'
                     size='small'
                     type='number'
