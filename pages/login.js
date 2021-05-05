@@ -27,7 +27,11 @@ function Login() {
     return (
         <>
             <Header />
-            <FormContainer title='Login' onSubmit={handleSubmit}>
+            <FormContainer 
+                title='faça seu login!' 
+                onSubmit={handleSubmit}
+                buttonText='Login'
+            >
                 <TextField
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -48,8 +52,6 @@ function Login() {
                     margin='normal'
                     fullWidth
                 />
-
-                <SubmitButton type='submit'>Login</SubmitButton>
             </FormContainer>
         </>
     )

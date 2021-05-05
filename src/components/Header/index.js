@@ -22,14 +22,19 @@ const TitleSecond = styled.h1`
   padding: 43px;
 `;
 
-const ButtonRegister = styled.button`
+const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 18px;
+`
+
+const SignUpButton = styled.a`
   width: 279px;
   height: 40px;
+  margin-right: 1rem;
+  padding: 1rem;
 `;
 
-const ButtonEnter = styled.button`
+const LoginButton = styled.button`
   background: ${({ theme }) => theme.colors.secondary};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid ${({ theme }) => theme.colors.secondary};
@@ -51,12 +56,14 @@ const Header = () => {
                 <TitleSecond>Sobre nós</TitleSecond>
             </Container>
             <Container>
+              <ButtonsContainer>
                 <Link href="/userForm">
-                <ButtonRegister>Cadastrar</ButtonRegister>
+                <SignUpButton>Cadastrar</SignUpButton>
                 </Link>
                 <Link href="/login">
-                <ButtonEnter>Entrar</ButtonEnter>
+                <LoginButton>Entrar</LoginButton>
                 </Link>
+              </ButtonsContainer>
             </Container>
             </Container>
         </HeaderContainer>

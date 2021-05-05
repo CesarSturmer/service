@@ -3,7 +3,6 @@ import axios from 'axios'
 import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
-import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
@@ -122,7 +121,11 @@ function UserForm(props) {
     }
 
     return (
-        <FormContainer title={props.title} onSubmit={canSend() ? (props.edit ? editUser : postUser) : invalidData}>
+        <FormContainer 
+            title={props.title} 
+            onSubmit={canSend() ? (props.edit ? editUser : postUser) : invalidData}
+            buttonText={props.edit ? 'Editar' : 'Cadastrar'}
+        >
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -270,7 +273,6 @@ function UserForm(props) {
                     })
                 }
             </TextField>
-            <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
         </FormContainer>
     )
 }

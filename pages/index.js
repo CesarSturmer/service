@@ -34,10 +34,6 @@ const Subtitle = styled.h3`
   margin: 0;
 `;
 
-
-
-
-
 export default function Landing() {
   return (
     <PageContainer>

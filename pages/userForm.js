@@ -5,7 +5,7 @@ function Form() {
     return (
         <>
             <Header />
-            <UserForm title='Cadastro de usuário' />
+            <UserForm title='Cadastre-se em nosso site!' />
         </>
     )
 }

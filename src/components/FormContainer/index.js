@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import SubmitButton from '../SubmitButton'
 
 const Form = styled.form`
     background-color: ${({ theme }) => theme.colors.backgroundWhite};
@@ -14,6 +15,8 @@ const Form = styled.form`
 
 const Title = styled.h1`
     color: ${({ theme }) => theme.colors.secondary};
+    max-width: 15rem;
+    text-align: center;
 `
 
 const FormContainer = (props) => {
@@ -21,6 +24,7 @@ const FormContainer = (props) => {
         <Form onSubmit={props.onSubmit}>
             <Title>{props.title}</Title>
             {props.children}
+            <SubmitButton type='submit'>{props.buttonText}</SubmitButton>
         </Form>
     )
 }
