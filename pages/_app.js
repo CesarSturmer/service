@@ -10,11 +10,6 @@ const GlobalStyle = createGlobalStyle`
     background: no-repeat url('/background.svg');
     background-size: cover;
   }
-
-  input {
-    background-color: #fefefe !important;
-    border-radius: 8px;
-  }
   
   a, button {
     cursor: pointer;
@@ -27,9 +22,13 @@ const theme = {
   colors: {
     primary: '#0070f3',
     title: '#FFFFFF',
-    secondary: '#fefefe',
+    secondary: '#22AAC1',
     backgroundWhite: '#FFFFFF',
   },
+  borderRadius: {
+    default: '8px',
+    max: '50%',
+  }
 }
 
 export default function App({ Component, pageProps }) {
