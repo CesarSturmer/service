@@ -116,8 +116,13 @@ function UserForm(props) {
         .catch(() => alert('falha ao editar'))
     }
 
+    const invalidData = (e) => {
+        e.preventDefault()
+        alert('Dados inválidos!')
+    }
+
     return (
-        <FormContainer title={props.title} onSubmit={props.edit ? editUser : postUser}>
+        <FormContainer title={props.title} onSubmit={canSend() ? (props.edit ? editUser : postUser) : invalidData}>
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
