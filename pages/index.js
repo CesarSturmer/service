@@ -1,68 +1,123 @@
 import Link from 'next/link';
+import React from 'react';
 import styled from 'styled-components';
-
-
-const Header = styled.div`
-  margin: 0px 100px 0 100px;
-`;
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const ContainerButtons = styled.div`
+  display: flex;
+  margin-left: 160px;
+`;
+
+const ContainerText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 211px;
+  margin-left: 160px;
 `;
 
 const Title = styled.h1`
-  font-size: 50px;
+  font-size: 72px;
   color: ${({ theme }) => theme.colors.title};
+  font-style: normal;
+  font-weight: bold;
 `;
 
-const TitleSecond = styled.h1`
-  font-size: 18px;
+const Subtitle = styled.h3`
+  font-size: 24px;
   color: ${({ theme }) => theme.colors.title};
-  padding: 43px;
+  font-style: normal;
+  font-weight: normal;
 `;
 
-const ButtonRegister = styled.button`
-  border: 1px solid #22aac1;
-  border-radius: 18px;
-  width: 279px;
-  height: 40px;
+const ContentImg = styled.div`
+  margin-right: 120px;
+  margin-top: 118px;
 `;
 
-const ButtonEnter = styled.button`
-  background: #22aac1;
+const ButtonSearch = styled.button`
+  width: 287.32px;
+  height: 101.46px;
+  background: rgba(184, 233, 244, 0.47);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid #22aac1;
-  border-radius: 18px;
-  width: 140px;
-  height: 40px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
+const ButtonService = styled.button`
+  width: 287.32px;
+  height: 101.46px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.colorButtonService};
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 11px;
+`;
 
-export default function Home() {
+const ButtonTextSearch = styled.p`
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  white-space: nowrap;
+  margin: 36px 35px 35px 0px;
+  color: ${({ theme }) => theme.colors.title};
+`;
+
+const DivImage = styled.div`
+  margin: 38px 18px 34px 30px;
+`;
+
+export default function Landing() {
   return (
-    <>
-      <Header>
+    <main>
+      <>
         <Container>
-          <div>
+          <ContainerText>
             <Title>Serviço</Title>
-          </div>
+            <Subtitle>
+              Procurando alguém na sua região? <br />
+              Buscando alguém bem recomendado?
+            </Subtitle>
+          </ContainerText>
+
           <Container>
-            <TitleSecond>Serivços</TitleSecond>
-            <TitleSecond>Seu Local</TitleSecond>
-            <TitleSecond>Sobre nós</TitleSecond>
-          </Container>
-          <Container>
-            <Link href="/userForm">
-            <ButtonRegister>Cadastrar</ButtonRegister>
-            </Link>
-            <Link href="/login">
-            <ButtonEnter>Entrar</ButtonEnter>
-            </Link>
+            <ContentImg>
+              <img src="./Concerto__home.svg" alt="Figura de trabalhadores" />
+            </ContentImg>
           </Container>
         </Container>
-      </Header>
-    </>
+
+        <ContainerButtons>
+          <Link href="/search">
+            <ButtonSearch>
+              <DivImage>
+                <img src="./Search.svg" alt="Busca por serviço" />
+              </DivImage>
+              <ButtonTextSearch>Buscar Serviço</ButtonTextSearch>
+            </ButtonSearch> 
+          </Link>
+          <Link href="/">
+            <ButtonService>
+              <DivImage>
+                <img src="./Group.svg" alt="Busca por serviço" />
+              </DivImage>
+              <ButtonTextSearch>Prestar Serviço</ButtonTextSearch>
+            </ButtonService>
+          </Link>
+        </ContainerButtons>
+      </>
+    </main>
   );
 }
