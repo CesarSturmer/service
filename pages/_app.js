@@ -31,7 +31,6 @@ const theme = {
     title: '#FFFFFF',
     secondary: '#22AAC1',
     backgroundWhite: '#FFFFFF',
-    colorButtonService: '#22AAC1',
 
   },
   borderRadius: {
