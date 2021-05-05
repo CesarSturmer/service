@@ -34,13 +34,13 @@ const theme = {
     colorButtonService: '#22AAC1',
 
   },
+  borderRadius: {
+    default: '8px',
+    max: '50%',
+  }
 };
 
-//   borderRadius: {
-//     default: '8px',
-//     max: '50%',
-//   }
-// }
+
 
 export default function App({ Component, pageProps }) {
   return (
