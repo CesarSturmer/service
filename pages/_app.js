@@ -1,6 +1,11 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import FormValidations from '../src/contexts/FormValidations'
-import {passwordValidator, cpfValidator,phoneValidator} from '../src/models/Form'
+import Head from 'next/head';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import FormValidations from '../src/contexts/FormValidations';
+import {
+  passwordValidator,
+  cpfValidator,
+  phoneValidator,
+} from '../src/models/Form';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,6 +14,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     background: no-repeat url('/background.svg');
     background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+    
   }
   
   a, button {
@@ -16,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     text-decoration: none;
   }
-`
+`;
 
 const theme = {
   colors: {
@@ -24,7 +31,10 @@ const theme = {
     title: '#FFFFFF',
     secondary: '#22AAC1',
     backgroundWhite: '#FFFFFF',
+    colorButtonService: '#22AAC1',
+
   },
+};
   borderRadius: {
     default: '8px',
     max: '50%',
@@ -34,12 +44,27 @@ const theme = {
 export default function App({ Component, pageProps }) {
   return (
     <>
+    <Head>
+      <title>Service</title>
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
+
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <FormValidations.Provider value={{password: passwordValidator, cpf: cpfValidator, phone: phoneValidator}}>
+        <FormValidations.Provider
+          value={{
+            password: passwordValidator,
+            cpf: cpfValidator,
+            phone: phoneValidator,
+          }}
+        >
           <Component {...pageProps} />
         </FormValidations.Provider>
       </ThemeProvider>
     </>
-  )
+  );
 }
