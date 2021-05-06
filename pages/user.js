@@ -3,6 +3,7 @@ import api from './api'
 import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
+import Header from '../src/components/Header'
 
 function User() {
     const [userInfo, setUserInfo] = useState([])
@@ -35,6 +36,7 @@ function User() {
 
     return (
         <div>
+            <Header />
             {userInfo.length !== 0 &&
                 <UserInfoBox
                     cpf={userInfo.cpf}
