@@ -37,7 +37,7 @@ function User() {
     return (
         <div>
             <Header />
-            {userInfo.length !== 0 &&
+            {userInfo.length !== 0 && !editUser &&
                 <UserInfoBox
                     cpf={userInfo.cpf}
                     email={userInfo.email}
@@ -54,7 +54,10 @@ function User() {
                 />
             }
             {editUser ? 
-                <UserForm edit data={userInfo} />
+                <>
+                    <UserForm edit data={userInfo} title='Editar informações de usuário!' />
+                    <SubmitButton onClick={() => setEditUser(false)}>Voltar</SubmitButton>
+                </>
             :
                 <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
             }
