@@ -1,68 +1,61 @@
-import Link from 'next/link';
 import styled from 'styled-components';
+import LandingButton from '../src/components/LandingButton'
 
-
-const Header = styled.div`
-  margin: 0px 100px 0 100px;
-`;
-
-const Container = styled.div`
+const PageContainer = styled.div`
+  height: 100vh;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const ContainerButtons = styled.div`
+  display: flex;
+`;
+
 const Title = styled.h1`
-  font-size: 50px;
+  font-size: 4.5rem;
   color: ${({ theme }) => theme.colors.title};
+  font-style: normal;
+  font-weight: bold;
 `;
 
-const TitleSecond = styled.h1`
-  font-size: 18px;
+const Subtitle = styled.h3`
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.title};
-  padding: 43px;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
 `;
 
-const ButtonRegister = styled.button`
-  border: 1px solid #22aac1;
-  border-radius: 18px;
-  width: 279px;
-  height: 40px;
-`;
-
-const ButtonEnter = styled.button`
-  background: #22aac1;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid #22aac1;
-  border-radius: 18px;
-  width: 140px;
-  height: 40px;
-`;
-
-
-export default function Home() {
+export default function Landing() {
   return (
-    <>
-      <Header>
-        <Container>
-          <div>
-            <Title>Serviço</Title>
-          </div>
-          <Container>
-            <TitleSecond>Serivços</TitleSecond>
-            <TitleSecond>Seu Local</TitleSecond>
-            <TitleSecond>Sobre nós</TitleSecond>
-          </Container>
-          <Container>
-            <Link href="/userForm">
-            <ButtonRegister>Cadastrar</ButtonRegister>
-            </Link>
-            <Link href="/login">
-            <ButtonEnter>Entrar</ButtonEnter>
-            </Link>
-          </Container>
-        </Container>
-      </Header>
-    </>
+    <PageContainer>
+      <Left>
+        <Title>Serviço</Title>
+        <Subtitle>Procurando alguém na sua região?</Subtitle>
+        <Subtitle>Buscando alguém bem recomendado?</Subtitle>
+        <ContainerButtons>
+            <LandingButton 
+              imageSrc='./Search.svg' 
+              text='Buscar Serviço' 
+              to='/search'
+            />
+            <LandingButton 
+              imageSrc='./Group.svg' 
+              text='Prestar Serviço' 
+              to='/'
+              serviceButton
+            />
+        </ContainerButtons>
+      </Left>
+      <img src="./Concerto__home.svg" alt="Figura de trabalhadores" />
+    </PageContainer>
   );
 }

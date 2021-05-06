@@ -3,19 +3,10 @@ import axios from 'axios'
 import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
-import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
-
-const FormContainer = styled.form`
-    width: 30rem;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
+import FormContainer from '../FormContainer'
 
 const TwoInputsContainer = styled.div`
     width: 100%;
@@ -124,13 +115,22 @@ function UserForm(props) {
         .catch(() => alert('falha ao editar'))
     }
 
+    const invalidData = (e) => {
+        e.preventDefault()
+        alert('Dados inválidos!')
+    }
+
     return (
-        <FormContainer onSubmit={props.edit ? editUser : postUser}>
+        <FormContainer 
+            title={props.title} 
+            onSubmit={canSend() ? (props.edit ? editUser : postUser) : invalidData}
+            buttonText={props.edit ? 'Editar' : 'Cadastrar'}
+        >
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 label='Nome completo'
-                variant='filled'
+                variant='outlined'
                 size='small'
                 type='text'
                 margin='normal'
@@ -141,7 +141,7 @@ function UserForm(props) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 label='Email'
-                variant='filled'
+                variant='outlined'
                 size='small'
                 type='email'
                 margin='normal'
@@ -158,7 +158,7 @@ function UserForm(props) {
                         helperText={error.password.text}
                         label='Senha'
                         name='password'
-                        variant='filled'
+                        variant='outlined'
                         size='small'
                         type='password'
                         margin='normal'
@@ -173,7 +173,7 @@ function UserForm(props) {
                         helperText={error.cpf.text}
                         label='CPF'
                         name='cpf'
-                        variant='filled'
+                        variant='outlined'
                         size='small'
                         type='number'
                         margin='normal'
@@ -190,7 +190,7 @@ function UserForm(props) {
                     helperText={error.phone.text}
                     label='Telefone'
                     name='phone'
-                    variant='filled'
+                    variant='outlined'
                     size='small'
                     type='number'
                     margin='normal'
@@ -203,7 +203,7 @@ function UserForm(props) {
                     error={cepError.error}
                     helperText={cepError.text}
                     label='CEP'
-                    variant='filled'
+                    variant='outlined'
                     size='small'
                     type='number'
                     margin='normal'
@@ -214,7 +214,7 @@ function UserForm(props) {
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
                 label='Bairro'
-                variant='filled'
+                variant='outlined'
                 size='small'
                 type='text'
                 margin='normal'
@@ -226,7 +226,7 @@ function UserForm(props) {
                     value={street}
                     onChange={(e) => setStreet(e.target.value)}
                     label='Rua'
-                    variant='filled'
+                    variant='outlined'
                     size='small'
                     type='text'
                     margin='normal'
@@ -236,7 +236,7 @@ function UserForm(props) {
                     value={number}
                     onChange={(e) => setNumber(e.target.value)}
                     label='Número'
-                    variant='filled'
+                    variant='outlined'
                     size='small'
                     type='number'
                     margin='normal'
@@ -247,7 +247,7 @@ function UserForm(props) {
                 value={complement}
                 onChange={(e) => setComplement(e.target.value)}
                 label='Complemento'
-                variant='filled'
+                variant='outlined'
                 size='small'
                 type='text'
                 margin='normal'
@@ -258,7 +258,7 @@ function UserForm(props) {
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 label='Cidade'
-                variant='filled'
+                variant='outlined'
                 size='small'
                 type='number'
                 margin='normal'
@@ -273,7 +273,6 @@ function UserForm(props) {
                     })
                 }
             </TextField>
-            <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
         </FormContainer>
     )
 }
