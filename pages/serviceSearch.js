@@ -120,7 +120,7 @@ function Search() {
               to=""
               serviceButton
             />
-          )).sort()}
+          ))}
         </ContainerButtonsCenter>
       </ContainerButtons>
     </>
