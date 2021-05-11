@@ -18,7 +18,7 @@ function Login() {
             senha: password
         })
         .then((res) => {
-            sessionStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('validated_token', res.data.token)
             router.push('/user')
         })
         .catch(() => alert('Usuário ou senha incorretos!'))
