@@ -10,7 +10,7 @@ function User() {
     const [editUser, setEditUser] = useState(false)
     
     if (typeof window !== 'undefined') {
-        const token = sessionStorage.getItem('token')
+        const token = sessionStorage.getItem('validated_token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -29,7 +29,7 @@ function User() {
         await api.delete('usuario')
         .then(() => {
             alert('Usuário excluído com sucesso!')
-            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('validated_token')
         })
         .catch(() => alert('falha ao cadastrar usuário!'))
     }
@@ -37,7 +37,7 @@ function User() {
     return (
         <div>
             <Header />
-            {userInfo.length !== 0 && !editUser &&
+            {userInfo.length >= 0 && !editUser && userInfo.email &&
                 <UserInfoBox
                     cpf={userInfo.cpf}
                     email={userInfo.email}
