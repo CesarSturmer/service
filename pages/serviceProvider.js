@@ -5,7 +5,7 @@ import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import Header from '../src/components/Header'
 
-function User() {
+function ServiceProvider() {
     const [userInfo, setUserInfo] = useState([])
     const [editUser, setEditUser] = useState(false)
     
@@ -16,8 +16,9 @@ function User() {
 
     useEffect(() => {
         const getUserInfo = async () => {
-            await api.get('usuario')
+            await api.get('prestador')
             .then((res) => {
+                console.log(res.data)
                 setUserInfo(res.data)
             })
             .catch(() => alert('falha!'))
@@ -26,7 +27,7 @@ function User() {
     }, [])
 
     const deleteUser = async () => {
-        await api.delete('usuario')
+        await api.delete('prestador')
         .then(() => {
             alert('Usuário excluído com sucesso!')
             sessionStorage.removeItem('validated_token')
@@ -37,7 +38,7 @@ function User() {
     return (
         <div>
             <Header />
-            {userInfo.length >= 0 && !editUser &&
+            {userInfo.length !== 0 && !editUser &&
                 <UserInfoBox
                     cpf={userInfo.cpf}
                     email={userInfo.email}
@@ -55,7 +56,7 @@ function User() {
             }
             {editUser ? 
                 <>
-                    <UserForm serviceProvider edit data={userInfo} title='Editar informações de usuário!' />
+                    <UserForm edit data={userInfo} title='Editar informações de usuário!' />
                     <SubmitButton onClick={() => setEditUser(false)}>Voltar</SubmitButton>
                 </>
             :
@@ -66,4 +67,4 @@ function User() {
     )
 }
 
-export default User
+export default ServiceProvider

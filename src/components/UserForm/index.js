@@ -70,7 +70,8 @@ function UserForm(props) {
     }
 
     const postUser = async () => {
-        await api.post('usuario', {
+        const endPoint = serviceProvider ? 'prestador' : 'usuario'
+        await api.post(endPoint, {
             cpf: cpf,
             email: email,
             endereco: {
@@ -91,30 +92,9 @@ function UserForm(props) {
         .catch(() => alert('Falha ao cadastrar usuário!'))
     }
 
-    const postServiceProvider = async () => {
-        await api.post('prestador', {
-            cpf: cpf,
-            email: email,
-            endereco: {
-                bairro: neighborhood,
-                cep: cep,
-                cidade: {
-                    id: city
-                },
-                complemento: complement,
-                logradouro: street,
-                numero: number,
-            },
-            nomeCompleto: name,
-            senha: password,
-            telefone: phone,
-        })
-        .then(() => alert('prestador de serviço cadastrado com sucesso'))
-        .catch(() => alert('prestador de serviço ao cadastrar usuário!'))
-    }
-
     const editUser = async () => {
-        await api.put('usuario', {
+        const endPoint = props.serviceProvider ? 'prestador' : 'usuario'
+        await api.put(endPoint, {
             email: email,
             endereco: {
                 bairro: neighborhood,
@@ -127,7 +107,7 @@ function UserForm(props) {
                 numero: number
             },
             nomeCompleto: name,
-            telefone: phone
+            telefone: phone,
         })
         .then(() => {
             alert('usuário editado com sucesso')
@@ -142,11 +122,7 @@ function UserForm(props) {
             if(props.edit) {
                 editUser()
             } else {
-                if(serviceProvider) {
-                    postServiceProvider()
-                } else {
-                    postUser()
-                }
+                postUser()
             }
         } else {
             alert('Dados inválidos!')
@@ -296,7 +272,7 @@ function UserForm(props) {
                     size='small'
                     type='number'
                     margin='normal'
-                    style={{backgroundColor: '#fefefe', borderRadius: '8px'}}
+                    style={{minWidth: '40%'}}
                     select
                     required
                 >
@@ -306,16 +282,18 @@ function UserForm(props) {
                         })
                     }
                 </TextField>
-                <FormControlLabel 
-                    control={
-                        <Checkbox 
-                            checked={serviceProvider}
-                            onChange={(e) => setServiceProvider(e.target.checked)}
-                            color='primary'
-                        />
-                    }
-                    label='Prestador de Serviços'
-                />
+                {!props.edit &&
+                    <FormControlLabel 
+                        control={
+                            <Checkbox 
+                                checked={serviceProvider}
+                                onChange={(e) => setServiceProvider(e.target.checked)}
+                                color='primary'
+                            />
+                        }
+                        label='Prestador de Serviços'
+                    />
+                }
             </TwoInputsContainer>
         </FormContainer>
     )
