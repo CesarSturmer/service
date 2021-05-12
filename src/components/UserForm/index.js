@@ -7,6 +7,7 @@ import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
 import FormContainer from '../FormContainer'
+import Select from '../Utils/Select'
 
 const TwoInputsContainer = styled.div`
     width: 100%;
@@ -261,24 +262,17 @@ function UserForm(props) {
                 fullWidth
             />
             <TwoInputsContainer>
-                <TextField
+                <Select
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     label='Cidade'
-                    variant='outlined'
-                    size='small'
-                    type='number'
-                    margin='normal'
-                    style={{minWidth: '40%'}}
-                    select
-                    required
                 >
                     {
                         cities.map((city) => {
                             return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
                         })
                     }
-                </TextField>
+                </Select>
                 {!props.edit &&
                     <FormControlLabel 
                         control={
