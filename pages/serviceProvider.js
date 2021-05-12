@@ -5,7 +5,7 @@ import {MenuItem, TextField} from '@material-ui/core'
 import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
-import FormContainer from '../src/components/FormContainer'
+import FormContainer from '../src/components/Utils/FormContainer'
 import Header from '../src/components/Header'
 import Select from '../src/components/Utils/Select'
 
