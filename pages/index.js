@@ -34,7 +34,7 @@ export default function Landing() {
           <LandingButton
             imageSrc="./Search.svg"
             text="Buscar Serviço"
-            to="/serviceSearch"
+            to="/search"
           />
           <LandingButton
             imageSrc="./Group.svg"
