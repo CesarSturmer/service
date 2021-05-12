@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import SubmitButton from '../SubmitButton'
+import SubmitButton from '../../SubmitButton'
 
 const Form = styled.form`
     background-color: ${({ theme }) => theme.colors.backgroundWhite};
