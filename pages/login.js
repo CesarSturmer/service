@@ -4,7 +4,6 @@ import {TextField} from '@material-ui/core'
 import api from './api'
 import FormContainer from '../src/components/FormContainer'
 import Header from '../src/components/Header'
-import SubmitButton from '../src/components/SubmitButton'
 
 function Login() {
     const router = useRouter()
@@ -19,7 +18,7 @@ function Login() {
         })
         .then((res) => {
             sessionStorage.setItem('validated_token', res.data.token)
-            router.push('/user')
+            router.push('/serviceProvider')
         })
         .catch(() => alert('Usuário ou senha incorretos!'))
     }

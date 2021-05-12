@@ -1,8 +1,10 @@
 import {useState} from 'react'
 import styled from 'styled-components'
-import {TextField} from '@material-ui/core'
+import {TextField, MenuItem} from '@material-ui/core'
 import api from './api'
 import SubmitButton from '../src/components/SubmitButton'
+import FormContainer from '../src/components/FormContainer'
+import Select from '../src/components/Utils/Select'
 
 const ButtonsContainer = styled.div`
     display: flex;
@@ -84,7 +86,11 @@ function Admin() {
                 }}>Listar categoria</SubmitButton>
             </ButtonsContainer>
             {form === 1 &&
-                <form onSubmit={postState}>
+                <FormContainer 
+                    onSubmit={postState}
+                    title='Cadastre um novo estado'
+                    buttonText='Cadastrar Estado'
+                >
                     <TextField
                         value={state}
                         onChange={(e) => setState(e.target.value)}
@@ -95,18 +101,24 @@ function Admin() {
                         margin='normal'
                         fullWidth
                     />
-                    <SubmitButton type='submit'>Cadastrar Estado</SubmitButton>
-                </form>
+                </FormContainer>
             }
 
             {form === 2 &&
-                <form onSubmit={postCity}>
-                    <select onChange={(e) => setStateId(e.target.value)}>
-                        <option>Selecione um estado</option>
+                <FormContainer 
+                    onSubmit={postCity}
+                    title='Cadastre uma nova Cidade'
+                    buttonText='Cadastrar Cidade'
+                >
+                    <Select 
+                        value={stateId}
+                        onChange={(e) => setStateId(e.target.value)}
+                        label='Estado'
+                    >
                         {states.map((state) => {
-                            return <option value={state.id} key={state.id}>{state.nome}</option>
+                            return <MenuItem value={state.id} key={state.id}>{state.nome}</MenuItem>
                         })}
-                    </select>
+                    </Select>
                     <TextField
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
@@ -117,8 +129,7 @@ function Admin() {
                         margin='normal'
                         fullWidth
                     />
-                    <SubmitButton type='submit'>Cadastrar Cidade</SubmitButton>
-                </form>
+                </FormContainer>
             }
             {form === 3 &&
                 <form onSubmit={postCategory}>
