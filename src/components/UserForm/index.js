@@ -124,10 +124,7 @@ function UserForm(props) {
             } else {
                 postUser()
             }
-        } else {
-            alert('Dados inválidos!')
         }
-            
     }
 
     return (

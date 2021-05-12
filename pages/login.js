@@ -4,7 +4,6 @@ import {TextField} from '@material-ui/core'
 import api from './api'
 import FormContainer from '../src/components/FormContainer'
 import Header from '../src/components/Header'
-import SubmitButton from '../src/components/SubmitButton'
 
 function Login() {
     const router = useRouter()
