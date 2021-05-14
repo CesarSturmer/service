@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {useRouter} from 'next/router'
 import {TextField} from '@material-ui/core'
 import api from './api'
-import FormContainer from '../src/components/FormContainer'
+import FormContainer from '../src/components/Utils/FormContainer'
 import Header from '../src/components/Header'
 
 function Login() {

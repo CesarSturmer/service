@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from './api'
 import SubmitButton from '../src/components/SubmitButton'
-import FormContainer from '../src/components/FormContainer'
+import FormContainer from '../src/components/Utils/FormContainer'
 import Select from '../src/components/Utils/Select'
 
 const ButtonsContainer = styled.div`

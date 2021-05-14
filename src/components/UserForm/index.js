@@ -6,7 +6,7 @@ import api from '../../../pages/api'
 import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
-import FormContainer from '../FormContainer'
+import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
 
 const TwoInputsContainer = styled.div`

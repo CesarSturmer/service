@@ -16,7 +16,7 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.title};
 `;
 
-const TitleSecond = styled.h1`
+const Subtitle = styled.h1`
   font-size: 18px;
   color: ${({ theme }) => theme.colors.title};
   padding: 43px;
@@ -51,17 +51,17 @@ const Header = () => {
                 <Title>Serviço</Title>
             </div>
             <Container>
-                <TitleSecond>Serivços</TitleSecond>
-                <TitleSecond>Seu Local</TitleSecond>
-                <TitleSecond>Sobre nós</TitleSecond>
+              <Subtitle>Serivços</Subtitle>
+              <Subtitle>Seu Local</Subtitle>
+              <Subtitle>Sobre nós</Subtitle>
             </Container>
             <Container>
               <ButtonsContainer>
                 <Link href="/userForm">
-                <SignUpButton>Cadastrar</SignUpButton>
+                  <SignUpButton>Cadastrar</SignUpButton>
                 </Link>
                 <Link href="/login">
-                <LoginButton>Entrar</LoginButton>
+                  <LoginButton>Entrar</LoginButton>
                 </Link>
               </ButtonsContainer>
             </Container>
