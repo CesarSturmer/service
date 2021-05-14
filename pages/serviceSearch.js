@@ -3,7 +3,7 @@ import Header from '../src/components/Header';
 import LandingButton from '../src/components/LandingButton';
 import api from './api';
 import styled from 'styled-components';
-import TexContainer from '../src/components/TexContainer';
+import TexContainer from '../src/components/Utils/TexContainer';
 
 const PageContainer = styled.div`
   width: 50%;
@@ -34,7 +34,7 @@ function Search() {
   const [categoryInfo, setCategoryInfo] = useState([]);
 
   useEffect(() => {
-    const getUserInfo = async () => {
+    const getCategory = async () => {
       await api
         .get('categorias')
         .then((res) => {
@@ -42,7 +42,7 @@ function Search() {
         })
         .catch(() => alert('falha!'));
     };
-    getUserInfo();
+    getCategory();
   }, []);
 
   function getServiceIcons(categoria) {
@@ -62,40 +62,28 @@ function Search() {
     switch (categoria) {
       case 'Caseiro':
         return ImageHouseMade;
-        break;
       case 'Limpeza':
         return ImageCleaning;
-        break;
       case 'Crianças':
         return ImageChildren;
-        break;
       case 'Animais':
         return ImageAnimals;
-        break;
       case 'Idosos':
         return ImageSeniors;
-        break;
       case 'Elétrica':
         return ImageElectrician;
-        break;
       case 'Cozinha':
         return ImageKitchen;
-        break;
       case 'Encanamento':
         return ImagePlumer;
-        break;
       case 'Jardim':
         return ImageGarden;
-        break;
       case 'Marcenaria':
         return ImageWoodWork;
-        break;
       case 'Obras':
         return ImageConstruction;
-        break;
       case 'Outros Serviços':
         return ImageOtherServices;
-        break;
     }
   }
 

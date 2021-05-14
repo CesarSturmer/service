@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import LandingButton from '../src/components/LandingButton';
-import TexContainer from '../src/components/TexContainer';
+import TexContainer from '../src/components/Utils/TexContainer';
 
 const PageContainer = styled.div`
   height: 100vh;
