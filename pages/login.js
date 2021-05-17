@@ -1,11 +1,9 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-import styled from 'styled-components'
 import {TextField} from '@material-ui/core'
 import api from './api'
-import FormContainer from '../src/components/FormContainer'
+import FormContainer from '../src/components/Utils/FormContainer'
 import Header from '../src/components/Header'
-import SubmitButton from '../src/components/SubmitButton'
 
 function Login() {
     const router = useRouter()
@@ -19,8 +17,8 @@ function Login() {
             senha: password
         })
         .then((res) => {
-            sessionStorage.setItem('token', res.data.token)
-            router.push('/user')
+            sessionStorage.setItem('validated_token', res.data.token)
+            router.push('/serviceProvider')
         })
         .catch(() => alert('Usuário ou senha incorretos!'))
     }
@@ -28,7 +26,11 @@ function Login() {
     return (
         <>
             <Header />
-            <FormContainer title='Login' onSubmit={handleSubmit}>
+            <FormContainer 
+                title='faça seu login!' 
+                onSubmit={handleSubmit}
+                buttonText='Login'
+            >
                 <TextField
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -49,8 +51,6 @@ function Login() {
                     margin='normal'
                     fullWidth
                 />
-
-                <SubmitButton type='submit'>Login</SubmitButton>
             </FormContainer>
         </>
     )

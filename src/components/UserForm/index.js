@@ -1,13 +1,13 @@
 import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {TextField, MenuItem} from '@material-ui/core'
+import {TextField, MenuItem, Checkbox, FormControlLabel} from '@material-ui/core'
 import api from '../../../pages/api'
-import SubmitButton from '../SubmitButton'
 import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
-import FormContainer from '../FormContainer'
+import FormContainer from '../Utils/FormContainer'
+import Select from '../Utils/Select'
 
 const TwoInputsContainer = styled.div`
     width: 100%;
@@ -29,12 +29,13 @@ function UserForm(props) {
     const [number, setNumber] = useState('')
     const [neighborhood, setNeighborhood] = useState('')
     const [city, setCity] = useState('')
+    const [serviceProvider, setServiceProvider] = useState(false)
     const [complement, setComplement] = useState('')
     const validations = useContext(FormValidations)
     const [error, fieldValidator, canSend] = useError(validations)
 
     if (typeof window !== 'undefined') {
-        const token = sessionStorage.getItem('token')
+        const token = sessionStorage.getItem('validated_token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
@@ -69,9 +70,9 @@ function UserForm(props) {
         .catch(() => setCepError({error: true, text: 'CEP inválido!'}))
     }
 
-    const postUser = async (e) => {
-        e.preventDefault()
-        await api.post('usuario', {
+    const postUser = async () => {
+        const endPoint = serviceProvider ? 'prestador' : 'usuario'
+        await api.post(endPoint, {
             cpf: cpf,
             email: email,
             endereco: {
@@ -92,9 +93,9 @@ function UserForm(props) {
         .catch(() => alert('Falha ao cadastrar usuário!'))
     }
 
-    const editUser = async (e) => {
-        e.preventDefault()
-        await api.put('usuario', {
+    const editUser = async () => {
+        const endPoint = props.serviceProvider ? 'prestador' : 'usuario'
+        await api.put(endPoint, {
             email: email,
             endereco: {
                 bairro: neighborhood,
@@ -107,7 +108,7 @@ function UserForm(props) {
                 numero: number
             },
             nomeCompleto: name,
-            telefone: phone
+            telefone: phone,
         })
         .then(() => {
             alert('usuário editado com sucesso')
@@ -116,8 +117,23 @@ function UserForm(props) {
         .catch(() => alert('falha ao editar'))
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if(canSend()) {
+            if(props.edit) {
+                editUser()
+            } else {
+                postUser()
+            }
+        }
+    }
+
     return (
-        <FormContainer title={props.title} onSubmit={props.edit ? editUser : postUser}>
+        <FormContainer 
+            title={props.title} 
+            onSubmit={onSubmit}
+            buttonText={props.edit ? 'Editar' : 'Cadastrar'}
+        >
             <TextField
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -245,27 +261,31 @@ function UserForm(props) {
                 margin='normal'
                 fullWidth
             />
-            
-            <TextField
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                label='Cidade'
-                variant='outlined'
-                size='small'
-                type='number'
-                margin='normal'
-                style={{backgroundColor: '#fefefe', borderRadius: '8px'}}
-                select
-                required
-                fullWidth
-            >
-                {
-                    cities.map((city) => {
-                        return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
-                    })
+            <TwoInputsContainer>
+                <Select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    label='Cidade'
+                >
+                    {
+                        cities.map((city) => {
+                            return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
+                        })
+                    }
+                </Select>
+                {!props.edit &&
+                    <FormControlLabel 
+                        control={
+                            <Checkbox 
+                                checked={serviceProvider}
+                                onChange={(e) => setServiceProvider(e.target.checked)}
+                                color='primary'
+                            />
+                        }
+                        label='Prestador de Serviços'
+                    />
                 }
-            </TextField>
-            <SubmitButton type='submit'>{props.edit ? 'Editar' : 'Cadastrar'}</SubmitButton>
+            </TwoInputsContainer>
         </FormContainer>
     )
 }
