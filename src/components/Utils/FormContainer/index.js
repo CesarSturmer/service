@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link';
 import SubmitButton from '../../SubmitButton'
 
 const Form = styled.form`
@@ -19,12 +20,31 @@ const Title = styled.h1`
     text-align: center;
 `
 
+const Container = styled.div`
+    display: flex;
+    color: ${({ theme }) => theme.colors.secondary};
+    align-items: center;
+    font-size: 0.9rem;
+`
+
+const LinkText = styled.a`
+    text-decoration: underline;
+`
+
 const FormContainer = (props) => {
     return (
         <Form onSubmit={props.onSubmit}>
             <Title>{props.title}</Title>
             {props.children}
             <SubmitButton type='submit'>{props.buttonText}</SubmitButton>
+            {props.helperText &&
+                <Container>
+                    <p>{props.helperText}</p>
+                    <Link href={props.to}>
+                        <LinkText>{props.linkText}</LinkText>
+                    </Link>
+                </Container>
+            }
         </Form>
     )
 }
