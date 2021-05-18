@@ -28,6 +28,7 @@ const ContainerButtonsCenter = styled.div`
   justify-content: space-around;
   margin: 4rem;
   flex-wrap: wrap;
+  padding: 0 4rem;
 `;
 
 function Search() {

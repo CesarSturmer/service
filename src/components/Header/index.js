@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
   margin: 0px 100px 0 100px;
@@ -25,7 +25,7 @@ const Subtitle = styled.h1`
 const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 18px;
-`
+`;
 
 const SignUpButton = styled.a`
   width: 279px;
@@ -44,30 +44,34 @@ const LoginButton = styled.button`
 `;
 
 const Header = () => {
-    return (
-        <HeaderContainer>
-            <Container>
-            <div>
-                <Title>Serviço</Title>
-            </div>
-            <Container>
-              <Subtitle>Serivços</Subtitle>
-              <Subtitle>Seu Local</Subtitle>
-              <Subtitle>Sobre nós</Subtitle>
-            </Container>
-            <Container>
-              <ButtonsContainer>
-                <Link href="/userForm">
-                  <SignUpButton>Cadastrar</SignUpButton>
-                </Link>
-                <Link href="/login">
-                  <LoginButton>Entrar</LoginButton>
-                </Link>
-              </ButtonsContainer>
-            </Container>
-            </Container>
-        </HeaderContainer>
-    )
-}
+  return (
+    <HeaderContainer>
+      <Container>
+        <Link href="/">
+          <div>
+            <Title>Serviço</Title>
+          </div>
+        </Link>
+        <Container>
+          <Link href="/serviceSearch">
+            <Subtitle>Serivços</Subtitle>
+          </Link>
+          <Subtitle>Seu Local</Subtitle>
+          <Subtitle>Sobre nós</Subtitle>
+        </Container>
+        <Container>
+          <ButtonsContainer>
+            <Link href="/userForm">
+              <SignUpButton>Cadastrar</SignUpButton>
+            </Link>
+            <Link href="/login">
+              <LoginButton>Entrar</LoginButton>
+            </Link>
+          </ButtonsContainer>
+        </Container>
+      </Container>
+    </HeaderContainer>
+  );
+};
 
-export default Header
+export default Header;
