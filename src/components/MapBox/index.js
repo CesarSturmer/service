@@ -7,10 +7,8 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility';
 
 const ContainerMap = styled.div `
-
   height: 60vh;
-
-
+  z-index: -1;
 `
 
 
