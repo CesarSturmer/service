@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Header from '../src/components/Header';
 import LandingButton from '../src/components/LandingButton';
 import api from './api';
@@ -103,12 +104,15 @@ function Search() {
       <ContainerButtons>
         <ContainerButtonsCenter>
           {categoryInfo.map((item) => (
+      
+           
             <LandingButton
               imageSrc={getServiceIcons(item.categoria)}
               text={item.categoria}
-              to=""
+              to="/serviceLocation"
               serviceButton
             />
+             
           ))}
         </ContainerButtonsCenter>
       </ContainerButtons>

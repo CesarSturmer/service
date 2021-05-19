@@ -1,15 +1,27 @@
 import React from 'react';
-import MapBox from '../src/components/MapBox';
+import dynamic from 'next/dynamic';
+import Header from '../src/components/Header';
+
+export default function ServiceLocation() {
+
+  const MapWithNoSSR = dynamic(() => import('../src/components/MapBox'), {
+    ssr: false,
+  });
 
 
-function ServiceLocation() {
+    return (
+      <div>
+        <Header />
 
+        <MapWithNoSSR />
 
-  return(
-      <MapBox />
+        <main>
+          
+        </main>
 
-  )
-}
+      </div>
+    
 
-
-export default ServiceLocation;
+  );
+  
+};

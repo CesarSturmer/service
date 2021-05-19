@@ -14,12 +14,14 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.title};
+  cursor: pointer;
 `;
 
 const Subtitle = styled.h1`
   font-size: 18px;
   color: ${({ theme }) => theme.colors.title};
   padding: 43px;
+  cursor: pointer;
 `;
 
 const ButtonsContainer = styled.div`
@@ -32,6 +34,8 @@ const SignUpButton = styled.a`
   height: 40px;
   margin-right: 1rem;
   padding: 1rem;
+  cursor: pointer;
+  
 `;
 
 const LoginButton = styled.button`
