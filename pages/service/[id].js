@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import Header from '../../src/components/Header';
 import ServiceBox from '../../src/components/ServiceBox'
 import ButtonsContainer from '../../src/components/Utils/ButtonsContainer'
 import api from '../api';
-
-const Section = styled.main`
-  height: 100px;
-  background: #22aac1;
-  margin: 0 auto;
-  width: 80%;
-  border-radius: 0.75rem;
-  position: relative;
-  top: -1.875rem;
-  z-index: 9999;
-`;
 
 export default function Service() {
     const router = useRouter()
