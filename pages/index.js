@@ -3,8 +3,8 @@ import LandingButton from '../src/components/LandingButton';
 import TexContainer from '../src/components/Utils/TexContainer';
 
 const PageContainer = styled.div`
-  height: 100vh;
-  width: 100%;
+  height: auto;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
