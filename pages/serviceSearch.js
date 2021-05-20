@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Header from '../src/components/Header';
 import LandingButton from '../src/components/LandingButton';
 import api from './api';
 import styled from 'styled-components';
 import TexContainer from '../src/components/Utils/TexContainer';
+import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
 
 const PageContainer = styled.div`
   width: 50%;
@@ -12,24 +12,6 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`;
-const ContainerButtons = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: 6.25rem;
-  width: 80%;
-  margin: 10rem 0 0 10rem;
-  display: flex;
-  align-items: flex-start;
-  flex-flow: row wrap;
-`;
-const ContainerButtonsCenter = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 4rem;
-  flex-wrap: wrap;
-  padding: 0 4rem;
 `;
 
 function Search() {
@@ -101,18 +83,16 @@ function Search() {
         />
       </PageContainer>
 
-      <ContainerButtons>
-        <ContainerButtonsCenter>
-          {categoryInfo.map((item) => (
-            <LandingButton
-              imageSrc={getServiceIcons(item.categoria)}
-              text={item.categoria}
-              to={{ pathname: '/serviceLocation', query: { id: `${item.id}` } }}
-              serviceButton
-            />
-          ))}
-        </ContainerButtonsCenter>
-      </ContainerButtons>
+      <ButtonsContainer>
+        {categoryInfo.map((item) => (
+          <LandingButton
+            imageSrc={getServiceIcons(item.categoria)}
+            text={item.categoria}
+            to={`service/${item.id}`}
+            serviceButton
+          />
+        ))}
+      </ButtonsContainer>
     </>
   );
 }

@@ -13,7 +13,6 @@ const UserBox = styled.div`
 `;
 
 const UserPhoto = styled.img`
-  background-color: ${({ theme }) => theme.colors.title};
   width: 20%;
   height: 10rem;
   border-radius: ${({ theme }) => theme.borderRadius.max};
