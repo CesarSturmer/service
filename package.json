@@ -9,6 +9,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
+    "coordenadas-do-cep": "^1.2.0",
     "cpf-cnpj-validator": "^1.0.3",
     "google-map-react": "^2.1.9",
     "leaflet": "^1.7.1",

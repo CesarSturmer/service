@@ -6,6 +6,9 @@ import Header from '../src/components/Header';
 import Select from '../src/components/Utils/Select';
 import api from './api';
 import { MenuItem } from '@material-ui/core';
+import {  MapContainer, Marker, Popup } from 'react-leaflet';
+
+const CepCoords = require('coordenadas-do-cep');
 
 const Section = styled.main`
   height: 100px;
@@ -20,50 +23,55 @@ const Section = styled.main`
 
 export default function ServiceLocation() {
   const [city, setCity] = useState([]);
+  const [data, setData] = useState([]);
+  const [latitude, setLatitude] = useState()
+  const [longitude, setLongitude] = useState()
   const router = useRouter();
-
-
 
   const MapWithNoSSR = dynamic(() => import('../src/components/MapBox'), {
     ssr: false,
   });
 
-  if (typeof window !== 'undefined') {
-    const token = sessionStorage.getItem('validated_token')
-    api.defaults.headers.common['Authorization'] = 'Bearer ' + token
-}
+
 
   const {
     query: { id },
   } = router;
 
-  console.log(`valor do id ${id}`);
+  useEffect(() => {
+    const getStates = async () => {
+      await api
+        .get(`servicos?categoriaId=${id}`)
+
+        .then((res) => setData(res.data))
+    };
+    getStates();
+  }, []);
+
+
+  CepCoords.getByCep('88062130')
+    .then((info) => {
+      setLatitude(info.lat)
+      setLongitude (info.lon)
+    })
+    .catch((err) => {});
+
+    console.log(latitude, longitude);
+
 
   useEffect(() => {
     const getCities = async () => {
       await api.get('cidades').then((res) => setCity(res.data));
     };
-    getCities();
-    // if (props.data) {
-    //     setName(props.data.nomeCompleto)
-    //     setEmail(props.data.email)
-    //     setPhone(props.data.telefone)
-    //     setCep(props.data.endereco.cep)
-    //     setNeighborhood(props.data.endereco.bairro)
-    //     setStreet(props.data.endereco.logradouro)
-    //     setNumber(props.data.endereco.numero)
-    //     setComplement(props.data.endereco.complemento)
-    //     setCity(props.data.endereco.cidade.id)
-    //     setComplement(props.data.endereco.complemento)
-    //     console.log(props.data)
-    // }
+    getCities();   
   }, []);
 
   return (
     <div>
-      <Header />
+      <Header /> 
 
       <MapWithNoSSR />
+
 
       <Section>
         <div>
