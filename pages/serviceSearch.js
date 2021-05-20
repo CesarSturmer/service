@@ -104,15 +104,12 @@ function Search() {
       <ContainerButtons>
         <ContainerButtonsCenter>
           {categoryInfo.map((item) => (
-      
-           
             <LandingButton
               imageSrc={getServiceIcons(item.categoria)}
               text={item.categoria}
-              to="/serviceLocation"
+              to={{ pathname: '/serviceLocation', query: { id: `${item.id}` } }}
               serviceButton
             />
-             
           ))}
         </ContainerButtonsCenter>
       </ContainerButtons>

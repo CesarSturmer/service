@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Header from '../src/components/Header';
@@ -18,11 +19,25 @@ const Section = styled.main`
 `;
 
 export default function ServiceLocation() {
+  const [city, setCity] = useState([]);
+  const router = useRouter();
+
+
+
   const MapWithNoSSR = dynamic(() => import('../src/components/MapBox'), {
     ssr: false,
   });
 
-  const [city, setCity] = useState([]);
+  if (typeof window !== 'undefined') {
+    const token = sessionStorage.getItem('validated_token')
+    api.defaults.headers.common['Authorization'] = 'Bearer ' + token
+}
+
+  const {
+    query: { id },
+  } = router;
+
+  console.log(`valor do id ${id}`);
 
   useEffect(() => {
     const getCities = async () => {
@@ -70,3 +85,7 @@ export default function ServiceLocation() {
     </div>
   );
 }
+
+ServiceLocation.getInitialProps = ({ query: { id } }) => {
+  return { id };
+};
