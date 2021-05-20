@@ -133,6 +133,9 @@ function UserForm(props) {
             title={props.title} 
             onSubmit={onSubmit}
             buttonText={props.edit ? 'Editar' : 'Cadastrar'}
+            helperText={props.edit ? false : 'Já possui uma conta?'}
+            linkText='Clique aqui para acessa-la'
+            to='/login'
         >
             <TextField
                 value={name}

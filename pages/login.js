@@ -27,9 +27,12 @@ function Login() {
         <>
             <Header />
             <FormContainer 
-                title='faça seu login!' 
+                title='Faça seu login!' 
                 onSubmit={handleSubmit}
                 buttonText='Login'
+                helperText='Ainda não possui uma conta?'
+                linkText='Clique aqui para criar'
+                to='/userForm'
             >
                 <TextField
                     value={email}
