@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
 import FormValidations from '../src/contexts/FormValidations';
 import {
   passwordValidator,

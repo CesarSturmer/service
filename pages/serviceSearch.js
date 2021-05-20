@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Header from '../src/components/Header';
 import LandingButton from '../src/components/LandingButton';
 import api from './api';
@@ -28,6 +29,7 @@ const ContainerButtonsCenter = styled.div`
   justify-content: space-around;
   margin: 4rem;
   flex-wrap: wrap;
+  padding: 0 4rem;
 `;
 
 function Search() {
@@ -105,7 +107,7 @@ function Search() {
             <LandingButton
               imageSrc={getServiceIcons(item.categoria)}
               text={item.categoria}
-              to=""
+              to={{ pathname: '/serviceLocation', query: { id: `${item.id}` } }}
               serviceButton
             />
           ))}

@@ -2,7 +2,7 @@
   "name": "with-styled-components",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -10,15 +10,19 @@
     "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
     "cpf-cnpj-validator": "^1.0.3",
+    "google-map-react": "^2.1.9",
+    "leaflet": "^1.7.1",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-geosearch": "^3.3.2",
     "next": "latest",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-is": "^16.8.0",
+    "react-leaflet": "^3.2.0",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.8.0"
-
   },
   "license": "MIT"
 }
