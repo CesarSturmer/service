@@ -6,8 +6,7 @@ const UserInfoContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  margin-top: -6rem;
+  align-items: flex-start;
 `
 
 const DataContainer = styled.div`

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
 import api from './api'
-import UserInfoBox from '../src/components/UserInfoBox'
+import ServiceProviderBox from '../src/components/ServiceProviderBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import Header from '../src/components/Header'
@@ -47,19 +47,12 @@ function ServiceProvider() {
         <div>
             <Header />
             {userInfo.length !== 0 && !editUser &&
-                <UserInfoBox
-                    cpf={userInfo.cpf}
-                    email={userInfo.email}
-                    neighborhood={userInfo.endereco.bairro}
-                    cep={userInfo.endereco.cep}
-                    city={userInfo.endereco.cidade.nome}
-                    state={userInfo.endereco.cidade.estado}
-                    complement={userInfo.endereco.complemento}
-                    street={userInfo.endereco.logradouro}
-                    number={userInfo.endereco.numero}
-                    id={userInfo.id}
-                    name={userInfo.nomeCompleto}
-                    phone={userInfo.telefone}
+                <ServiceProviderBox
+                    provider={userInfo.nomeCompleto}
+                    category='Pintor'
+                    service='Pintura geral'
+                    neighborhood='Campeche'
+                    price={10.50}
                 />
             }
             {editUser ? 
