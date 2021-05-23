@@ -39,6 +39,7 @@ function User() {
             <Header />
             {userInfo.length >= 0 && !editUser &&
                 <UserInfoBox
+                    avaliation={2}
                     cpf={userInfo.cpf}
                     email={userInfo.email}
                     neighborhood={userInfo.endereco.bairro}

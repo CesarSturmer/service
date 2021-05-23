@@ -48,6 +48,7 @@ function ServiceProvider() {
             <Header />
             {userInfo.length !== 0 && !editUser &&
                 <ServiceProviderBox
+                    avaliation={3}
                     provider={userInfo.nomeCompleto}
                     category='Pintor'
                     service='Pintura geral'

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {AiFillStar} from 'react-icons/ai'
+import AvaliationIcons from '../AvaliationIcons'
 
 const Box = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -37,13 +37,7 @@ const PhotoBox = (props) => {
             <TopContainer>
                 <Photo src='https://media-exp1.licdn.com/dms/image/C5603AQGukIMfUDJRpg/profile-displayphoto-shrink_400_400/0/1595376049871?e=1625702400&v=beta&t=IFIxV-PB6zDs9Fix0UvegxtNTVxP9HBFHJ_K7CZDSow' />
                 <p>{props.name}</p>
-                <IconsContainer>
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                    <AiFillStar />
-                </IconsContainer>
+                <AvaliationIcons avaliation={props.avaliation} />
             </TopContainer>
             {props.children}
         </Box>
