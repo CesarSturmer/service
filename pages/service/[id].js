@@ -11,16 +11,25 @@ export default function Service() {
   const router = useRouter();
   const { id } = router.query;
   const [services, setServices] = useState([]);
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [cep, setCep] = useState();
+  const [coordinates, setCordinates] = useState([])
 
   useEffect(() => {
     const getServices = async () => {
       await api.get(`servicos?categoriaId=${id}`)
-      .then((res) => 
-        setServices(res.data));
-    };
+        .then((res) => {
+          setServices(res.data);
+          res.data.map((item) => {
+            CepCoords.getByCep(item.prestadorServico.endereco.cep)
+            .then((info) => {
+              const json = {lat: info.lat, lon: info.lon}
+              setCordinates(coordinates => [...coordinates, json])
+            })
+            .catch((err) => {
+              console.log('erro');
+            });
+          })
+        }
+        )};
     getServices();
   }, []);
 
@@ -32,45 +41,24 @@ export default function Service() {
     //       setCep(cepInfo)
     //   })
 
-
-  
-    CepCoords.getByCep('88062130')
-      .then((info) => {
-        setLatitude(info.lat);        
-        setLongitude(info.lon);
-      })
-      .catch((err) => {
-        console.log('erro');
-      });
-  
-
-  console.log(latitude);
-  console.log(longitude);
-
   return (
-    <div>
+    <div onClick={() => console.log(coordinates)}>
       <Header />
-
       {services.length >= 1 && (
-        <div>
+        <>
+        <MapBox coordinates={coordinates} />
+        <ButtonsContainer>
           {services.map((service) => {
-           
-           
-           
             return (
-              <>
-                <MapBox latitude={latitude} longitude={longitude} />
-
-                {/* <ServiceBox 
-                        title={service.titulo} 
-                        serviceProvider={service.prestadorServico.nomeCompleto} 
-                    />
-
-                    <h2>{service.titulo}</h2> */}
-              </>
+                <ServiceBox 
+                  key={service.id}
+                  title={service.titulo} 
+                  serviceProvider={service.prestadorServico.nomeCompleto} 
+                />
             );
           })}
-        </div>
+        </ButtonsContainer>
+        </>
       )}
     </div>
   );

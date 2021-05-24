@@ -86,6 +86,7 @@ function Search() {
       <ButtonsContainer>
         {categoryInfo.map((item) => (
           <LandingButton
+            key={item.id}
             imageSrc={getServiceIcons(item.categoria)}
             text={item.categoria}
             to={`service/${item.id}`}
