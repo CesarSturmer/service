@@ -27,6 +27,7 @@ const Subtitle = styled.h1`
 const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 18px;
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 const SignUpButton = styled.a`
@@ -40,8 +41,8 @@ const SignUpButton = styled.a`
 
 const LoginButton = styled.button`
   background: ${({ theme }) => theme.colors.secondary};
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.title};
+  font-size: 1rem;
   border-radius: 18px;
   width: 140px;
   height: 40px;
