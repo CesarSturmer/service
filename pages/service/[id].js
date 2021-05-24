@@ -53,7 +53,8 @@ export default function Service() {
                 <ServiceBox 
                   key={service.id}
                   title={service.titulo} 
-                  serviceProvider={service.prestadorServico.nomeCompleto} 
+                  serviceProvider={service.prestadorServico.nomeCompleto}
+                  avaliation={4} 
                 />
             );
           })}
