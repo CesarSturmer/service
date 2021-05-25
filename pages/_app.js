@@ -12,11 +12,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100vh;
     box-sizing: border-box;
-    background: no-repeat url('/background.svg');
-    background-size: cover;
-    font-family: 'Open Sans', sans-serif;
-    
+    background: no-repeat url('/background-servicos.png');
+    background-size: cover !important;
+    font-family: 'Open Sans', sans-serif;    
   }
   
   a, button {
