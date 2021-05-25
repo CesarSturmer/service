@@ -44,7 +44,7 @@ export default function Service() {
   return (
     <div onClick={() => console.log(coordinates)}>
       <Header />
-      {services.length >= 1 && (
+      {services.length >= 1 ? 
         <>
         <MapBox coordinates={coordinates} />
         <ButtonsContainer>
@@ -60,7 +60,9 @@ export default function Service() {
           })}
         </ButtonsContainer>
         </>
-      )}
+      :
+          <h1>Nenhum serviço cadastrado nessa categoria!</h1>
+      }
     </div>
   );
 }

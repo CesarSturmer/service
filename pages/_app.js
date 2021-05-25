@@ -35,7 +35,7 @@ const theme = {
 
   },
   borderRadius: {
-    default: '8px',
+    default: '18px',
     max: '50%',
   }
 };

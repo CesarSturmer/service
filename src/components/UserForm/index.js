@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {TextField, MenuItem, Checkbox, FormControlLabel} from '@material-ui/core'
+import {TextField, MenuItem} from '@material-ui/core'
 import api from '../../../pages/api'
 import {useRouter} from 'next/router'
 import FormValidations from '../../contexts/FormValidations'
@@ -15,12 +15,27 @@ const TwoInputsContainer = styled.div`
     justify-content: space-between;
 `
 
+const Text = styled.p`
+    color: ${({ theme }) => theme.colors.secondary};
+`
+
+const OptionButton = styled.button`
+    width: 13rem;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.title};
+    padding: 0.5rem;
+    margin: 1rem 0;
+    border-radius: ${({ theme }) => theme.borderRadius.default};
+    border: none;
+`
+
 function UserForm(props) {
     const router = useRouter()
     const [cities, setCities] = useState([])
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [cep, setCep] = useState('')
@@ -129,7 +144,7 @@ function UserForm(props) {
     }
 
     return (
-        <FormContainer 
+        <FormContainer
             title={props.title} 
             onSubmit={onSubmit}
             buttonText={props.edit ? 'Editar' : 'Cadastrar'}
@@ -148,6 +163,36 @@ function UserForm(props) {
                 fullWidth
                 required
             />
+            <TwoInputsContainer>   
+                <TextField
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={fieldValidator}
+                    error={error.phone.error}
+                    helperText={error.phone.text}
+                    label='Telefone'
+                    name='phone'
+                    variant='outlined'
+                    size='small'
+                    type='number'
+                    margin='normal'
+                    required
+                />
+                <TextField
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                    onBlur={fieldValidator}
+                    error={error.cpf.error}
+                    helperText={error.cpf.text}
+                    label='CPF'
+                    name='cpf'
+                    variant='outlined'
+                    size='small'
+                    type='number'
+                    margin='normal'
+                    required
+                />
+            </TwoInputsContainer>
             <TextField
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -173,40 +218,25 @@ function UserForm(props) {
                         size='small'
                         type='password'
                         margin='normal'
-                        style={{maxWidth: '14rem'}}
                         required
                     />
                     <TextField
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         onBlur={fieldValidator}
-                        error={error.cpf.error}
-                        helperText={error.cpf.text}
-                        label='CPF'
-                        name='cpf'
+                        error={error.password.error}
+                        helperText={error.password.text}
+                        label='Confirma senha'
+                        name='password'
                         variant='outlined'
                         size='small'
-                        type='number'
+                        type='password'
                         margin='normal'
                         required
                     />
                 </TwoInputsContainer>
             }
-            <TwoInputsContainer>   
-                <TextField
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    onBlur={fieldValidator}
-                    error={error.phone.error}
-                    helperText={error.phone.text}
-                    label='Telefone'
-                    name='phone'
-                    variant='outlined'
-                    size='small'
-                    type='number'
-                    margin='normal'
-                    required
-                />
+            <TwoInputsContainer>
                 <TextField
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
@@ -220,6 +250,17 @@ function UserForm(props) {
                     margin='normal'
                     required
                 />
+                <Select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    label='Cidade'
+                >
+                    {
+                        cities.map((city) => {
+                            return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
+                        })
+                    }
+                </Select>
             </TwoInputsContainer>
             <TextField
                 value={neighborhood}
@@ -264,31 +305,15 @@ function UserForm(props) {
                 margin='normal'
                 fullWidth
             />
-            <TwoInputsContainer>
-                <Select
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    label='Cidade'
-                >
-                    {
-                        cities.map((city) => {
-                            return <MenuItem key={city.id} value={city.id}>{city.nome}</MenuItem>
-                        })
-                    }
-                </Select>
-                {!props.edit &&
-                    <FormControlLabel 
-                        control={
-                            <Checkbox 
-                                checked={serviceProvider}
-                                onChange={(e) => setServiceProvider(e.target.checked)}
-                                color='primary'
-                            />
-                        }
-                        label='Prestador de Serviços'
-                    />
-                }
-            </TwoInputsContainer>
+            {!props.edit &&
+                <>
+                    <Text>Como você deseja se cadastrar?</Text>
+                    <TwoInputsContainer>
+                        <OptionButton type='button' onClick={() => setServiceProvider(false)}>Contratante</OptionButton>
+                        <OptionButton type='button' onClick={() => setServiceProvider(true)}>Prestador de serviços</OptionButton>
+                    </TwoInputsContainer>
+                </>
+            }
         </FormContainer>
     )
 }

@@ -10,7 +10,7 @@ const Select = (props) => {
             size='small'
             type='number'
             margin='normal'
-            style={{minWidth: '12rem'}}
+            style={{minWidth: '14rem'}}
             select
             required
         >
