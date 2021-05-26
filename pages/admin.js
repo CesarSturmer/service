@@ -2,14 +2,44 @@ import {useState} from 'react'
 import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from './api'
-import SubmitButton from '../src/components/SubmitButton'
 import FormContainer from '../src/components/Utils/FormContainer'
 import Select from '../src/components/Utils/Select'
 
+const PageContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+`
+
 const ButtonsContainer = styled.div`
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.title};
+    height: 100%;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+`
+
+const MenuButton = styled.p`
+    background-color: ${({ theme }) => theme.colors.secondary};
+    font-size: 1rem;
+    margin: 2rem 0;
+    cursor: pointer;
+`
+
+const List = styled.ul`
+    color: ${({ theme }) => theme.colors.secondary};
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+`
+
+const ListItem = styled.li`
+    margin-left: 0.5rem;
 `
 
 function Admin() {
@@ -72,18 +102,19 @@ function Admin() {
     }
 
     return (
-        <>
+        <PageContainer>
             <ButtonsContainer>
-                <SubmitButton onClick={() => setForm(1)}>Cadastrar Estado</SubmitButton>
-                <SubmitButton onClick={() => { 
+                <h1>Serviço</h1>
+                <MenuButton onClick={() => setForm(1)}>Cadastrar Estado</MenuButton>
+                <MenuButton onClick={() => { 
                     getStates()
                     setForm(2)
-                }}>Cadastrar Cidade</SubmitButton>
-                <SubmitButton onClick={() => setForm(3)}>Cadastrar categoria</SubmitButton>
-                <SubmitButton onClick={() => {
+                }}>Cadastrar Cidade</MenuButton>
+                <MenuButton onClick={() => setForm(3)}>Cadastrar categoria</MenuButton>
+                <MenuButton onClick={() => {
                     getCategories()
                     setForm(4)
-                }}>Listar categoria</SubmitButton>
+                }}>Listar categoria</MenuButton>
             </ButtonsContainer>
             {form === 1 &&
                 <FormContainer 
@@ -132,7 +163,11 @@ function Admin() {
                 </FormContainer>
             }
             {form === 3 &&
-                <form onSubmit={postCategory}>
+                <FormContainer
+                    onSubmit={postCategory}
+                    title='Cadastre uma nova Categoria'
+                    buttonText='Cadastrar Categoria'
+                >
                     <TextField
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
@@ -143,20 +178,22 @@ function Admin() {
                         margin='normal'
                         fullWidth
                     />
-                    <SubmitButton type='submit'>Cadastrar Categoria</SubmitButton>
-                </form>
+                </FormContainer>
             }
             {form === 4 &&
-                <>
-                    <ul style={{color: '#fff'}}>
+                <FormContainer
+                    onSubmit={() => setForm(0)}
+                    title='Lista de Categorias'
+                    buttonText='Esconder categorias'
+                >
+                    <List>
                         {categories.map((category) => {
-                            return <li key={category.id}>{category.categoria}</li>
+                            return <ListItem key={category.id}>{category.categoria}</ListItem>
                         })}
-                    </ul>
-                    <SubmitButton onClick={() => setForm(0)}>Esconder categorias</SubmitButton>
-                </>
+                    </List>
+                </FormContainer>
             }
-        </>
+        </PageContainer>
     )
 }
 
