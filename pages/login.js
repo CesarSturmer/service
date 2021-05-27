@@ -4,6 +4,7 @@ import {TextField} from '@material-ui/core'
 import api from './api'
 import FormContainer from '../src/components/Utils/FormContainer'
 import Header from '../src/components/Header'
+import Footer from '../src/components/Footer'
 
 function Login() {
     const router = useRouter()
@@ -55,6 +56,7 @@ function Login() {
                     fullWidth
                 />
             </FormContainer>
+            <Footer />
         </>
     )
 }

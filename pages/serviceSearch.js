@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import Header from '../src/components/Header';
-import LandingButton from '../src/components/LandingButton';
-import api from './api';
-import styled from 'styled-components';
-import TexContainer from '../src/components/Utils/TexContainer';
+import { useEffect, useState } from 'react'
+import Header from '../src/components/Header'
+import LandingButton from '../src/components/LandingButton'
+import api from './api'
+import styled from 'styled-components'
+import TexContainer from '../src/components/Utils/TexContainer'
 import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
+import Footer from '../src/components/Footer'
 
 const PageContainer = styled.div`
   width: 50%;
@@ -94,6 +95,7 @@ function Search() {
           />
         ))}
       </ButtonsContainer>
+      <Footer />
     </>
   );
 }

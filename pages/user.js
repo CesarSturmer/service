@@ -4,6 +4,7 @@ import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import Header from '../src/components/Header'
+import Footer from '../src/components/Footer'
 
 function User() {
     const [userInfo, setUserInfo] = useState([])
@@ -63,6 +64,7 @@ function User() {
                 <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
+            <Footer />
         </div>
     )
 }

@@ -6,6 +6,7 @@ import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import Header from '../src/components/Header'
 import ServiceForm from '../src/components/ServiceForm'
+import Footer from '../src/components/Footer'
 
 function ServiceProvider() {
     const router = useRouter()
@@ -70,6 +71,7 @@ function ServiceProvider() {
             :
                 <SubmitButton onClick={() => setShowServiceForm(true)}>Cadastrar Serviço</SubmitButton>
             }
+            <Footer />
         </div>
     )
 }
