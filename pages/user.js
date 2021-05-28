@@ -20,6 +20,7 @@ function User() {
             await api.get('usuario')
             .then((res) => {
                 setUserInfo(res.data)
+                console.log(res.data.midiaPath)
             })
             .catch(() => alert('falha!'))
         }
@@ -42,16 +43,11 @@ function User() {
                 <UserInfoBox
                     avaliation={2}
                     imageSrc={userInfo.midiaPath}
-                    cpf={userInfo.cpf}
                     email={userInfo.email}
-                    neighborhood={userInfo.endereco.bairro}
-                    cep={userInfo.endereco.cep}
                     city={userInfo.endereco.cidade.nome}
                     state={userInfo.endereco.cidade.estado}
-                    complement={userInfo.endereco.complemento}
                     street={userInfo.endereco.logradouro}
                     number={userInfo.endereco.numero}
-                    id={userInfo.id}
                     name={userInfo.nomeCompleto}
                     phone={userInfo.telefone}
                 />

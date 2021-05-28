@@ -47,7 +47,12 @@ const PhotoBox = (props) => {
         e.preventDefault()
         const token = sessionStorage.getItem('validated_token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
-        await api.post('midia', e.target, {
+        var formData = new FormData()
+        var midia = e.target.files[0]
+        console.log(midia)
+        formData.append('midia', midia)
+        console.log(formData)
+        await api.post('midia', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Accept': 'application/json',
@@ -62,7 +67,7 @@ const PhotoBox = (props) => {
         <Box>
             <TopContainer>
                 {props.imageSrc ?
-                    <Photo src={props.imageSrc} />
+                    <Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
                 :
                     <>
                         <InputLabel htmlFor='midia'><FaUserCircle size='10rem' /></InputLabel>
