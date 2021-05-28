@@ -8,6 +8,18 @@ const ContainerButtons = styled.div`
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
+ 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 80%;
+    margin: 0 auto;
+  }  
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 3.25rem;
+
+  }  
+ 
 `;
 
 const ContainerButtonsCenter = styled.div`
@@ -18,6 +30,18 @@ const ContainerButtonsCenter = styled.div`
   margin: 4rem;
   flex-wrap: wrap;
   padding: 0 4rem;
+
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0 2rem;
+    margin: 2rem;
+  }  
+  @media (min-width: 320px) and (max-width: 767px) {
+    padding: 0 2rem;
+    margin: 2rem;
+
+  }  
+  
 `;
 
 const ButtonsContainer = (props) => {

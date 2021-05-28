@@ -12,12 +12,12 @@ const Button = styled.button`
   justify-content: space-around;
   margin: 2rem 0;
 
-  @media (min-width: 1023px) and (max-width: 1100px) {
+  @media (min-width: 1025px) and (max-width: 1100px) {
     padding: 0 3.125rem;
     width: 13rem;
     height: 5rem;
   }
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     padding: 0 3.125rem;
     width: 13rem;
     height: 5rem;
@@ -37,10 +37,10 @@ const Button = styled.button`
 const ImageContainer = styled.div`
   padding: 0 0.625rem 0 1.563rem;
 
-  @media (min-width: 1023px) and (max-width: 1100px) {
+  @media (min-width: 1025px) and (max-width: 1100px) {
     padding-left: 0.75rem;
   }
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     padding-left: 0.75rem;
   }
   @media (min-width: 480px) and (max-width: 767px) {
@@ -66,12 +66,12 @@ const ButtonText = styled.p`
   margin: 2.25rem 2.188rem 2.188rem 0px;
   color: ${({ theme }) => theme.colors.title};
 
-  @media (min-width: 1023px) and (max-width: 1100px) {
+  @media (min-width: 1025px) and (max-width: 1100px) {
     margin: 0;
     padding-right: 0.75rem;
     font-size: 1.25rem;
   }
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     margin: 0;
     padding-right: 0.75rem;
     font-size: 1.25rem;

@@ -9,7 +9,7 @@ const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     flex-direction: column;
     margin-top: 1.25rem;  
   } 
@@ -28,7 +28,7 @@ const Left = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     align-items: center;
   }
   @media (min-width: 480px) and (max-width: 767px) {
@@ -42,10 +42,10 @@ const Left = styled.div`
 const ContainerButtons = styled.div`
   display: flex;
 
-  @media (min-width: 1023px) and (max-width: 1100px) {
+  @media (min-width: 1025px) and (max-width: 1100px) {
     padding-left: 2.5rem;
   }
-  @media (min-width: 768px) and (max-width: 1022px) {
+  @media (min-width: 768px) and (max-width: 1025px) {
     padding-left: 2.5rem;
   }
   @media (min-width: 479px) and (max-width: 767px) {
@@ -71,9 +71,10 @@ export default function Landing() {
     <PageContainer>
       <Left>
         <TexContainer
-          title={'Serviço'}
+          title={'Service'}
           subtitle={'Procurando alguém na sua região?'}
           secondTitle={'Buscando alguém bem recomendado?'}
+          fontSizeTitle
         />
 
         <ContainerButtons>
