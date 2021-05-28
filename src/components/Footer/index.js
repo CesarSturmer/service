@@ -3,6 +3,9 @@ import Link from 'next/link';
 import {RiFacebookCircleFill, RiMailLine, RiPhoneLine} from 'react-icons/ri'
 
 const FooterContainer = styled.footer`
+    width: 100%;
+    position: relative;
+    bottom: 0;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.title};
     display: flex;

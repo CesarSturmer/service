@@ -14,9 +14,9 @@ const DataContainer = styled.div`
   flex-direction: column;
 `
 
-const ServiceProviderBox = ({avaliation, provider, category, service, neighborhood, price}) => {
+const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, price}) => {
     return (
-        <PhotoBox avaliation={avaliation} name={provider}>
+        <PhotoBox avaliation={avaliation} name={provider} imageSrc={imageSrc}>
             <UserInfoContainer>
                 <DataContainer>
                     <p>Categoria: {category}</p>

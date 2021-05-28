@@ -16,6 +16,7 @@ const DataContainer = styled.div`
 
 function UserInfoBox({
   avaliation,
+  imageSrc,
   email,
   city,
   state,
@@ -25,7 +26,7 @@ function UserInfoBox({
   phone,
 }) {
   return (
-    <PhotoBox avaliation={avaliation} name={name}>
+    <PhotoBox avaliation={avaliation} name={name} imageSrc={imageSrc}>
       <UserInfoContainer>
         <DataContainer>
           <p>Email: {email}</p>

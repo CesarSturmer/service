@@ -11,7 +11,6 @@ import Footer from '../src/components/Footer'
 function ServiceProvider() {
     const router = useRouter()
     const [userInfo, setUserInfo] = useState([])
-    const [categories, setCategories] = useState([])
     const [editUser, setEditUser] = useState(false)
     const [showServiceForm, setShowServiceForm] = useState(false)
     
@@ -24,7 +23,6 @@ function ServiceProvider() {
         const getUserInfo = async () => {
             await api.get('prestador')
             .then((res) => {
-                console.log(res.data)
                 setUserInfo(res.data)
             })
             .catch(() => {
@@ -51,6 +49,7 @@ function ServiceProvider() {
                 <ServiceProviderBox
                     avaliation={3}
                     provider={userInfo.nomeCompleto}
+                    imageSrc={userInfo.midiaPath}
                     category='Pintor'
                     service='Pintura geral'
                     neighborhood='Campeche'

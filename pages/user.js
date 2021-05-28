@@ -38,9 +38,10 @@ function User() {
     return (
         <div>
             <Header />
-            {userInfo.length >= 0 && !editUser &&
+            {userInfo.length !== 0 && !editUser &&
                 <UserInfoBox
                     avaliation={2}
+                    imageSrc={userInfo.midiaPath}
                     cpf={userInfo.cpf}
                     email={userInfo.email}
                     neighborhood={userInfo.endereco.bairro}
