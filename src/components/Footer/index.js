@@ -4,6 +4,7 @@ import {RiFacebookCircleFill, RiMailLine, RiPhoneLine} from 'react-icons/ri'
 
 const FooterContainer = styled.footer`
     width: 100%;
+    height: auto;
     position: relative;
     bottom: 0;
     background-color: ${({ theme }) => theme.colors.secondary};

@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import {TextField} from '@material-ui/core'
@@ -5,6 +6,13 @@ import api from './api'
 import FormContainer from '../src/components/Utils/FormContainer'
 import Header from '../src/components/Header'
 import Footer from '../src/components/Footer'
+
+const Container = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
 
 function Login() {
     const router = useRouter()
@@ -25,7 +33,7 @@ function Login() {
     }
 
     return (
-        <>
+        <Container>
             <Header />
             <FormContainer 
                 title='Faça seu login!' 
@@ -57,7 +65,7 @@ function Login() {
                 />
             </FormContainer>
             <Footer />
-        </>
+        </Container>
     )
 }
 
