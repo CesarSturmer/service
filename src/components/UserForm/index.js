@@ -36,6 +36,7 @@ function UserForm(props) {
     const [cpf, setCpf] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [confirmPassworError, setConfirmPasswordError] = useState({error: false, text: ''})
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [cep, setCep] = useState('')
@@ -83,6 +84,13 @@ function UserForm(props) {
             setCepError({error: false, text: ''})
         })
         .catch(() => setCepError({error: true, text: 'CEP inválido!'}))
+    }
+
+    const confirmPasswordValidator = () => {
+        password === confirmPassword ?
+            setConfirmPasswordError({error: false, text: ''})
+        :
+            setConfirmPasswordError({error: true, text: 'Senhas diferentes!'})
     }
 
     const postUser = async () => {
@@ -217,14 +225,15 @@ function UserForm(props) {
                         size='small'
                         type='password'
                         margin='normal'
+                        style={{maxWidth: '14rem'}}
                         required
                     />
                     <TextField
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        onBlur={fieldValidator}
-                        error={error.password.error}
-                        helperText={error.password.text}
+                        onBlur={confirmPasswordValidator}
+                        error={confirmPassworError.error}
+                        helperText={confirmPassworError.text}
                         label='Confirma senha'
                         name='password'
                         variant='outlined'
