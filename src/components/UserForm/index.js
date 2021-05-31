@@ -86,8 +86,7 @@ function UserForm(props) {
     }
 
     const postUser = async () => {
-        const endPoint = serviceProvider ? 'prestador' : 'usuario'
-        await api.post(endPoint, {
+        await api.post('usuario', {
             cpf: cpf,
             email: email,
             endereco: {
@@ -100,6 +99,7 @@ function UserForm(props) {
                 logradouro: street,
                 numero: number,
             },
+            isPrestador: serviceProvider,
             nomeCompleto: name,
             senha: password,
             telefone: phone,
@@ -109,8 +109,7 @@ function UserForm(props) {
     }
 
     const editUser = async () => {
-        const endPoint = props.serviceProvider ? 'prestador' : 'usuario'
-        await api.put(endPoint, {
+        await api.put('usuario', {
             email: email,
             endereco: {
                 bairro: neighborhood,

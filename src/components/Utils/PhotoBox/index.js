@@ -50,7 +50,7 @@ const PhotoBox = (props) => {
         var formData = new FormData()
         var midia = e.target.files[0]
         console.log(midia)
-        formData.append('midia', midia)
+        formData.append('file', midia)
         console.log(formData)
         await api.post('midia', formData, {
             headers: {

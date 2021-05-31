@@ -21,7 +21,7 @@ function ServiceProvider() {
 
     useEffect(() => {
         const getUserInfo = async () => {
-            await api.get('prestador')
+            await api.get('usuario')
             .then((res) => {
                 setUserInfo(res.data)
             })
@@ -34,7 +34,7 @@ function ServiceProvider() {
     }, [])
 
     const deleteUser = async () => {
-        await api.delete('prestador')
+        await api.delete('usuario')
         .then(() => {
             alert('Usuário excluído com sucesso!')
             sessionStorage.removeItem('validated_token')
