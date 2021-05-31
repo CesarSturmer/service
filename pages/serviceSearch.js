@@ -67,7 +67,7 @@ function Search() {
         return ImageWoodWork;
       case 'Obras':
         return ImageConstruction;
-      case 'Outros Serviços':
+      case 'Outros':
         return ImageOtherServices;
     }
   }

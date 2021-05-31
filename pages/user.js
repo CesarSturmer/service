@@ -41,9 +41,11 @@ function User() {
             <Header />
             {userInfo.length !== 0 && !editUser &&
                 <UserInfoBox
-                    avaliation={2}
+                    avaliation={2.5}
                     imageSrc={userInfo.midiaPath}
                     email={userInfo.email}
+                    cpf={userInfo.cpf}
+                    cep={userInfo.endereco.cep}
                     city={userInfo.endereco.cidade.nome}
                     state={userInfo.endereco.cidade.estado}
                     street={userInfo.endereco.logradouro}

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
+import {ImStarFull, ImStarEmpty, ImStarHalf} from 'react-icons/im'
 
 const IconsContainer = styled.div`
     display: flex;
@@ -9,10 +9,12 @@ const AvaliationIcons = ({avaliation}) => {
 
     const renderIcon = (position) => {
         if(avaliation >= position) {
-            return <AiFillStar />
-        } else {
-            return <AiOutlineStar />
+            return <ImStarFull />
         }
+        if(avaliation > position - 1) {
+            return <ImStarHalf />
+        }
+        return <ImStarEmpty />
     }
 
     return (

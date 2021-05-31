@@ -7,7 +7,6 @@ const Box = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.title};
   width: 50rem;
-  height: 25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
