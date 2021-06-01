@@ -8,12 +8,28 @@ import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
 import Footer from '../src/components/Footer'
 
 const PageContainer = styled.div`
-  width: 50%;
   margin: 6rem 0 0 10rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media(min-width: 1025px) and (max-width: 1100px) {
+    margin: 3rem 0 0 5rem;
+  }  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin: 4rem 0;
+    justify-content: center;
+    align-items: center;
+  }  
+  @media (min-width: 320px) and (max-width: 767px) {
+    margin: 4rem 0;
+    justify-content: center;
+    align-items: center;
+ 
+  }  
+
 `;
+
 
 function Search() {
   const [categoryInfo, setCategoryInfo] = useState([]);
@@ -29,6 +45,7 @@ function Search() {
     };
     getCategory();
   }, []);
+  
 
   function getServiceIcons(categoria) {
     const ImageHouseMade = './Caseiro.svg';
@@ -80,7 +97,6 @@ function Search() {
           title={`Qual tipo de serviço você quer?`}
           subtitle={'Procurando alguém na sua região recomendado?'}
           secondTitle={'Buscando alguém bem recomendado?'}
-          fontSizeTitle
         />
       </PageContainer>
 
