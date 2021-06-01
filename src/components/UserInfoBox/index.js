@@ -5,9 +5,8 @@ const UserInfoContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: flex-start;
-  margin: 2rem 0;
+  justify-content: space-between;
 `
 
 const DataContainer = styled.div`
@@ -15,14 +14,26 @@ const DataContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-
-  &:first-child {
-    margin-right: 9rem;
-  }
+  margin-left: 5rem;
 `
 
 const Text = styled.p`
   margin: 1rem 0;
+`
+
+const ButtonsContainer = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+`
+
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.title};
+  border: 1px solid ${({ theme }) => theme.colors.backgroundWhite};
+  border-radius: ${({ theme }) => theme.borderRadius.default};
+  padding: 0.5rem 2rem;
 `
 
 function UserInfoBox({
@@ -37,6 +48,7 @@ function UserInfoBox({
   number,
   name,
   phone,
+  editUser
 }) {
   return (
     <PhotoBox avaliation={avaliation} name={name} imageSrc={imageSrc}>
@@ -56,6 +68,10 @@ function UserInfoBox({
           <Text>{state},{city},{street}, {number}</Text>
         </DataContainer>
       </UserInfoContainer>
+      <ButtonsContainer>
+        <Button>Alterar senha</Button>
+        <Button onClick={editUser}>Alterar dados</Button>
+      </ButtonsContainer>
     </PhotoBox>
   );
 }

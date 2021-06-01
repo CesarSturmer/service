@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link';
 import SubmitButton from '../../SubmitButton'
+import {IoArrowBack} from 'react-icons/io5'
 
 const Form = styled.form`
     background-color: ${({ theme }) => theme.colors.backgroundWhite};
@@ -12,6 +13,13 @@ const Form = styled.form`
     align-items: center;
     flex-direction: column;
     border-radius: ${({ theme }) => theme.borderRadius.default};
+`
+
+const BackContainer = styled.div`
+    color: ${({ theme }) => theme.colors.secondary};
+    position: relative;
+    left: -50%;
+    cursor: pointer;
 `
 
 const Title = styled.h1`
@@ -34,6 +42,9 @@ const LinkText = styled.a`
 const FormContainer = (props) => {
     return (
         <Form onSubmit={props.onSubmit}>
+            {props.back &&
+                <BackContainer onClick={props.back}><IoArrowBack/></BackContainer>
+            }
             <Title>{props.title}</Title>
             {props.children}
             <SubmitButton type='submit'>{props.buttonText}</SubmitButton>

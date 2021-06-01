@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {useRouter} from 'next/router'
 import api from './api'
 import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
@@ -7,6 +8,7 @@ import Header from '../src/components/Header'
 import Footer from '../src/components/Footer'
 
 function User() {
+    const router = useRouter()
     const [userInfo, setUserInfo] = useState([])
     const [editUser, setEditUser] = useState(false)
     
@@ -22,7 +24,11 @@ function User() {
                 setUserInfo(res.data)
                 console.log(res.data.midiaPath)
             })
-            .catch(() => alert('falha!'))
+            .catch(() => {
+                alert('Sessão expirada!')
+                sessionStorage.removeItem('validated_token')
+                router.push('/login')
+            })
         }
         getUserInfo()
     }, [])
@@ -52,15 +58,13 @@ function User() {
                     number={userInfo.endereco.numero}
                     name={userInfo.nomeCompleto}
                     phone={userInfo.telefone}
+                    editUser={() => setEditUser(true)}
                 />
             }
-            {editUser ? 
+            {editUser &&
                 <>
-                    <UserForm serviceProvider edit data={userInfo} title='Editar informações de usuário!' />
-                    <SubmitButton onClick={() => setEditUser(false)}>Voltar</SubmitButton>
+                    <UserForm serviceProvider edit data={userInfo} title='Editar informações de usuário!' back={() => setEditUser(false)} />
                 </>
-            :
-                <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
             <Footer />

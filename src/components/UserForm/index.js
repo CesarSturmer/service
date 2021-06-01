@@ -63,6 +63,7 @@ function UserForm(props) {
         getCities()
         if (props.data) {
             setName(props.data.nomeCompleto)
+            setCpf(props.data.cpf)
             setEmail(props.data.email)
             setPhone(props.data.telefone)
             setCep(props.data.endereco.cep)
@@ -158,6 +159,7 @@ function UserForm(props) {
             helperText={props.edit ? false : 'Já possui uma conta?'}
             linkText='Clique aqui para acessa-la'
             to='/login'
+            back={props.back}
         >
             <TextField
                 value={name}
