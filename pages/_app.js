@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;    
   }
   
-  a, button {
+  a, button, label {
     cursor: pointer;
     border: none;
     text-decoration: none;

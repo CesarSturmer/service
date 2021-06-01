@@ -24,7 +24,7 @@ export default function Service() {
               const json = {lat: info.lat, lon: info.lon}
               setCordinates(coordinates => [...coordinates, json])
             })
-            .catch((err) => {
+            .catch(() => {
               console.log('erro');
             });
           })
