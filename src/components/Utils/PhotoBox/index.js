@@ -43,7 +43,6 @@ const InputLabel = styled.label`
 const PhotoBox = (props) => {
 
     const PostImage = async (e) => {
-        e.preventDefault()
         const token = sessionStorage.getItem('validated_token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
         var formData = new FormData()
