@@ -10,7 +10,7 @@ const UserInfoContainer = styled.div`
 `
 
 const DataContainer = styled.div`
-  max-width: 21rem;
+  max-width: 15rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

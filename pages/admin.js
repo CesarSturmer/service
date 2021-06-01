@@ -56,7 +56,8 @@ function Admin() {
         .then((res) => setStates(res.data))
     }
 
-    const postState = async () => {
+    const postState = async (e) => {
+        e.preventDefault()
         await api.post('estados', {
             nome: state
         })
@@ -67,7 +68,8 @@ function Admin() {
         .catch(() => alert('Falha ao cadastrar estado!'))
     }
 
-    const postCity = async () => {
+    const postCity = async (e) => {
+        e.preventDefault()
         await api.post('cidades', {
             estado: {
                 id: stateId
@@ -81,7 +83,8 @@ function Admin() {
         .catch(() => alert('Falha ao cadastrar cidade!'))
     }
 
-    const postCategory = async () => {
+    const postCategory = async (e) => {
+        e.preventDefault()
         await api.post('categorias', {
             categoria: category
         })

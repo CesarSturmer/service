@@ -45,18 +45,10 @@ const PhotoBox = (props) => {
     const PostImage = async (e) => {
         const token = sessionStorage.getItem('validated_token')
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
-        var formData = new FormData()
-        var midia = e.target.files[0]
-        console.log(midia)
-        formData.append('file', midia)
-        console.log(formData)
-        await api.post('midia', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Accept': 'application/json',
-                'type': 'formData'
-            }
-        })
+        let formData = new FormData()
+        let midia = e.target.files[0]
+        formData.append('midia', midia)
+        await api.post('midia', formData)
         .then(() => alert('Foto cadastrada com sucesso!'))
         .catch(() => alert('Falha ao cadastrar foto'))
     }
