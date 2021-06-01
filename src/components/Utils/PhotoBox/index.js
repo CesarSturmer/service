@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {useRouter} from 'next/router'
 import api from '../../../../pages/api'
 import AvaliationIcons from '../AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
@@ -41,6 +42,7 @@ const InputLabel = styled.label`
 `
 
 const PhotoBox = (props) => {
+    const router = useRouter()
 
     const PostImage = async (e) => {
         const token = sessionStorage.getItem('validated_token')
@@ -49,7 +51,10 @@ const PhotoBox = (props) => {
         let midia = e.target.files[0]
         formData.append('midia', midia)
         await api.post('midia', formData)
-        .then(() => alert('Foto cadastrada com sucesso!'))
+        .then(() => {
+            alert('Foto cadastrada com sucesso!')
+            router.reload()
+        })
         .catch(() => alert('Falha ao cadastrar foto'))
     }
 
