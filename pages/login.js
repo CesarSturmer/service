@@ -27,7 +27,7 @@ function Login() {
         })
         .then((res) => {
             sessionStorage.setItem('validated_token', res.data.token)
-            router.push('/user')
+            router.push('/serviceSearch')
         })
         .catch(() => alert('Usuário ou senha incorretos!'))
     }

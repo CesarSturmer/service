@@ -22,7 +22,6 @@ function User() {
             await api.get('usuario')
             .then((res) => {
                 setUserInfo(res.data)
-                console.log(res.data.midiaPath)
             })
             .catch(() => {
                 alert('Sessão expirada!')

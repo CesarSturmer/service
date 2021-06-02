@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {useRouter} from 'next/router'
 import styled from 'styled-components'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from './api'
@@ -43,6 +44,7 @@ const ListItem = styled.li`
 `
 
 function Admin() {
+    const router = useRouter()
     const [form, setForm] = useState(0)
     const [states, setStates] = useState([])
     const [state, setState] = useState('')
@@ -50,6 +52,26 @@ function Admin() {
     const [stateId, setStateId] = useState('')
     const [category, setCategory] = useState('')
     const [categories, setCategories] = useState([])
+
+    if (typeof window !== 'undefined') {
+        const token = sessionStorage.getItem('validated_token')
+        api.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    }
+
+    useEffect(() => {
+        const getUserRole = async () => {
+            await api.get('usuario')
+            .then((res) => {
+                if(res.data.perfis.length !== 3) {
+                    router.push('/login')
+                } 
+            })
+            .catch(() => {
+                router.push('/login')
+            })
+        }
+        getUserRole()
+    }, [])
 
     const getStates = async () => {
         await api.get('estados')

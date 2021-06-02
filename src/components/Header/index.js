@@ -42,6 +42,8 @@ const ContainerMenu = styled.div`
   justify-content: space-between;
   align-items: center;
   display: none;
+  color: ${({ theme }) => theme.colors.title};
+  cursor: pointer;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: flex;
@@ -53,6 +55,8 @@ const ContainerIconLogin = styled.div`
   justify-content: space-between;
   align-items: center;
   display: none;
+  color: ${({ theme }) => theme.colors.title};
+  cursor: pointer;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: flex;
@@ -147,38 +151,19 @@ const LoginButton = styled.button`
 
 
 const Header = () => {
+  const [openIconLogin, setOpenIconLogin] = useState(false)
+  const [openIconService, setOpenIconService] = useState(false)
 
-const [openIconLogin, setOpenIconLogin] = useState(false)
-const [openIconService, setOpenIconService] = useState(false)
+  const handleLogin = () => setOpenIconLogin(!openIconLogin)
 
-const handleLogin = () => {
-  if(!openIconLogin){
-    setOpenIconLogin(true)
-  } else{
-    setOpenIconLogin(false)
-  } 
-}
-const handleServices = () => {
-  if(!openIconService){
-    setOpenIconService(true)
-  } else{
-    setOpenIconService(false)
-  } 
-}
-
-
-
-
+  const handleServices = () => setOpenIconService(!openIconService)
 
   return (
     <HeaderContainer>
-      <ContainerMenu>
-        <GiHamburgerMenu size={60} color={'#ffffff'} onClick={handleServices}/>
-        {
-          openIconService 
-          ? 
-            <ModalServices />
-          : ''
+      <ContainerMenu onClick={handleServices}>
+        <GiHamburgerMenu size={60} />
+        {openIconService &&
+          <ModalServices />
         }
       </ContainerMenu>      
       <Container>    
@@ -195,24 +180,21 @@ const handleServices = () => {
           <Subtitle>Sobre nós</Subtitle>
         </ContainerOptions>
   
-          <ButtonsContainer>
-            <Link href="/userForm">
-              <SignUpButton>Cadastrar</SignUpButton>
-            </Link>
-            <Link href="/login">
-              <LoginButton>Entrar</LoginButton>
-            </Link>
-          </ButtonsContainer>
+        <ButtonsContainer>
+          <Link href="/userForm">
+            <SignUpButton>Cadastrar</SignUpButton>
+          </Link>
+          <Link href="/login">
+            <LoginButton>Entrar</LoginButton>
+          </Link>
+        </ButtonsContainer>
 
       </Container>
-      <ContainerIconLogin>
-        <IoPersonCircleOutline size={60} color={'#ffffff'} onClick={handleLogin}/>
+      <ContainerIconLogin onClick={handleLogin}>
+        <IoPersonCircleOutline size={60} />
 
-        {
-          openIconLogin 
-          ? 
+        {openIconLogin &&
           <ModalLogin />
-          : ''
         }
 
       </ContainerIconLogin>
