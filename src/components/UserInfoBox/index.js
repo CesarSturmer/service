@@ -48,7 +48,8 @@ function UserInfoBox({
   number,
   name,
   phone,
-  editUser
+  editUser,
+  changePassword
 }) {
   return (
     <PhotoBox avaliation={avaliation} name={name} imageSrc={imageSrc}>
@@ -69,7 +70,7 @@ function UserInfoBox({
         </DataContainer>
       </UserInfoContainer>
       <ButtonsContainer>
-        <Button>Alterar senha</Button>
+        <Button onClick={changePassword}>Alterar senha</Button>
         <Button onClick={editUser}>Alterar dados</Button>
       </ButtonsContainer>
     </PhotoBox>

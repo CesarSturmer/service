@@ -4,13 +4,14 @@ import api from './api'
 import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
+import ChangePassword from '../src/components/ChangePassword'
 import Header from '../src/components/Header'
 import Footer from '../src/components/Footer'
 
 function User() {
     const router = useRouter()
     const [userInfo, setUserInfo] = useState([])
-    const [editUser, setEditUser] = useState(false)
+    const [screenOption, setScreenOption] = useState(0)
     
     if (typeof window !== 'undefined') {
         const token = sessionStorage.getItem('validated_token')
@@ -44,7 +45,7 @@ function User() {
     return (
         <div>
             <Header />
-            {userInfo.length !== 0 && !editUser &&
+            {userInfo.length !== 0 && screenOption === 0 &&
                 <UserInfoBox
                     avaliation={2.5}
                     imageSrc={userInfo.midiaPath}
@@ -57,13 +58,15 @@ function User() {
                     number={userInfo.endereco.numero}
                     name={userInfo.nomeCompleto}
                     phone={userInfo.telefone}
-                    editUser={() => setEditUser(true)}
+                    editUser={() => setScreenOption(1)}
+                    changePassword={() => setScreenOption(2)}
                 />
             }
-            {editUser &&
-                <>
-                    <UserForm serviceProvider edit data={userInfo} title='Editar informações de usuário!' back={() => setEditUser(false)} />
-                </>
+            {screenOption === 1 &&
+                <UserForm serviceProvider edit data={userInfo} title='Editar informações de usuário!' back={() => setScreenOption(0)} />
+            }
+            {screenOption === 2 &&
+                <ChangePassword back={() => setScreenOption(0)} />
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
             <Footer />
