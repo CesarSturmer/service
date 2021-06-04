@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ContainerButtons = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: 6.25rem;
   width: 80%;
   margin: 10rem 0 0 10rem;
@@ -46,7 +45,7 @@ const ContainerButtonsCenter = styled.div`
 
 const ButtonsContainer = (props) => {
     return (
-        <ContainerButtons>
+        <ContainerButtons style={props.backgroundNone &&{ backgroundColor: '#FFFFFF'}}>
             <ContainerButtonsCenter>
                 {props.children}
             </ContainerButtonsCenter>

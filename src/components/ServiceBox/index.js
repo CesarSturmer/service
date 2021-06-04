@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import AvaliationIcons from '../Utils/AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
 
+
 const Box = styled.div`
     width: 22rem;
     display: flex;
@@ -11,6 +12,7 @@ const Box = styled.div`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.title};
     border-radius: ${({ theme }) => theme.borderRadius.default};
+
 `
 
 const Photo = styled.img`
@@ -32,6 +34,7 @@ const Title = styled.p`
 
 const ServiceBox = ({serviceProvider, title, avaliation, imageSrc}) => {
     return (
+        
         <Box>
             {imageSrc ?
                 <Photo src={`https://servicos-app.herokuapp.com/${imageSrc}`} />
@@ -44,6 +47,7 @@ const ServiceBox = ({serviceProvider, title, avaliation, imageSrc}) => {
                 <AvaliationIcons avaliation={avaliation} />
             </TextContainer>
         </Box>
+       
     )
 }
 
