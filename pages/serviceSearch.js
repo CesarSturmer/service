@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TexContainer from '../src/components/Utils/TexContainer'
 import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
 import Footer from '../src/components/Footer'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const PageContainer = styled.div`
   margin: 6rem 0 0 10rem;
@@ -80,7 +81,7 @@ function Search() {
         return ImagePlumer;
       case 'Jardim':
         return ImageGarden;
-      case 'Marcenaria':
+      case 'Mercearia':
         return ImageWoodWork;
       case 'Obras':
         return ImageConstruction;
@@ -100,16 +101,25 @@ function Search() {
         />
       </PageContainer>
 
-      <ButtonsContainer>
-        {categoryInfo.map((item) => (
-          <LandingButton
-            key={item.id}
-            imageSrc={getServiceIcons(item.categoria)}
-            text={item.categoria}
-            to={`service/${item.id}`}
-            serviceButton
-          />
-        ))}
+      <ButtonsContainer backgroundNone>
+        {categoryInfo.length !== 0 
+          
+          ?
+          categoryInfo.map((item) => (
+            <LandingButton
+              key={item.id}
+              imageSrc={getServiceIcons(item.categoria)}
+              text={item.categoria}
+              to={`service/${item.id}`}
+              serviceButton
+            />
+          ))
+        :
+        <>
+        <CircularProgress/>
+            <h2>Carregando...</h2>
+        </>    
+        }
       </ButtonsContainer>
       <Footer />
     </>

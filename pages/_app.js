@@ -11,9 +11,7 @@ import {
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
+    padding: 0; 
     box-sizing: border-box;
     background: no-repeat url('/background-servicos.png');
     background-size: cover !important;
