@@ -5,6 +5,7 @@ import UserInfoBox from '../src/components/UserInfoBox'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import ChangePassword from '../src/components/ChangePassword'
+import ServiceForm from '../src/components/ServiceForm'
 import Header from '../src/components/Header'
 import Footer from '../src/components/Footer'
 
@@ -67,6 +68,12 @@ function User() {
             }
             {screenOption === 2 &&
                 <ChangePassword back={() => setScreenOption(0)} />
+            }
+            {screenOption === 3 &&
+                <ServiceForm back={() => setScreenOption(0)} />
+            }
+            {userInfo.length !== 0 && userInfo.perfis.length === 2 &&
+                <SubmitButton onClick={() => setScreenOption(3)}>Cadastrar serviço</SubmitButton>
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
             <Footer />

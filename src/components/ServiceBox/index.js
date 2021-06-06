@@ -17,6 +17,7 @@ const Photo = styled.img`
     width: 6rem;
     height: 6rem;
     border-radius: ${({ theme }) => theme.borderRadius.max};
+    object-fit: cover;
 `
 
 const TextContainer = styled.div`

@@ -1,4 +1,5 @@
 import {useState, useContext} from 'react'
+import {useRouter} from 'next/router'
 import {TextField} from '@material-ui/core'
 import api from '../../../pages/api'
 import FormValidations from '../../contexts/FormValidations'
@@ -6,6 +7,7 @@ import useError from '../../hooks/useError'
 import FormContainer from '../Utils/FormContainer'
 
 const ChangePassword = ({back}) => {
+    const router = useRouter()
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -20,7 +22,7 @@ const ChangePassword = ({back}) => {
         })
         .then(() => {
             alert('Senha alterada com sucesso')
-            back
+            router.reload()
         })
         .catch(() => alert('Falha ao alterar senha'))
     }

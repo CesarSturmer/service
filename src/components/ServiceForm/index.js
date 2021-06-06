@@ -5,7 +5,7 @@ import api from '../../../pages/api'
 import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
 
-const ServiceForm = () => {
+const ServiceForm = ({back}) => {
     const router = useRouter()
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState(0)
@@ -45,6 +45,7 @@ const ServiceForm = () => {
             onSubmit={postService}
             title='Cadastrar Serviço'
             buttonText='Cadastrar'
+            back={back}
         >
             <Select 
                 value={category}

@@ -17,7 +17,8 @@ export default function Service() {
     const getServices = async () => {
       await api.get(`servicos?categoriaId=${id}`)
         .then((res) => {
-          setServices(res.data);
+          setServices(res.data)
+          console.log(res.data)
           res.data.map((item) => {
             CepCoords.getByCep(item.prestadorServico.endereco.cep)
             .then((info) => {
@@ -54,6 +55,7 @@ export default function Service() {
                   key={service.id}
                   title={service.titulo} 
                   serviceProvider={service.prestadorServico.nomeCompleto}
+                  imageSrc={service.prestadorServico.midiaPath}
                   avaliation={4} 
                 />
             );
