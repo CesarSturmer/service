@@ -14,6 +14,14 @@ const Box = styled.div`
   align-items: center;
   margin: 5rem auto;
   border-radius: ${({ theme }) => theme.borderRadius.default};
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 35rem;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 70%;
+  }
+
 `;
 
 const TopContainer = styled.div`
