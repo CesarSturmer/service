@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link';
 import AvaliationIcons from '../Utils/AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
 
@@ -30,20 +31,22 @@ const Title = styled.p`
     margin: 0;
 `
 
-const ServiceBox = ({serviceProvider, title, avaliation, imageSrc}) => {
+const ServiceBox = ({to, serviceProvider, title, avaliation, imageSrc}) => {
     return (
-        <Box>
-            {imageSrc ?
-                <Photo src={`https://servicos-app.herokuapp.com/${imageSrc}`} />
-            :
-                <FaUserCircle size='6rem' />
-            }
-            <TextContainer>
-                <Title>{serviceProvider}</Title>
-                <p>{title}</p>
-                <AvaliationIcons avaliation={avaliation} />
-            </TextContainer>
-        </Box>
+        <Link href={to}>
+            <Box>
+                {imageSrc ?
+                    <Photo src={`https://servicos-app.herokuapp.com/${imageSrc}`} />
+                :
+                    <FaUserCircle size='6rem' />
+                }
+                <TextContainer>
+                    <Title>{serviceProvider}</Title>
+                    <p>{title}</p>
+                    <AvaliationIcons avaliation={avaliation} />
+                </TextContainer>
+            </Box>
+        </Link>
     )
 }
 

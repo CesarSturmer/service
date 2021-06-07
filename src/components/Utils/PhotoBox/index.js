@@ -94,11 +94,15 @@ const PhotoBox = (props) => {
                 {props.imageSrc ?
                     <>
                         <Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
-                        <EditInputLabel htmlFor='image'>
-                            <MdAddAPhoto />
-                            <LabelText>Editar foto</LabelText>
-                        </EditInputLabel>
-                        <PhotInput type='file' id='image' onChange={editImage} />
+                        {props.edit &&
+                            <>
+                                <EditInputLabel htmlFor='image'>
+                                    <MdAddAPhoto />
+                                    <LabelText>Editar foto</LabelText>
+                                </EditInputLabel>
+                                <PhotInput type='file' id='image' onChange={editImage} />
+                            </>
+                        }
                     </>
                 :
                     <>
@@ -107,7 +111,7 @@ const PhotoBox = (props) => {
                     </>
                 }
                 <p>{props.name}</p>
-                {props.avaliation &&
+                {!props.edit &&
                     <AvaliationIcons avaliation={props.avaliation} />
                 }
             </TopContainer>

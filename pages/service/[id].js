@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../src/components/Header';
 import ServiceBox from '../../src/components/ServiceBox';
 import ButtonsContainer from '../../src/components/Utils/ButtonsContainer';
 import api from '../api';
 import MapBox from '../../src/components/MapBox';
+
 const CepCoords = require('coordenadas-do-cep');
 
 export default function Service() {
-  const router = useRouter();
-  const { id } = router.query;
-  const [services, setServices] = useState([]);
+  const router = useRouter()
+  const { id } = router.query
+  const [services, setServices] = useState([])
   const [coordinates, setCordinates] = useState([])
 
   useEffect(() => {
@@ -18,7 +19,6 @@ export default function Service() {
       await api.get(`servicos?categoriaId=${id}`)
         .then((res) => {
           setServices(res.data)
-          console.log(res.data)
           res.data.map((item) => {
             CepCoords.getByCep(item.prestadorServico.endereco.cep)
             .then((info) => {
@@ -26,24 +26,16 @@ export default function Service() {
               setCordinates(coordinates => [...coordinates, json])
             })
             .catch(() => {
-              console.log('erro');
-            });
+              console.log('erro')
+            })
           })
         }
-        )};
-    getServices();
-  }, []);
-
-    //   services.map((serviceCep) => {
-    //       const cepInfo = serviceCep.endereco
-
-    //       console.log(cepInfo);
-
-    //       setCep(cepInfo)
-    //   })
+        )}
+    getServices()
+  }, [])
 
   return (
-    <div onClick={() => console.log(coordinates)}>
+    <>
       <Header />
       {services.length >= 1 ? 
         <>
@@ -53,6 +45,7 @@ export default function Service() {
             return (
                 <ServiceBox 
                   key={service.id}
+                  to={`/serviceDetails/${service.id}`}
                   title={service.titulo} 
                   serviceProvider={service.prestadorServico.nomeCompleto}
                   imageSrc={service.prestadorServico.midiaPath}
@@ -65,7 +58,7 @@ export default function Service() {
       :
           <h1>Nenhum serviço cadastrado nessa categoria!</h1>
       }
-    </div>
+    </>
   );
 }
 
