@@ -203,7 +203,7 @@ const Header = () => {
   const [openIconLogin, setOpenIconLogin] = useState(false);
   const [openIconService, setOpenIconService] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin);
 
