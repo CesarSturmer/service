@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     text-decoration: none;
   }
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 const theme = {

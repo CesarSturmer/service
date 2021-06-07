@@ -28,7 +28,6 @@ const Photo = styled.img`
     width: 10rem;
     height: 10rem;
     border-radius: ${({ theme }) => theme.borderRadius.max};
-    object-fit: cover;
 `
 
 const PhotInput = styled.input`
