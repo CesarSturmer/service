@@ -108,7 +108,9 @@ const PhotoBox = (props) => {
                     </>
                 }
                 <p>{props.name}</p>
-                <AvaliationIcons avaliation={props.avaliation} />
+                {props.avaliation &&
+                    <AvaliationIcons avaliation={props.avaliation} />
+                }
             </TopContainer>
             {props.children}
         </Box>

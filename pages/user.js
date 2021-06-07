@@ -48,7 +48,6 @@ function User() {
             <Header />
             {userInfo.length !== 0 && screenOption === 0 &&
                 <UserInfoBox
-                    avaliation={2.5}
                     imageSrc={userInfo.midiaPath}
                     email={userInfo.email}
                     cpf={userInfo.cpf}
