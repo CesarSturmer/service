@@ -27,7 +27,6 @@ const SignUpButtonModal = styled.button`
   height: 2.5rem;
   color: #ffffff;
   background: none;
-
 `;
 
 const LoginButtonModal = styled.button`
@@ -40,7 +39,9 @@ const LoginButtonModal = styled.button`
   margin-bottom: 1rem;
 `;
 
-function ModalLogin() {
+
+
+function ModalLogin({ userInfo, handleLogout }) {
   const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
@@ -51,7 +52,7 @@ function ModalLogin() {
       border: 'none',
     },
     paper: {
-      backgroundColor: '#22AAC1',    
+      backgroundColor: '#22AAC1',
       padding: theme.spacing(2, 4, 3),
       borderRadius: '0.625rem',
     },
@@ -85,14 +86,21 @@ function ModalLogin() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <ButtonsContainer>
-              <Link href="/login">
-                <LoginButtonModal>Entrar</LoginButtonModal>
-              </Link>
-              <Link href="/userForm">
-                <SignUpButtonModal>Cadastrar</SignUpButtonModal>
-              </Link>
-            </ButtonsContainer>
+            {userInfo.length !== 0 ? (
+                      <ButtonsContainer>
+                        <a href='/user'>Minha conta</a>                           
+                        <a href="" onClick={handleLogout}>Sair</a>
+                      </ButtonsContainer>
+            ) : (
+              <ButtonsContainer>
+                <Link href="/login">
+                  <LoginButtonModal>Entrar</LoginButtonModal>
+                </Link>
+                <Link href="/userForm">
+                  <SignUpButtonModal>Cadastrar</SignUpButtonModal>
+                </Link>
+              </ButtonsContainer>
+            )}
           </div>
         </Fade>
       </Modal>
