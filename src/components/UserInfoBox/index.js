@@ -52,7 +52,7 @@ function UserInfoBox({
   changePassword
 }) {
   return (
-    <PhotoBox avaliation={avaliation} name={name} imageSrc={imageSrc}>
+    <PhotoBox edit avaliation={avaliation} name={name} imageSrc={imageSrc}>
       <UserInfoContainer>
         <DataContainer>
           <Text>Email</Text>
