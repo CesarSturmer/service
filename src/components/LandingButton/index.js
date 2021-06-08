@@ -27,7 +27,7 @@ const Button = styled.button`
     width: 13rem;
     height: 4rem;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     padding: 0 3.125rem;
     width: 9rem;
     height: 3rem;
@@ -46,7 +46,7 @@ const ImageContainer = styled.div`
   @media (min-width: 480px) and (max-width: 767px) {
     padding-left: 0.75rem;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     padding: 0px 0.313rem;
     > img {
       padding: 0px 0px 0 0.313rem;
@@ -81,7 +81,7 @@ const ButtonText = styled.p`
     padding-right: 0.75rem;
     font-size: 1.25rem;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     margin: 0;
     padding-right: 0.75rem;
     font-size: 0.875rem;

@@ -19,7 +19,7 @@ const Title = styled.h1`
     font-size: 1.25rem;
 
   }  
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     padding: 0;
     font-size: 1rem;
   }  
@@ -45,7 +45,7 @@ const Subtitle = styled.h3`
   @media (min-width: 480px) and (max-width: 767px) {
     font-size: 1.25rem;  
   } 
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     font-size: 0.875rem;  
   } 
 

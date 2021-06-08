@@ -1,10 +1,14 @@
-import styled, {createGlobalStyle} from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import LandingButton from '../src/components/LandingButton';
 import TexContainer from '../src/components/Utils/TexContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
     height: 100vh;
+    
+    @media (max-width: 767px) and (max-height: 700px) {
+      height: auto;   
+    }
   }
 `;
 
@@ -17,16 +21,16 @@ const PageContainer = styled.div`
 
   @media (min-width: 768px) and (max-width: 1024px) {
     flex-direction: column;
-    margin-top: 1.25rem;  
-  } 
+    margin-top: 1.25rem;
+  }
   @media (min-width: 480px) and (max-width: 767px) {
     flex-direction: column;
-    margin-top: 1.25rem;   
+    margin-top: 1.25rem;
   }
   @media (max-width: 479px) {
     flex-direction: column;
     margin-top: 1.25rem;
-  } 
+  }
 `;
 
 const Left = styled.div`
@@ -40,7 +44,7 @@ const Left = styled.div`
   @media (min-width: 480px) and (max-width: 767px) {
     align-items: center;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     align-items: center;
   }
 `;
@@ -57,14 +61,14 @@ const ContainerButtons = styled.div`
   @media (min-width: 479px) and (max-width: 767px) {
     margin-top: 3rem;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     margin-top: 3rem;
     margin-left: 1rem;
   }
 `;
 
 const ContainerImg = styled.div`
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     > img {
       height: 370px;
       margin: 0 2rem 0 0;
@@ -75,34 +79,34 @@ const ContainerImg = styled.div`
 export default function Landing() {
   return (
     <>
-    <GlobalStyle />
-    <PageContainer>
-      <Left>
-        <TexContainer
-          title={'Service'}
-          subtitle={'Procurando alguém na sua região?'}
-          secondTitle={'Buscando alguém bem recomendado?'}
-          fontSizeTitle
-        />
+      <GlobalStyle />
+      <PageContainer>
+        <Left>
+          <TexContainer
+            title={'Service'}
+            subtitle={'Procurando alguém na sua região?'}
+            secondTitle={'Buscando alguém bem recomendado?'}
+            fontSizeTitle
+          />
 
-        <ContainerButtons>
-          <LandingButton
-            imageSrc="./Search.svg"
-            text="Buscar Serviço"
-            to="/serviceSearch"
-          />
-          <LandingButton
-            imageSrc="./Group.svg"
-            text="Prestar Serviço"
-            to="/"
-            serviceButton
-          />
-        </ContainerButtons>
-      </Left>
-      <ContainerImg>
-        <img src="./Concerto__home.svg" alt="Figura de trabalhadores" />
-      </ContainerImg>
-    </PageContainer>
+          <ContainerButtons>
+            <LandingButton
+              imageSrc="./Search.svg"
+              text="Buscar Serviço"
+              to="/serviceSearch"
+            />
+            <LandingButton
+              imageSrc="./Group.svg"
+              text="Prestar Serviço"
+              to="/"
+              serviceButton
+            />
+          </ContainerButtons>
+        </Left>
+        <ContainerImg>
+          <img src="./Concerto__home.svg" alt="Figura de trabalhadores" />
+        </ContainerImg>
+      </PageContainer>
     </>
   );
 }
