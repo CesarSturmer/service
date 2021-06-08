@@ -1,7 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import {FaMapMarkerAlt} from 'react-icons/fa'
-
 import styled from 'styled-components';
 
 const ContainerMap = styled.div`
@@ -9,7 +8,7 @@ const ContainerMap = styled.div`
   z-index: -9999;
 `;
 
-function MapBox({coordinates, onClick}) {
+function MapBox({coordinates}) {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   const defaultProps = {
@@ -37,7 +36,7 @@ function MapBox({coordinates, onClick}) {
                 key={index}
                 lat={item.lat}
                 lng={item.lon}
-                text={<FaMapMarkerAlt size={20}  onClick={onClick}/>}  
+                text={<FaMapMarkerAlt size={20} />}  
               />
             )
           })}

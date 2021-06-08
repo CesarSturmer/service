@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../src/components/Header';
+import Footer from '../../src/components/Footer';
 import ServiceBox from '../../src/components/ServiceBox';
 import ButtonsContainer from '../../src/components/Utils/ButtonsContainer';
 import api from '../api';
@@ -49,7 +50,7 @@ export default function Service() {
                   title={service.titulo} 
                   serviceProvider={service.prestadorServico.nomeCompleto}
                   imageSrc={service.prestadorServico.midiaPath}
-                  avaliation={4} 
+                  avaliation={service.notaMedia} 
                 />
             );
           })}
@@ -58,6 +59,7 @@ export default function Service() {
       :
           <h1>Nenhum serviço cadastrado nessa categoria!</h1>
       }
+      <Footer />
     </>
   );
 }

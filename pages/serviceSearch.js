@@ -101,10 +101,8 @@ function Search() {
         />
       </PageContainer>
 
-      <ButtonsContainer backgroundNone>
-        {categoryInfo.length !== 0 
-          
-          ?
+      <ButtonsContainer>
+        {categoryInfo.length !== 0 ?
           categoryInfo.map((item) => (
             <LandingButton
               key={item.id}
@@ -115,10 +113,9 @@ function Search() {
             />
           ))
         :
-        <>
-        <CircularProgress/>
-            <h2>Carregando...</h2>
-        </>    
+          <>
+            <CircularProgress/>
+          </>    
         }
       </ButtonsContainer>
       <Footer />
