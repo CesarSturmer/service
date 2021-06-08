@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
     background: no-repeat url('/background.svg');
     background-size: cover !important;
     font-family: 'Open Sans', sans-serif;
-
   }
   
   a, button, label {
@@ -32,27 +31,24 @@ const theme = {
     title: '#FFFFFF',
     secondary: '#22AAC1',
     backgroundWhite: '#FFFFFF',
-
   },
   borderRadius: {
     default: '18px',
     max: '50%',
-  }
+  },
 };
-
-
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-    <Head>
-      <title>Service</title>
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
-    </Head>
+      <Head>
+        <title>Service</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
       <GlobalStyle />
       <ThemeProvider theme={theme}>

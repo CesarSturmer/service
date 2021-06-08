@@ -12,7 +12,6 @@ const Box = styled.div`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.title};
     border-radius: ${({ theme }) => theme.borderRadius.default};
-
 `
 
 const Photo = styled.img`

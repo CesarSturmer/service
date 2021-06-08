@@ -38,7 +38,6 @@ const TextContainer = styled.ul`
   }
   @media (max-width: 479px) {
     font-size: 1rem;
-
   }
 `;
 

@@ -6,13 +6,6 @@ import Fade from '@material-ui/core/Fade';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const Button = styled.button`
-  @media (min-width: 768px) and (max-width: 1024px) {
-  }
-  @media (min-width: 320px) and (max-width: 767px) {
-  }
-`;
-
 const ButtonsContainer = styled.div`
   border-radius: 18px;
   display: flex;
