@@ -31,14 +31,12 @@ const PageContainer = styled.div`
 
 `;
 
-
 function Search() {
   const [categoryInfo, setCategoryInfo] = useState([]);
 
   useEffect(() => {
     const getCategory = async () => {
-      await api
-        .get('categorias')
+      await api.get('categorias')
         .then((res) => {
           setCategoryInfo(res.data);
         })
@@ -113,9 +111,7 @@ function Search() {
             />
           ))
         :
-          <>
-            <CircularProgress/>
-          </>    
+          <CircularProgress/>
         }
       </ButtonsContainer>
       <Footer />
