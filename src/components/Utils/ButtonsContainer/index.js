@@ -7,15 +7,18 @@ const ContainerButtons = styled.div`
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
+
  
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 80%;
     margin: 0 auto;
+    justify-content: center;
   }  
   @media (min-width: 320px) and (max-width: 767px) {
     width: 70%;
     margin: 0 auto;
     border-radius: 3.25rem;
+    justify-content: center;
 
   }  
  
@@ -40,7 +43,6 @@ const ContainerButtonsCenter = styled.div`
     margin: 2rem;
 
   }  
-  
 `;
 
 const ButtonsContainer = (props) => {

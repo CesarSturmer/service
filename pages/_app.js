@@ -13,9 +13,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0; 
     box-sizing: border-box;
-    background: no-repeat url('/background-servicos.png');
+    background: no-repeat url('/background.svg');
     background-size: cover !important;
-    font-family: 'Open Sans', sans-serif;    
+    font-family: 'Open Sans', sans-serif;
+
   }
   
   a, button, label {

@@ -18,7 +18,7 @@ const Container = styled.div`
 const ContainerIcon = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
 `;
 
 const Subtitle = styled.h1`
@@ -26,8 +26,6 @@ const Subtitle = styled.h1`
   color: ${({ theme }) => theme.colors.title};
   padding: 2.688rem;
   cursor: pointer;
-
-
 `;
 
 function ModalServices() {
