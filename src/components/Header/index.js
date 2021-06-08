@@ -96,7 +96,7 @@ const Subtitle = styled.h1`
 
 const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
-  border-radius: 18px;
+  border-radius: 1.25rem;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
@@ -191,13 +191,13 @@ const UserPhoto = styled.img`
     height: 45px;
   }
 `;
-const UserAction = styled.div `
+const UserAction = styled.div`
   display: flex;
   background: ${({ theme }) => theme.colors.secondary};
   align-items: center;
   justify-content: flex-end;
   flex-direction: column;
-`
+`;
 const Header = () => {
   const router = useRouter();
   const [openIconLogin, setOpenIconLogin] = useState(false);
@@ -221,17 +221,15 @@ const Header = () => {
         .then((res) => {
           setUserInfo(res.data);
         })
-        .catch(() => {});
-    }
-    getUserInfo()
-  }, [])
+        .catch(() => console.log('usuário não logado'));
+    };
+    getUserInfo();
+  }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('validated_token')    
-    router.push('/')
-  }
-
-
+    sessionStorage.removeItem('validated_token');
+    router.push('/');
+  };
 
   return (
     <HeaderContainer>
@@ -254,30 +252,30 @@ const Header = () => {
         </ContainerOptions>
 
         {userInfo.length !== 0 ? (
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-          <ButtonsContainerInfo onClick={() => setOpen(!open)}>
-            <UserName>{userInfo.nomeCompleto}</UserName>
-            {userInfo.midiaPath ? (
-              <UserPhoto
-                src={`https://servicos-app.herokuapp.com/${userInfo.midiaPath}`}
-              />
-            ) : (
-              <IoPersonCircle
-                color={'white'}
-                size={63}
-                style={{ position: 'relative', zIndex: 1, right: 5 }}
-              />
-            )}    
-           </ButtonsContainerInfo>
-           {open ?            
-            <UserAction>              
-                <a href='/user'>Minha conta</a>                           
-                <a href="" onClick={handleLogout}>Sair</a>
-            </UserAction>
-         : ''
-        }
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <ButtonsContainerInfo onClick={() => setOpen(!open)}>
+              <UserName>{userInfo.nomeCompleto}</UserName>
+              {userInfo.midiaPath ? (
+                <UserPhoto
+                  src={`https://servicos-app.herokuapp.com/${userInfo.midiaPath}`}
+                />
+              ) : (
+                <IoPersonCircle
+                  color={'white'}
+                  size={63}
+                  style={{ position: 'relative', zIndex: 1, right: 5 }}
+                />
+              )}
+            </ButtonsContainerInfo>
+            {open && (
+              <UserAction>
+                <a href="/user">Minha conta</a>
+                <a href="" onClick={handleLogout}>
+                  Sair
+                </a>
+              </UserAction>
+            )}
           </div>
-          
         ) : (
           <ButtonsContainer>
             <Link href="/userForm">
@@ -291,7 +289,9 @@ const Header = () => {
       </Container>
       <ContainerIconLogin onClick={handleLogin}>
         <IoPersonCircleOutline size={60} />
-        {openIconLogin && <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />}
+        {openIconLogin && (
+          <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />
+        )}
       </ContainerIconLogin>
     </HeaderContainer>
   );

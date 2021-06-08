@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import Header from '../src/components/Header'
-import LandingButton from '../src/components/LandingButton'
-import api from './api'
-import styled from 'styled-components'
-import TexContainer from '../src/components/Utils/TexContainer'
-import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
-import Footer from '../src/components/Footer'
+import { useEffect, useState } from 'react';
+import Header from '../src/components/Header';
+import LandingButton from '../src/components/LandingButton';
+import api from './api';
+import styled from 'styled-components';
+import TexContainer from '../src/components/Utils/TexContainer';
+import ButtonsContainer from '../src/components/Utils/ButtonsContainer';
+import Footer from '../src/components/Footer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const PageContainer = styled.div`
@@ -14,23 +14,20 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  @media(min-width: 1025px) and (max-width: 1100px) {
+  @media (min-width: 1025px) and (max-width: 1100px) {
     margin: 3rem 0 0 5rem;
-  }  
+  }
   @media (min-width: 768px) and (max-width: 1024px) {
     margin: 4rem 0;
     justify-content: center;
     align-items: center;
-  }  
-  @media (min-width: 320px) and (max-width: 767px) {
+  }
+  @media (max-width: 767px) {
     margin: 4rem 0;
     justify-content: center;
     align-items: center;
- 
-  }  
-
+  }
 `;
-
 
 function Search() {
   const [categoryInfo, setCategoryInfo] = useState([]);
@@ -46,7 +43,6 @@ function Search() {
     };
     getCategory();
   }, []);
-  
 
   function getServiceIcons(categoria) {
     const ImageHouseMade = './Caseiro.svg';
@@ -101,8 +97,8 @@ function Search() {
         />
       </PageContainer>
 
-      <ButtonsContainer>
-        {categoryInfo.length !== 0 ?
+      <ButtonsContainer backgroundNone>
+        {categoryInfo.length !== 0 ? (
           categoryInfo.map((item) => (
             <LandingButton
               key={item.id}
@@ -112,11 +108,9 @@ function Search() {
               serviceButton
             />
           ))
-        :
-          <>
-            <CircularProgress/>
-          </>    
-        }
+        ) : (
+          <CircularProgress />
+        )}
       </ButtonsContainer>
       <Footer />
     </>

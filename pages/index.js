@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import LandingButton from '../src/components/LandingButton';
 import TexContainer from '../src/components/Utils/TexContainer';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    height: 100vh;
+  }
+`;
 
 const PageContainer = styled.div`
   height: auto;
@@ -17,7 +23,7 @@ const PageContainer = styled.div`
     flex-direction: column;
     margin-top: 1.25rem;   
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     flex-direction: column;
     margin-top: 1.25rem;
   } 
@@ -68,6 +74,8 @@ const ContainerImg = styled.div`
 
 export default function Landing() {
   return (
+    <>
+    <GlobalStyle />
     <PageContainer>
       <Left>
         <TexContainer
@@ -95,5 +103,6 @@ export default function Landing() {
         <img src="./Concerto__home.svg" alt="Figura de trabalhadores" />
       </ContainerImg>
     </PageContainer>
+    </>
   );
 }
