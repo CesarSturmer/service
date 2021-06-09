@@ -209,15 +209,10 @@ const Header = () => {
 
   const handleServices = () => setOpenIconService(!openIconService);
 
-  if (typeof window !== 'undefined') {
-    const token = sessionStorage.getItem('validated_token');
-    api.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-  }
-
   useEffect(() => {
     const getUserInfo = async () => {
-      await api
-        .get('usuario')
+      const token = sessionStorage.getItem('validated_token')
+      await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
         .then((res) => {
           setUserInfo(res.data);
         })

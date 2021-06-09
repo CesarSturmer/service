@@ -18,34 +18,37 @@ const AvaliationBox = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.default};
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
     padding: 1rem 0;
 `
 
 const Avaliation = styled.div`
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid ${({ theme }) => theme.colors.title};
-    margin: 0 2rem;
 `
 
 const Button = styled.button`
-    color: ${({ theme }) => theme.colors.secondary};
-    border: 2px solid ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.title};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     padding: 0.5rem 2rem;
     margin-top: 1rem;
     align-self: flex-end;
 `
 
-const AvaliationList = ({serviceId}) => {
+const AvaliationList = ({serviceId, showForm}) => {
     const [avaliations, setAvaliations] = useState([])
 
     useEffect(() => {
         const getAvaliations = async () => {
-            await api.get(`avaliacao/${serviceId}`)
+            await api.get(`avaliacao?servicoId=${serviceId}`)
             .then((res) => setAvaliations(res.data))
             .catch(() => alert('Não foi possível carregar as avaliações'))
-            getAvaliations()
         }
+        getAvaliations()
     }, [])
 
     return (
@@ -65,7 +68,7 @@ const AvaliationList = ({serviceId}) => {
                     <p>Esse serviço ainda não foi avaliado!</p>
                 }
             </AvaliationBox>
-            <Button>Avaliar serviço</Button>
+            <Button onClick={showForm}>Avaliar serviço</Button>
         </Container>
     )
 }
