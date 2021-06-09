@@ -18,16 +18,16 @@ const AvaliationBox = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.default};
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
     padding: 1rem 0;
 `
 
 const Avaliation = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid ${({ theme }) => theme.colors.title};
-    margin: 0 2rem;
 `
 
 const Button = styled.button`
