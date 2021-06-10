@@ -38,10 +38,7 @@ const Header = () => {
   const handleLogout = () => {
     router.push('/');
     sessionStorage.removeItem('validated_token');
-  };
-    sessionStorage.removeItem('validated_token')    
-    router.push('/')
-  }
+  };  
 
   return (
     <style.HeaderContainer>
