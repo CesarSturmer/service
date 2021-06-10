@@ -1,10 +1,10 @@
 import {ContainerButtons, ContainerButtonsCenter} from './style'
 
-const ButtonsContainer = (props) => {
+const ButtonsContainer = ({children, backGround}) => {
     return (
-        <ContainerButtons>
+        <ContainerButtons style={ backGround &&{ backgroundColor: 'transparent'}}>
             <ContainerButtonsCenter>
-                {props.children}
+                {children}
             </ContainerButtonsCenter>
         </ContainerButtons>
     )
