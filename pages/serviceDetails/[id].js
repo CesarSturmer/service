@@ -1,27 +1,18 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Header from '../../src/components/Header'
-import Footer from '../../src/components/Footer'
-import ServiceProviderBox from '../../src/components/ServiceProviderBox'
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Header from '../../src/components/Header';
+import Footer from '../../src/components/Footer';
+import ServiceProviderBox from '../../src/components/ServiceProviderBox';
 import AvaliationList from '../../src/components/AvaliationList'
 import AvaliationForm from '../../src/components/AvaliationForm'
-import api from '../api'
+import api from '../api';
 
 export default function ServiceDetails() {
     const router = useRouter()
     const { id } = router.query
     const [serviceDetails, setServiceDetails] = useState([])
     const [showForm, setShowForm] = useState(false)
-
-    const openForm = () => {
-        if (sessionStorage.getItem('session_active')) {
-            setShowForm(true)
-        } else {
-            alert('Você precisa estar logado para avaliar este serviço!')
-        }
-    }
-
     useEffect(() => {
         const getService = async () => {
             await api.get(`servicos/${id}`)
@@ -48,7 +39,7 @@ export default function ServiceDetails() {
                 <CircularProgress style={{marginLeft: '50%'}} />
             }
             {!showForm ?
-                <AvaliationList serviceId={id} showForm={openForm} />
+                <AvaliationList serviceId={id} showForm={() => setShowForm(true)} />
             :
                 <AvaliationForm serviceId={id} back={() => setShowForm(false)}/>
             }
@@ -60,5 +51,5 @@ export default function ServiceDetails() {
 export async function getServerSideProps() {
     return {
         props: {},
-    }
+    };
 }
