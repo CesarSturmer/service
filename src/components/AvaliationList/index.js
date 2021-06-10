@@ -51,10 +51,7 @@ const AvaliationList = ({serviceId, showForm}) => {
     useEffect(() => {
         const getAvaliations = async () => {
             await api.get(`avaliacao?servicoId=${serviceId}`)
-            .then((res) => {
-                setAvaliations(res.data)
-                console.log(res.data)
-            })
+            .then((res) => setAvaliations(res.data))
             .catch(() => alert('Não foi possível carregar as avaliações'))
         }
         getAvaliations()

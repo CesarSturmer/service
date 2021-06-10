@@ -85,7 +85,6 @@ function UserForm(props) {
       setComplement(props.data.endereco.complemento);
       setCity(props.data.endereco.cidade.id);
       setComplement(props.data.endereco.complemento);
-      console.log(props.data);
     }
   }, []);
 
