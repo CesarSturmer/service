@@ -1,7 +1,12 @@
-import Head from 'next/head'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import FormValidations from '../src/contexts/FormValidations'
-import {passwordValidator, cpfValidator, phoneValidator} from '../src/models/Form'
+import Head from 'next/head';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
+import FormValidations from '../src/contexts/FormValidations';
+import {
+  passwordValidator,
+  cpfValidator,
+  phoneValidator,
+} from '../src/models/Form';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   img {
     object-fit: cover;
   }
-`
+`;
 
 const theme = {
   colors: {
@@ -35,7 +40,7 @@ const theme = {
     default: '18px',
     max: '50%',
   },
-}
+};
 
 export default function App({ Component, pageProps }) {
   return (
@@ -62,5 +67,5 @@ export default function App({ Component, pageProps }) {
         </FormValidations.Provider>
       </ThemeProvider>
     </>
-  )
+  );
 }

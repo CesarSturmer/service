@@ -20,9 +20,9 @@ const AvaliationForm = ({back, serviceId}) => {
     const renderIcon = (position) => {
         const onClick = () => setGrade(position)
         if (grade >= position) {
-            return <ImStarFull size={30} onClick={onClick} />
+            return <ImStarFull onClick={onClick} />
         }
-        return <ImStarEmpty size={30} onClick={onClick} />
+        return <ImStarEmpty onClick={onClick} />
     }
 
     const postAvaliation = async (e) => {

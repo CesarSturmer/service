@@ -1,11 +1,32 @@
-import {useState} from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Modal from '@material-ui/core/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
-import {Container, ContainerIcon, Subtitle} from './style'
-import Link from 'next/link'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import styled from 'styled-components';
+import Link from 'next/link';
 import {FaChevronLeft} from 'react-icons/fa'
+
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+`;
+const ContainerIcon = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3.5rem;
+`;
+
+const Subtitle = styled.h1`
+  font-size: 1.125rem;
+  color: ${({ theme }) => theme.colors.title};
+  padding: 2.688rem;
+  cursor: pointer;
+`;
 
 function ModalServices() {
   const useStyles = makeStyles((theme) => ({
@@ -22,15 +43,19 @@ function ModalServices() {
 
   
     },
-  }))
+  }));
 
   const classes = useStyles();
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = React.useState(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -66,4 +91,4 @@ function ModalServices() {
   );
 }
 
-export default ModalServices
+export default ModalServices;
