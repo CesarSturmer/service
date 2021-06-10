@@ -26,6 +26,8 @@ function ServiceProvider() {
                 setUserInfo(res.data)
             })
             .catch(() => {
+                sessionStorage.removeItem('session_active')
+                sessionStorage.removeItem('validated_token')
                 alert('Sessão expirada!')
                 router.push('/login')
             })
@@ -36,8 +38,9 @@ function ServiceProvider() {
     const deleteUser = async () => {
         await api.delete('usuario')
         .then(() => {
-            alert('Usuário excluído com sucesso!')
+            sessionStorage.removeItem('session_active')
             sessionStorage.removeItem('validated_token')
+            alert('Usuário excluído com sucesso!')
         })
         .catch(() => alert('falha ao cadastrar usuário!'))
     }

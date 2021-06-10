@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { Container, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button } from './style'
-import api from '../../../pages/api';
+import api from '../../../pages/api'
 
 const AvaliationList = ({serviceId, showForm}) => {
     const [avaliations, setAvaliations] = useState([])

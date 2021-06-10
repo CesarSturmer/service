@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
   margin: 0 6.25rem;
@@ -16,19 +16,19 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
   }
-`;
+`
 
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-`;
+`
 
 export const ContainerOptions = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const ContainerMenu = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const ContainerMenu = styled.div`
   @media (min-width: 320px) and (max-width: 767px) {
     display: flex;
   }
-`;
+`
 
 export const ContainerIconLogin = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ export const ContainerIconLogin = styled.div`
   @media (min-width: 320px) and (max-width: 767px) {
     display: flex;
   }
-`;
+`
 
 export const Title = styled.h1`
   font-size: 3.125rem;
@@ -67,7 +67,7 @@ export const Title = styled.h1`
   @media (min-width: 320px) and (max-width: 767px) {
     font-size: 2.5rem;
   }
-`;
+`
 
 export const Subtitle = styled.h1`
   font-size: 1.125rem;
@@ -85,7 +85,7 @@ export const Subtitle = styled.h1`
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 export const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
@@ -94,7 +94,7 @@ export const ButtonsContainer = styled.div`
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 export const ButtonsContainerInfo = styled.div`
   display: flex;
@@ -107,7 +107,7 @@ export const ButtonsContainerInfo = styled.div`
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 export const SignUpButton = styled.a`
   width: 17.438rem;
@@ -130,7 +130,7 @@ export const SignUpButton = styled.a`
     width: 8.75rem;
     margin-right: 0;
   }
-`;
+`
 
 export const LoginButton = styled.button`
   background: ${({ theme }) => theme.colors.secondary};
@@ -152,7 +152,7 @@ export const LoginButton = styled.button`
     font-size: 1rem;
     width: 100px;
   }
-`;
+`
 
 export const UserName = styled.button`
   background: ${({ theme }) => theme.colors.secondary};
@@ -171,7 +171,7 @@ export const UserName = styled.button`
     padding: 0.938rem;
     font-size: 0.875rem;
   }
-`;
+`
 
 export const UserPhoto = styled.img`
   width: 50px;
@@ -184,7 +184,7 @@ export const UserPhoto = styled.img`
     width: 45px;
     height: 45px;
   }
-`;
+`
 
 export const UserAction = styled.div `
   display: flex;

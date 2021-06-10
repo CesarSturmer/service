@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Header from '../../src/components/Header';
-import Footer from '../../src/components/Footer';
-import ServiceProviderBox from '../../src/components/ServiceProviderBox';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Header from '../../src/components/Header'
+import Footer from '../../src/components/Footer'
+import ServiceProviderBox from '../../src/components/ServiceProviderBox'
 import AvaliationList from '../../src/components/AvaliationList'
 import AvaliationForm from '../../src/components/AvaliationForm'
-import api from '../api';
+import api from '../api'
 
 export default function ServiceDetails() {
     const router = useRouter()
@@ -60,5 +60,5 @@ export default function ServiceDetails() {
 export async function getServerSideProps() {
     return {
         props: {},
-    };
+    }
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import {Button, ButtonText, ImageContainer} from './style'
 
 function LandingButton({ serviceButton, imageSrc, text, to }) {
@@ -15,7 +15,7 @@ function LandingButton({ serviceButton, imageSrc, text, to }) {
         <ButtonText>{text}</ButtonText>
       </Button>
     </Link>
-  );
+  )
 }
 
-export default LandingButton;
+export default LandingButton

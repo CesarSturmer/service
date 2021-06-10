@@ -1,12 +1,12 @@
-import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import React from 'react'
+import GoogleMapReact from 'google-map-react'
 import {FaMapMarkerAlt} from 'react-icons/fa'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const ContainerMap = styled.div`
   height: 60vh;
   z-index: -9999;
-`;
+`
 
 function MapBox({coordinates}) {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -44,7 +44,7 @@ function MapBox({coordinates}) {
       </div>
       </ContainerMap>
     </>
-  );
+  )
 }
 
-export default MapBox;
+export default MapBox

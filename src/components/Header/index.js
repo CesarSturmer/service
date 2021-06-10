@@ -1,23 +1,23 @@
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import * as style from './style';
-import api from '../../../pages/api';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { IoPersonCircleOutline, IoPersonCircle } from 'react-icons/io5';
-import ModalLogin from '../ModalLogin';
-import ModalServices from '../ModalServices';
-import { useRouter } from 'next/router';
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import * as style from './style'
+import api from '../../../pages/api'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { IoPersonCircleOutline, IoPersonCircle } from 'react-icons/io5'
+import ModalLogin from '../ModalLogin'
+import ModalServices from '../ModalServices'
+import { useRouter } from 'next/router'
 
 const Header = () => {
-  const router = useRouter();
-  const [openIconLogin, setOpenIconLogin] = useState(false);
-  const [openIconService, setOpenIconService] = useState(false);
-  const [userInfo, setUserInfo] = useState([]);
-  const [open, setOpen] = useState(false);
+  const router = useRouter()
+  const [openIconLogin, setOpenIconLogin] = useState(false)
+  const [openIconService, setOpenIconService] = useState(false)
+  const [userInfo, setUserInfo] = useState([])
+  const [open, setOpen] = useState(false)
 
-  const handleLogin = () => setOpenIconLogin(!openIconLogin);
+  const handleLogin = () => setOpenIconLogin(!openIconLogin)
 
-  const handleServices = () => setOpenIconService(!openIconService);
+  const handleServices = () => setOpenIconService(!openIconService)
 
   useEffect(() => {
     const sessionActive = sessionStorage.getItem('session_active')
@@ -25,9 +25,9 @@ const Header = () => {
       const token = sessionStorage.getItem('validated_token')
       await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
         .then((res) => {
-          setUserInfo(res.data);
+          setUserInfo(res.data)
         })
-        .catch(() => {});
+        .catch(() => {})
     }
     sessionActive && getUserInfo()
   }, [])
@@ -98,7 +98,7 @@ const Header = () => {
         {openIconLogin && <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />}
       </style.ContainerIconLogin>
     </style.HeaderContainer>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

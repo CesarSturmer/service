@@ -1,109 +1,76 @@
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import { TextField, MenuItem } from '@material-ui/core';
-import api from '../../../pages/api';
-import { useRouter } from 'next/router';
-import FormValidations from '../../contexts/FormValidations';
-import useError from '../../hooks/useError';
-import FormContainer from '../Utils/FormContainer';
-import Select from '../Utils/Select';
-
-const TwoInputsContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    flex-direction: column;
-  }
-  @media (min-width: 480px) and (max-width: 767px) {
-    flex-direction: column;
-  }
-  @media (max-width: 479px) {
-    flex-direction: column;
-  }
-`;
-
-const Text = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
-`;
-
-const OptionButton = styled.button`
-  width: 13rem;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.title};
-  padding: 0.5rem;
-  margin: 1rem 0;
-  border-radius: ${({ theme }) => theme.borderRadius.default};
-  border: none;
-`;
+import { useState, useEffect, useContext } from 'react'
+import axios from 'axios'
+import {TwoInputsContainer, Text, OptionButton} from './styled'
+import { TextField, MenuItem } from '@material-ui/core'
+import api from '../../../pages/api'
+import { useRouter } from 'next/router'
+import FormValidations from '../../contexts/FormValidations'
+import useError from '../../hooks/useError'
+import FormContainer from '../Utils/FormContainer'
+import Select from '../Utils/Select'
 
 function UserForm(props) {
-  const router = useRouter();
-  const [cities, setCities] = useState([]);
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [confirmPassworError, setConfirmPasswordError] = useState({
-    error: false,
-    text: '',
-  });
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [cep, setCep] = useState('');
-  const [cepError, setCepError] = useState({ error: false, text: '' });
-  const [street, setStreet] = useState('');
-  const [number, setNumber] = useState('');
-  const [neighborhood, setNeighborhood] = useState('');
-  const [city, setCity] = useState('');
-  const [serviceProvider, setServiceProvider] = useState(false);
-  const [complement, setComplement] = useState('');
-  const validations = useContext(FormValidations);
-  const [error, fieldValidator, canSend] = useError(validations);
+  const router = useRouter()
+  const [cities, setCities] = useState([])
+  const [name, setName] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPassworError, setConfirmPasswordError] = useState({error: false, text: ''})
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [cep, setCep] = useState('')
+  const [cepError, setCepError] = useState({ error: false, text: '' })
+  const [street, setStreet] = useState('')
+  const [number, setNumber] = useState('')
+  const [neighborhood, setNeighborhood] = useState('')
+  const [city, setCity] = useState('')
+  const [serviceProvider, setServiceProvider] = useState(false)
+  const [complement, setComplement] = useState('')
+  const validations = useContext(FormValidations)
+  const [error, fieldValidator, canSend] = useError(validations)
 
   if (typeof window !== 'undefined') {
-    const token = sessionStorage.getItem('validated_token');
-    api.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    const token = sessionStorage.getItem('validated_token')
+    api.defaults.headers.common['Authorization'] = 'Bearer ' + token
   }
 
   useEffect(() => {
     const getCities = async () => {
-      await api.get('cidades').then((res) => setCities(res.data));
-    };
-    getCities();
-    if (props.data) {
-      setName(props.data.nomeCompleto);
-      setCpf(props.data.cpf);
-      setEmail(props.data.email);
-      setPhone(props.data.telefone);
-      setCep(props.data.endereco.cep);
-      setNeighborhood(props.data.endereco.bairro);
-      setStreet(props.data.endereco.logradouro);
-      setNumber(props.data.endereco.numero);
-      setComplement(props.data.endereco.complemento);
-      setCity(props.data.endereco.cidade.id);
-      setComplement(props.data.endereco.complemento);
+      await api.get('cidades').then((res) => setCities(res.data))
     }
-  }, []);
+    getCities()
+    if (props.data) {
+      setName(props.data.nomeCompleto)
+      setCpf(props.data.cpf)
+      setEmail(props.data.email)
+      setPhone(props.data.telefone)
+      setCep(props.data.endereco.cep)
+      setNeighborhood(props.data.endereco.bairro)
+      setStreet(props.data.endereco.logradouro)
+      setNumber(props.data.endereco.numero)
+      setComplement(props.data.endereco.complemento)
+      setCity(props.data.endereco.cidade.id)
+      setComplement(props.data.endereco.complemento)
+    }
+  }, [])
 
   const cepValidator = async () => {
     await axios
       .get(`https://viacep.com.br/ws/${cep}/json`)
       .then((res) => {
-        setStreet(res.data.logradouro);
-        setNeighborhood(res.data.bairro);
-        setCepError({ error: false, text: '' });
+        setStreet(res.data.logradouro)
+        setNeighborhood(res.data.bairro)
+        setCepError({ error: false, text: '' })
       })
-      .catch(() => setCepError({ error: true, text: 'CEP inválido!' }));
-  };
+      .catch(() => setCepError({ error: true, text: 'CEP inválido!' }))
+  }
 
   const confirmPasswordValidator = () => {
     password === confirmPassword
       ? setConfirmPasswordError({ error: false, text: '' })
-      : setConfirmPasswordError({ error: true, text: 'Senhas diferentes!' });
-  };
+      : setConfirmPasswordError({ error: true, text: 'Senhas diferentes!' })
+  }
 
   const postUser = async () => {
     await api
@@ -126,8 +93,8 @@ function UserForm(props) {
         telefone: phone,
       })
       .then(() => alert('usuario cadastrado com sucesso'))
-      .catch(() => alert('Falha ao cadastrar usuário!'));
-  };
+      .catch(() => alert('Falha ao cadastrar usuário!'))
+  }
 
   const editUser = async () => {
     await api
@@ -147,22 +114,22 @@ function UserForm(props) {
         telefone: phone,
       })
       .then(() => {
-        alert('usuário editado com sucesso');
-        router.reload();
+        alert('usuário editado com sucesso')
+        router.reload()
       })
-      .catch(() => alert('falha ao editar'));
-  };
+      .catch(() => alert('falha ao editar'))
+  }
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (canSend()) {
       if (props.edit) {
-        editUser();
+        editUser()
       } else {
-        postUser();
+        postUser()
       }
     }
-  };
+  }
 
   return (
     <FormContainer
@@ -282,7 +249,7 @@ function UserForm(props) {
               <MenuItem key={city.id} value={city.id}>
                 {city.nome}
               </MenuItem>
-            );
+            )
           })}
         </Select>
       </TwoInputsContainer>
@@ -349,7 +316,7 @@ function UserForm(props) {
         </>
       )}
     </FormContainer>
-  );
+  )
 }
 
-export default UserForm;
+export default UserForm

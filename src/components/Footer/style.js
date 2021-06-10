@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
   width: 100%;
@@ -13,7 +13,7 @@ export const FooterContainer = styled.footer`
   justify-content: center;
   border-radius: 100px 100px 0 0;
   margin-top: 2rem;
-`;
+`
 
 export const IconsContainer = styled.div`
   width: 10rem;
@@ -21,7 +21,7 @@ export const IconsContainer = styled.div`
   font-size: 2.5rem;
   justify-content: space-around;
   margin-top: 2rem;
-`;
+`
 
 export const TextContainer = styled.ul`
   font-size: 1.5rem;
@@ -37,7 +37,7 @@ export const TextContainer = styled.ul`
   @media (max-width: 479px) {
     font-size: 1rem;
   }
-`;
+`
 
 export const TextItem = styled.li`
   margin-left: 2rem;
@@ -46,4 +46,4 @@ export const TextItem = styled.li`
     list-style: none;
     margin-left: 0;
   }
-`;
+`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Button = styled.button`
   width: 16rem;
@@ -31,7 +31,7 @@ export const Button = styled.button`
     width: 9rem;
     height: 3rem;
   }  
-`;
+`
 
 export const ImageContainer = styled.div`
   padding: 0 0.625rem 0 1.563rem;
@@ -53,7 +53,7 @@ export const ImageContainer = styled.div`
     }
     
   }
-`;
+`
 
 export const ButtonText = styled.p`
   font-family: Open Sans;
@@ -85,4 +85,4 @@ export const ButtonText = styled.p`
     padding-right: 0.75rem;
     font-size: 0.875rem;
   }
-`;
+`

@@ -1,38 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import styled from 'styled-components';
-import Link from 'next/link';
-
-const ButtonsContainer = styled.div`
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-`;
-
-const SignUpButtonModal = styled.button`
-  border: 1px solid white;
-  border-radius: 18px;
-  width: 170px;
-  height: 2.5rem;
-  color: #ffffff;
-  background: none;
-`;
-
-const LoginButtonModal = styled.button`
-  border: 1px solid white;
-  border-radius: 18px;
-  width: 170px;
-  height: 2.5rem;
-  color: #ffffff;
-  background: none;
-  margin-bottom: 1rem;
-`;
-
-
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Modal from '@material-ui/core/Modal'
+import Backdrop from '@material-ui/core/Backdrop'
+import Fade from '@material-ui/core/Fade'
+import {ButtonsContainer, SignUpButtonModal, LoginButtonModal} from './style'
+import Link from 'next/link'
 
 function ModalLogin({ userInfo, handleLogout }) {
   const useStyles = makeStyles((theme) => ({
@@ -49,19 +21,19 @@ function ModalLogin({ userInfo, handleLogout }) {
       padding: theme.spacing(2, 4, 3),
       borderRadius: '0.625rem',
     },
-  }));
+  }))
 
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(true)
 
   const handleOpen = () => {
     setOpen(true);
-  };
+  }
 
   const handleClose = () => {
     setOpen(false);
-  };
+  }
 
   return (
     <div>
@@ -98,7 +70,7 @@ function ModalLogin({ userInfo, handleLogout }) {
         </Fade>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default ModalLogin;
+export default ModalLogin

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Header from '../../src/components/Header';
-import Footer from '../../src/components/Footer';
-import ServiceBox from '../../src/components/ServiceBox';
-import ButtonsContainer from '../../src/components/Utils/ButtonsContainer';
-import api from '../api';
-import MapBox from '../../src/components/MapBox';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Header from '../../src/components/Header'
+import Footer from '../../src/components/Footer'
+import ServiceBox from '../../src/components/ServiceBox'
+import ButtonsContainer from '../../src/components/Utils/ButtonsContainer'
+import api from '../api'
+import MapBox from '../../src/components/MapBox'
 
-const CepCoords = require('coordenadas-do-cep');
+const CepCoords = require('coordenadas-do-cep')
 
 export default function Service() {
   const router = useRouter()
@@ -58,11 +58,11 @@ export default function Service() {
       }
       <Footer />
     </>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   return {
     props: {},
-  };
+  }
 }
