@@ -32,9 +32,7 @@ const LoginButtonModal = styled.button`
   margin-bottom: 1rem;
 `;
 
-
-
-function ModalLogin({ userInfo, handleLogout }) {
+function ModalLogin({ userInfo, handleLogout, isUser }) {
   const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
@@ -52,12 +50,8 @@ function ModalLogin({ userInfo, handleLogout }) {
   }));
 
   const classes = useStyles();
-
   const [open, setOpen] = React.useState(true);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -80,10 +74,23 @@ function ModalLogin({ userInfo, handleLogout }) {
         <Fade in={open}>
           <div className={classes.paper}>
             {userInfo.length !== 0 ? (
-                      <ButtonsContainer>
-                        <a href='/user'>Minha conta</a>                           
-                        <a href="" onClick={handleLogout}>Sair</a>
-                      </ButtonsContainer>
+              <ButtonsContainer>
+                {isUser ? (
+                  <>
+                    <a href="/user">Minha conta</a>
+                    <a href="" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/serviceProvider">Minha conta</a>
+                    <a href="" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                )}
+              </ButtonsContainer>
             ) : (
               <ButtonsContainer>
                 <Link href="/login">

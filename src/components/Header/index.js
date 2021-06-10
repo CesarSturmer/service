@@ -204,6 +204,7 @@ const Header = () => {
   const [openIconService, setOpenIconService] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
   const [open, setOpen] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin);
 
@@ -211,10 +212,14 @@ const Header = () => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const token = sessionStorage.getItem('validated_token')
-      await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
+      const token = sessionStorage.getItem('validated_token');
+      await api
+        .get('usuario', { headers: { Authorization: 'Bearer ' + token } })
         .then((res) => {
           setUserInfo(res.data);
+          if (res.data.perfis.length !== 2) {
+            setIsUser(true);
+          }
         })
         .catch(() => console.log('usuário não logado'));
     };
@@ -222,8 +227,8 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('validated_token');
     router.push('/');
+    sessionStorage.removeItem('validated_token');
   };
 
   return (
@@ -264,10 +269,21 @@ const Header = () => {
             </ButtonsContainerInfo>
             {open && (
               <UserAction>
-                <a href="/user">Minha conta</a>
-                <a href="" onClick={handleLogout}>
-                  Sair
-                </a>
+                {isUser ? (
+                  <>
+                    <a href="/user">Minha conta</a>
+                    <a href="/" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/serviceProvider">Minha conta</a>
+                    <a href="/src" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                )}
               </UserAction>
             )}
           </div>
@@ -285,7 +301,11 @@ const Header = () => {
       <ContainerIconLogin onClick={handleLogin}>
         <IoPersonCircleOutline size={60} />
         {openIconLogin && (
-          <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />
+          <ModalLogin
+            userInfo={userInfo}
+            handleLogout={handleLogout}
+            isUser={isUser}
+          />
         )}
       </ContainerIconLogin>
     </HeaderContainer>
