@@ -23,6 +23,12 @@ const AvaliationBox = styled.div`
     padding: 1rem 0;
 `
 
+const AvaliatorName = styled.p`
+    align-self: flex-start;
+    margin-left: 5%;
+    font-weight: bold;
+`
+
 const Avaliation = styled.div`
     width: 90%;
     display: flex;
@@ -45,7 +51,10 @@ const AvaliationList = ({serviceId, showForm}) => {
     useEffect(() => {
         const getAvaliations = async () => {
             await api.get(`avaliacao?servicoId=${serviceId}`)
-            .then((res) => setAvaliations(res.data))
+            .then((res) => {
+                setAvaliations(res.data)
+                console.log(res.data)
+            })
             .catch(() => alert('Não foi possível carregar as avaliações'))
         }
         getAvaliations()
@@ -58,10 +67,13 @@ const AvaliationList = ({serviceId, showForm}) => {
                 {avaliations.length !== 0 ?
                     avaliations.map((avaliation) => {
                         return (
-                            <Avaliation>
+                            <>
+                            <AvaliatorName>{avaliation.avaliador.nomeCompleto}:</AvaliatorName>
+                            <Avaliation key={avaliation.id}>
                                 <p>{avaliation.comentario}</p>
                                 <p>{avaliation.nota}</p>
                             </Avaliation>
+                            </>
                         )
                     })
                 :
