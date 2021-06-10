@@ -20,6 +20,7 @@ const Header = () => {
   const handleServices = () => setOpenIconService(!openIconService);
 
   useEffect(() => {
+    const sessionActive = sessionStorage.getItem('session_active')
     const getUserInfo = async () => {
       const token = sessionStorage.getItem('validated_token')
       await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
@@ -28,10 +29,11 @@ const Header = () => {
         })
         .catch(() => {});
     }
-    getUserInfo()
+    sessionActive && getUserInfo()
   }, [])
 
   const handleLogout = () => {
+    sessionStorage.removeItem('session_active')  
     sessionStorage.removeItem('validated_token')    
     router.push('/')
   }
@@ -72,13 +74,12 @@ const Header = () => {
               />
             )}    
            </style.ButtonsContainerInfo>
-           {open ?            
-            <style.UserAction>              
-                <a href='/user'>Minha conta</a>                           
-                <a href="" onClick={handleLogout}>Sair</a>
-            </style.UserAction>
-         : ''
-        }
+            {open &&        
+              <style.UserAction>              
+                  <a href='/user'>Minha conta</a>                           
+                  <a href="" onClick={handleLogout}>Sair</a>
+              </style.UserAction>
+            }
           </div>
           
         ) : (

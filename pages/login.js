@@ -27,6 +27,7 @@ function Login() {
         senha: password,
       })
       .then((res) => {
+        sessionStorage.setItem('session_active', true);
         sessionStorage.setItem('validated_token', res.data.token);
         router.push('/serviceSearch');
       })

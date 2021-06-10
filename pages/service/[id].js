@@ -26,9 +26,6 @@ export default function Service() {
               const json = {lat: info.lat, lon: info.lon}
               setCordinates(coordinates => [...coordinates, json])
             })
-            .catch(() => {
-              console.log('erro')
-            })
           })
         }
         )}
@@ -57,7 +54,7 @@ export default function Service() {
         </ButtonsContainer>
         </>
       :
-          <h1>Nenhum serviço cadastrado nessa categoria!</h1>
+        <h1>Nenhum serviço cadastrado nessa categoria!</h1>
       }
       <Footer />
     </>

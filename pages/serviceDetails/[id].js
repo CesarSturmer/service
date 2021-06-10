@@ -13,6 +13,15 @@ export default function ServiceDetails() {
     const { id } = router.query
     const [serviceDetails, setServiceDetails] = useState([])
     const [showForm, setShowForm] = useState(false)
+
+    const openForm = () => {
+        if (sessionStorage.getItem('session_active')) {
+            setShowForm(true)
+        } else {
+            alert('Você precisa estar logado para avaliar este serviço!')
+        }
+    }
+
     useEffect(() => {
         const getService = async () => {
             await api.get(`servicos/${id}`)
@@ -39,7 +48,7 @@ export default function ServiceDetails() {
                 <CircularProgress style={{marginLeft: '50%'}} />
             }
             {!showForm ?
-                <AvaliationList serviceId={id} showForm={() => setShowForm(true)} />
+                <AvaliationList serviceId={id} showForm={openForm} />
             :
                 <AvaliationForm serviceId={id} back={() => setShowForm(false)}/>
             }
