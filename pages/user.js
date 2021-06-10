@@ -26,9 +26,9 @@ function User() {
                 setUserInfo(res.data)
             })
             .catch(() => {
-                alert('Sessão expirada!')
                 sessionStorage.removeItem('session_active')
                 sessionStorage.removeItem('validated_token')
+                alert('Sessão expirada!')
                 router.push('/login')
             })
         }

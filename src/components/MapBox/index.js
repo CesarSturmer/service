@@ -17,7 +17,7 @@ function MapBox({coordinates}) {
       lng: -48.5158965,
     },
     zoom: 10,
-  };
+  }
 
   return (
     <>
