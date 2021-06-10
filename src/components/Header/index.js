@@ -14,6 +14,7 @@ const Header = () => {
   const [openIconService, setOpenIconService] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
   const [open, setOpen] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin);
 
@@ -21,10 +22,13 @@ const Header = () => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const token = sessionStorage.getItem('validated_token')
-      await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
+      const token = sessionStorage.getItem('validated_token');
+      await api.get('usuario', { headers: { Authorization: 'Bearer ' + token } })
         .then((res) => {
           setUserInfo(res.data);
+          if (res.data.perfis.length !== 2) {
+            setIsUser(true);
+          }
         })
         .catch(() => {});
     }
@@ -32,6 +36,9 @@ const Header = () => {
   }, [])
 
   const handleLogout = () => {
+    router.push('/');
+    sessionStorage.removeItem('validated_token');
+  };
     sessionStorage.removeItem('validated_token')    
     router.push('/')
   }

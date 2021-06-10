@@ -46,11 +46,11 @@ const ContainerButtonsCenter = styled.div`
   }  
 `;
 
-const ButtonsContainer = (props) => {
+const ButtonsContainer = ({children, backGround}) => {
     return (
-        <ContainerButtons>
+        <ContainerButtons style={ backGround &&{ backgroundColor: 'transparent'}}>
             <ContainerButtonsCenter>
-                {props.children}
+                {children}
             </ContainerButtonsCenter>
         </ContainerButtons>
     )
