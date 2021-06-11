@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
     width: 50rem;
@@ -21,8 +21,19 @@ export const AvaliationBox = styled.div`
     padding: 1rem 0;
 `
 
-export const Avaliation = styled.div`
+export const AvaliationContainer = styled.div`
     width: 90%;
+`
+
+export const AvaliatorName = styled.p`
+    position: relative;
+    bottom: -3.5rem;
+    align-self: flex-start;
+    font-size: 0.5rem;
+`
+
+export const Avaliation = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid ${({ theme }) => theme.colors.title};

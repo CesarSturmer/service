@@ -22,7 +22,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-`;
+`
+
 export const ContainerOptions = styled.div`
   display: flex;
   justify-content: space-between;
@@ -88,12 +89,13 @@ export const Subtitle = styled.h1`
 
 export const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
-  border-radius: 1.25rem;
+  border-radius: 18px;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
   }
 `
+
 export const ButtonsContainerInfo = styled.div`
   display: flex;
   align-items: center;
@@ -183,7 +185,8 @@ export const UserPhoto = styled.img`
     height: 45px;
   }
 `
-export const UserAction = styled.div`
+
+export const UserAction = styled.div `
   display: flex;
   background: ${({ theme }) => theme.colors.secondary};
   align-items: center;
