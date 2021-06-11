@@ -50,11 +50,11 @@ export const Container = styled.div`
   align-items: center;
   font-size: 0.9rem;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 320px) and (max-width: 1024px) {
     font-size: 0.75rem;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
-    font-size: 0.75rem;
+  @media (max-width: 480px) {
+    flex-direction: column;
   }
 `
 

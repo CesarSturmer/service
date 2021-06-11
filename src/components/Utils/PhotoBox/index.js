@@ -3,7 +3,7 @@ import api from '../../../../pages/api'
 import * as style from './style'
 import AvaliationIcons from '../AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
-import {MdAddAPhoto} from 'react-icons/md'
+import {MdAddAPhoto, MdAdd, MdExpandLess, MdExpandMore} from 'react-icons/md'
 
 const PhotoBox = (props) => {
     const router = useRouter()
@@ -47,6 +47,10 @@ const PhotoBox = (props) => {
                         <style.Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
                         {props.edit &&
                             <>
+                                <style.AddIconContainer>
+                                    <MdAdd size='2rem' />
+                                    <MdExpandMore size='2rem' />
+                                </style.AddIconContainer>
                                 <style.EditInputLabel htmlFor='image'>
                                     <MdAddAPhoto />
                                     <style.LabelText>Editar foto</style.LabelText>

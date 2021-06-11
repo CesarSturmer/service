@@ -19,9 +19,14 @@ export const HeaderContainer = styled.div`
 `
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: auto;
+  }
 `
 
 export const ContainerOptions = styled.div`

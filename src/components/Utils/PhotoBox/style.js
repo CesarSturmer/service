@@ -20,6 +20,7 @@ export const Box = styled.div`
 `;
 
 export const TopContainer = styled.div`
+    width: 100%;
     position: relative;
     top: -5rem;
     display: flex;
@@ -55,4 +56,12 @@ export const EditInputLabel = styled.label`
 
 export const LabelText = styled.p`
     margin: 0;
+`
+
+export const AddIconContainer = styled.div`
+  position: relative;
+  top: -4rem;
+  align-self: flex-end;
+  margin-right: 1rem;
+  display: flex;
 `
