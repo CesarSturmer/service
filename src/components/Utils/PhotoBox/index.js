@@ -1,66 +1,9 @@
-import styled from 'styled-components'
 import {useRouter} from 'next/router'
 import api from '../../../../pages/api'
+import * as style from './style'
 import AvaliationIcons from '../AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
 import {MdAddAPhoto} from 'react-icons/md'
-
-const Box = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.title};
-  width: 50rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 5rem auto;
-  border-radius: ${({ theme }) => theme.borderRadius.default};
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    width: 35rem;
-  }
-  @media (min-width: 320px) and (max-width: 767px) {
-    width: 70%;
-  }
-
-`;
-
-const TopContainer = styled.div`
-    position: relative;
-    top: -5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-const Photo = styled.img`
-    width: 10rem;
-    height: 10rem;
-    border-radius: ${({ theme }) => theme.borderRadius.max};
-`
-
-const PhotInput = styled.input`
-    display: none;
-`
-
-const InputLabel = styled.label`
-    background-color: ${({ theme }) => theme.colors.secondary};
-    width: 10rem;
-    height: 10rem;
-    border-radius: ${({ theme }) => theme.borderRadius.max};
-`
-
-const EditInputLabel = styled.label`
-    height: 10rem;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-
-const LabelText = styled.p`
-    margin: 0;
-`
 
 const PhotoBox = (props) => {
     const router = useRouter()
@@ -97,34 +40,34 @@ const PhotoBox = (props) => {
     }
 
     return (
-        <Box>
-            <TopContainer>
+        <style.Box>
+            <style.TopContainer>
                 {props.imageSrc ?
                     <>
-                        <Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
+                        <style.Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
                         {props.edit &&
                             <>
-                                <EditInputLabel htmlFor='image'>
+                                <style.EditInputLabel htmlFor='image'>
                                     <MdAddAPhoto />
-                                    <LabelText>Editar foto</LabelText>
-                                </EditInputLabel>
-                                <PhotInput type='file' id='image' onChange={editImage} />
+                                    <style.LabelText>Editar foto</style.LabelText>
+                                </style.EditInputLabel>
+                                <style.PhotInput type='file' id='image' onChange={editImage} />
                             </>
                         }
                     </>
                 :
                     <>
-                        <InputLabel htmlFor='midia'><FaUserCircle size='10rem' /></InputLabel>
-                        <PhotInput type='file' id='midia' onChange={postImage} />
+                        <style.InputLabel htmlFor='midia'><FaUserCircle size='10rem' /></style.InputLabel>
+                        <style.PhotInput type='file' id='midia' onChange={postImage} />
                     </>
                 }
                 <p>{props.name}</p>
                 {!props.edit &&
                     <AvaliationIcons avaliation={props.avaliation} />
                 }
-            </TopContainer>
+            </style.TopContainer>
             {props.children}
-        </Box>
+        </style.Box>
     )
 }
 

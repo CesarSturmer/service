@@ -1,47 +1,10 @@
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-import styled from 'styled-components'
+import {PageContainer, ButtonsContainer, MenuButton, List, ListItem} from '../styles/admin'
 import {TextField, MenuItem} from '@material-ui/core'
 import api from './api'
 import FormContainer from '../src/components/Utils/FormContainer'
 import Select from '../src/components/Utils/Select'
-
-const PageContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-`
-
-const ButtonsContainer = styled.div`
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.title};
-    height: 100%;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-`
-
-const MenuButton = styled.p`
-    background-color: ${({ theme }) => theme.colors.secondary};
-    font-size: 1rem;
-    margin: 2rem 0;
-    cursor: pointer;
-`
-
-const List = styled.ul`
-    color: ${({ theme }) => theme.colors.secondary};
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    list-style: none;
-    text-align: center;
-`
-
-const ListItem = styled.li`
-    margin-left: 0.5rem;
-`
 
 function Admin() {
     const router = useRouter()

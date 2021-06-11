@@ -1,37 +1,38 @@
-import styled from 'styled-components';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { TextField } from '@material-ui/core';
-import api from './api';
-import FormContainer from '../src/components/Utils/FormContainer';
-import Header from '../src/components/Header';
-import Footer from '../src/components/Footer';
+import styled from 'styled-components'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { TextField } from '@material-ui/core'
+import api from './api'
+import FormContainer from '../src/components/Utils/FormContainer'
+import Header from '../src/components/Header'
+import Footer from '../src/components/Footer'
 
 const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 function Login() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     await api
       .post('auth', {
         email: email,
         senha: password,
       })
       .then((res) => {
-        sessionStorage.setItem('validated_token', res.data.token);
-        router.push('/serviceSearch');
+        sessionStorage.setItem('session_active', true)
+        sessionStorage.setItem('validated_token', res.data.token)
+        router.push('/serviceSearch')
       })
-      .catch(() => alert('Usuário ou senha incorretos!'));
-  };
+      .catch(() => alert('Usuário ou senha incorretos!'))
+  }
 
   return (
     <Container>
@@ -67,7 +68,7 @@ function Login() {
       </FormContainer>
       <Footer />
     </Container>
-  );
+  )
 }
 
-export default Login;
+export default Login
