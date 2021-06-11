@@ -14,6 +14,7 @@ const Header = () => {
   const [openIconService, setOpenIconService] = useState(false)
   const [userInfo, setUserInfo] = useState([])
   const [open, setOpen] = useState(false)
+  const [isUser, setIsUser] = useState(false)
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin)
 
@@ -23,9 +24,13 @@ const Header = () => {
     const sessionActive = sessionStorage.getItem('session_active')
     const getUserInfo = async () => {
       const token = sessionStorage.getItem('validated_token')
-      await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
+      await api
+        .get('usuario', { headers: { Authorization: 'Bearer ' + token } })
         .then((res) => {
           setUserInfo(res.data)
+          if (res.data.perfis.length !== 2) {
+            setIsUser(true)
+          }
         })
         .catch(() => {})
     }
@@ -33,8 +38,8 @@ const Header = () => {
   }, [])
 
   const handleLogout = () => {
-    sessionStorage.removeItem('session_active')  
-    sessionStorage.removeItem('validated_token')    
+    sessionStorage.removeItem('session_active')
+    sessionStorage.removeItem('validated_token')
     router.push('/')
   }
 
@@ -59,29 +64,41 @@ const Header = () => {
         </style.ContainerOptions>
 
         {userInfo.length !== 0 ? (
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-          <style.ButtonsContainerInfo onClick={() => setOpen(!open)}>
-            <style.UserName>{userInfo.nomeCompleto}</style.UserName>
-            {userInfo.midiaPath ? (
-              <style.UserPhoto
-                src={`https://servicos-app.herokuapp.com/${userInfo.midiaPath}`}
-              />
-            ) : (
-              <IoPersonCircle
-                color={'white'}
-                size={63}
-                style={{ position: 'relative', zIndex: 1, right: 5 }}
-              />
-            )}    
-           </style.ButtonsContainerInfo>
-            {open &&        
-              <style.UserAction>              
-                  <a href='/user'>Minha conta</a>                           
-                  <a href="" onClick={handleLogout}>Sair</a>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <style.ButtonsContainerInfo onClick={() => setOpen(!open)}>
+              <style.UserName>{userInfo.nomeCompleto}</style.UserName>
+              {userInfo.midiaPath ? (
+                <style.UserPhoto
+                  src={`https://servicos-app.herokuapp.com/${userInfo.midiaPath}`}
+                />
+              ) : (
+                <IoPersonCircle
+                  color={'white'}
+                  size={63}
+                  style={{ position: 'relative', zIndex: 1, right: 5 }}
+                />
+              )}
+            </style.ButtonsContainerInfo>
+            {open && (
+              <style.UserAction>
+                {isUser ? (
+                  <>
+                    <a href="/user">Minha conta</a>
+                    <a href="/" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/serviceProvider">Minha conta</a>
+                    <a href="/" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                )}
               </style.UserAction>
-            }
+            )}
           </div>
-          
         ) : (
           <style.ButtonsContainer>
             <Link href="/userForm">
@@ -95,7 +112,13 @@ const Header = () => {
       </style.Container>
       <style.ContainerIconLogin onClick={handleLogin}>
         <IoPersonCircleOutline size={60} />
-        {openIconLogin && <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />}
+        {openIconLogin && (
+          <ModalLogin
+            userInfo={userInfo}
+            handleLogout={handleLogout}
+            isUser={isUser}
+          />
+        )}
       </style.ContainerIconLogin>
     </style.HeaderContainer>
   )
