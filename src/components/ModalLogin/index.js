@@ -3,17 +3,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
-import {ButtonsContainer, SignUpButtonModal, LoginButtonModal} from './style'
+import { BsFillTriangleFill } from 'react-icons/bs'
+import { ButtonsContainer, SignUpButtonModal, LoginButtonModal } from './style'
 import Link from 'next/link'
 
-function ModalLogin({ userInfo, handleLogout }) {
+function ModalLogin({ userInfo, handleLogout, isUser }) {
   const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      height: '45%',
-      marginRight: '2rem',
+      height: '40%',
+      marginRight: '4rem',
       border: 'none',
     },
     paper: {
@@ -27,12 +28,8 @@ function ModalLogin({ userInfo, handleLogout }) {
 
   const [open, setOpen] = React.useState(true)
 
-  const handleOpen = () => {
-    setOpen(true);
-  }
-
   const handleClose = () => {
-    setOpen(false);
+    setOpen(false)
   }
 
   return (
@@ -52,10 +49,23 @@ function ModalLogin({ userInfo, handleLogout }) {
         <Fade in={open}>
           <div className={classes.paper}>
             {userInfo.length !== 0 ? (
-                      <ButtonsContainer>
-                        <a href='/user'>Minha conta</a>                           
-                        <a href="" onClick={handleLogout}>Sair</a>
-                      </ButtonsContainer>
+              <ButtonsContainer>
+                {isUser ? (
+                  <>
+                    <a href="/user">Minha conta</a>
+                    <a href="" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/serviceProvider">Minha conta</a>
+                    <a href="" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </>
+                )}
+              </ButtonsContainer>
             ) : (
               <ButtonsContainer>
                 <Link href="/login">
