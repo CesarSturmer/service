@@ -2,7 +2,6 @@ import {UserInfoContainer, DataContainer, Text, ButtonsContainer, Button} from '
 import PhotoBox from '../Utils/PhotoBox'
 
 function UserInfoBox({
-  avaliation,
   imageSrc,
   email,
   cpf,
@@ -14,10 +13,20 @@ function UserInfoBox({
   name,
   phone,
   editUser,
-  changePassword
+  changePassword,
+  openServiceForm,
+  openServiceList,
+  serviceProvider
 }) {
   return (
-    <PhotoBox edit avaliation={avaliation} name={name} imageSrc={imageSrc}>
+    <PhotoBox 
+      openServiceList={openServiceList}
+      openServiceForm={openServiceForm} 
+      serviceProvider={serviceProvider}  
+      name={name} 
+      imageSrc={imageSrc}
+      edit
+    >
       <UserInfoContainer>
         <DataContainer>
           <Text>Email</Text>

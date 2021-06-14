@@ -104,6 +104,7 @@ export const ButtonsContainer = styled.div`
 export const ButtonsContainerInfo = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     padding: 0.938rem;
@@ -189,12 +190,4 @@ export const UserPhoto = styled.img`
     width: 45px;
     height: 45px;
   }
-`
-
-export const UserAction = styled.div `
-  display: flex;
-  background: ${({ theme }) => theme.colors.secondary};
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
 `

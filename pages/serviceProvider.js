@@ -1,18 +1,21 @@
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
 import api from './api'
-import ServiceProviderBox from '../src/components/ServiceProviderBox'
+import UserInfoBox from '../src/components/UserInfoBox'
+import ChangePassword from '../src/components/ChangePassword'
 import SubmitButton from '../src/components/SubmitButton'
 import UserForm from '../src/components/UserForm'
 import Header from '../src/components/Header'
 import ServiceForm from '../src/components/ServiceForm'
+import ServiceList from '../src/components/ServiceList'
 import Footer from '../src/components/Footer'
 
 function ServiceProvider() {
     const router = useRouter()
     const [userInfo, setUserInfo] = useState([])
-    const [editUser, setEditUser] = useState(false)
-    const [showServiceForm, setShowServiceForm] = useState(false)
+    const [screenOption, setScreenOption] = useState(0)
+
+    const back = () => setScreenOption(0)
     
     if (typeof window !== 'undefined') {
         const token = sessionStorage.getItem('validated_token')
@@ -48,31 +51,38 @@ function ServiceProvider() {
     return (
         <div>
             <Header />
-            {userInfo.length !== 0 && !editUser &&
-                <ServiceProviderBox
-                    avaliation={3}
-                    provider={userInfo.nomeCompleto}
+            {userInfo.length !== 0 && screenOption === 0 &&
+                <UserInfoBox
                     imageSrc={userInfo.midiaPath}
-                    category='Pintor'
-                    service='Pintura geral'
-                    neighborhood='Campeche'
-                    price={10.50}
+                    email={userInfo.email}
+                    cpf={userInfo.cpf}
+                    cep={userInfo.endereco.cep}
+                    city={userInfo.endereco.cidade.nome}
+                    state={userInfo.endereco.cidade.estado}
+                    street={userInfo.endereco.logradouro}
+                    number={userInfo.endereco.numero}
+                    name={userInfo.nomeCompleto}
+                    phone={userInfo.telefone}
+                    editUser={() => setScreenOption(1)}
+                    changePassword={() => setScreenOption(2)}
+                    openServiceForm={() => setScreenOption(3)}
+                    openServiceList={() => setScreenOption(4)}
+                    serviceProvider={true}
                 />
             }
-            {editUser ? 
-                <>
-                    <UserForm edit data={userInfo} title='Editar informações de usuário!' />
-                    <SubmitButton onClick={() => setEditUser(false)}>Voltar</SubmitButton>
-                </>
-            :
-                <SubmitButton onClick={() => setEditUser(true)}>Editar informações</SubmitButton>
+            {screenOption === 1 && 
+                <UserForm edit data={userInfo} title='Editar informações de usuário!' back={back} />
+            }
+            {screenOption === 2 &&
+                <ChangePassword back={back} />
+            }
+            {screenOption === 3 &&
+                <ServiceForm back={back} />
+            }
+            {screenOption === 4 &&
+                <ServiceList id={userInfo.id} />
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
-            {showServiceForm ?
-                <ServiceForm />
-            :
-                <SubmitButton onClick={() => setShowServiceForm(true)}>Cadastrar Serviço</SubmitButton>
-            }
             <Footer />
         </div>
     )

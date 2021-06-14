@@ -58,10 +58,18 @@ export const LabelText = styled.p`
     margin: 0;
 `
 
-export const AddIconContainer = styled.div`
+export const IconsContainer = styled.div`
   position: relative;
   top: -4rem;
   align-self: flex-end;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  z-index: 99;
+`
+
+export const AddContainer = styled.div`
+  align-self: flex-end;
   display: flex;
 `

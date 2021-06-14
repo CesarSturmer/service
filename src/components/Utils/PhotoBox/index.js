@@ -1,12 +1,23 @@
+import {useState} from 'react'
 import {useRouter} from 'next/router'
 import api from '../../../../pages/api'
 import * as style from './style'
 import AvaliationIcons from '../AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'
-import {MdAddAPhoto, MdAdd, MdExpandLess, MdExpandMore} from 'react-icons/md'
+import {MdAddAPhoto, MdAdd, MdExpandLess, MdExpandMore, MdDelete} from 'react-icons/md'
+import ModalServiceProviderActions from '../../ModalServiceProviderActions'
 
 const PhotoBox = (props) => {
     const router = useRouter()
+    const [open, setOpen] = useState(false)
+
+    const renderExpandIcon = () => {
+        if (open) {
+            return <MdExpandLess size='2rem' />
+        }
+
+        return <MdExpandMore size='2rem' />
+    }
 
     if (typeof window !== 'undefined') {
         const token = sessionStorage.getItem('validated_token')
@@ -47,10 +58,22 @@ const PhotoBox = (props) => {
                         <style.Photo src={`https://servicos-app.herokuapp.com/${props.imageSrc}`} />
                         {props.edit &&
                             <>
-                                <style.AddIconContainer>
-                                    <MdAdd size='2rem' />
-                                    <MdExpandMore size='2rem' />
-                                </style.AddIconContainer>
+                                <style.IconsContainer onClick={() => setOpen(!open)}>
+                                    {props.serviceProvider ?
+                                        <>
+                                            <style.AddContainer>
+                                                <MdAdd size='2rem' />
+                                                {renderExpandIcon()}
+                                            </style.AddContainer>
+                                            {open && <ModalServiceProviderActions openServiceList={props.openServiceList} openServiceForm={props.openServiceForm} />}
+
+                                        </>
+                                    :
+                                        <>
+                                            <MdDelete />
+                                            <p>Apagar conta</p>
+                                        </>}
+                                </style.IconsContainer>
                                 <style.EditInputLabel htmlFor='image'>
                                     <MdAddAPhoto />
                                     <style.LabelText>Editar foto</style.LabelText>

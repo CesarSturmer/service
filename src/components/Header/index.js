@@ -6,14 +6,14 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoPersonCircleOutline, IoPersonCircle } from 'react-icons/io5'
 import ModalLogin from '../ModalLogin'
 import ModalServices from '../ModalServices'
-import { useRouter } from 'next/router'
+import ModalUserActions from '../ModalUserActions'
 
 const Header = () => {
-  const router = useRouter()
   const [openIconLogin, setOpenIconLogin] = useState(false)
   const [openIconService, setOpenIconService] = useState(false)
   const [userInfo, setUserInfo] = useState([])
   const [open, setOpen] = useState(false)
+  const [userProfile, setUserProfile] = useState(0)
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin)
 
@@ -21,11 +21,13 @@ const Header = () => {
 
   useEffect(() => {
     const sessionActive = sessionStorage.getItem('session_active')
+
     const getUserInfo = async () => {
       const token = sessionStorage.getItem('validated_token')
       await api.get('usuario', {headers: {'Authorization': 'Bearer ' + token}})
         .then((res) => {
           setUserInfo(res.data)
+          setUserProfile(res.data.perfis.length)
         })
         .catch(() => {})
     }
@@ -35,7 +37,6 @@ const Header = () => {
   const handleLogout = () => {
     sessionStorage.removeItem('session_active')  
     sessionStorage.removeItem('validated_token')    
-    router.push('/')
   }
 
   return (
@@ -75,10 +76,7 @@ const Header = () => {
             )}    
            </style.ButtonsContainerInfo>
             {open &&        
-              <style.UserAction>              
-                  <a href='/user'>Minha conta</a>                           
-                  <a href="" onClick={handleLogout}>Sair</a>
-              </style.UserAction>
+              <ModalUserActions userProfile={userProfile} handleLogout={handleLogout} />
             }
           </div>
           

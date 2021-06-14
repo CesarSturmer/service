@@ -15,10 +15,7 @@ const ServiceForm = ({back}) => {
     useEffect(() => {
         const getCategories = async () => {
             await api.get('categorias')
-            .then((res) => {
-                setCategories(res.data) 
-                console.log(res.data)
-            })
+            .then((res) => setCategories(res.data))
             .catch(() => alert('erro ao pegar categorias'))
         }
         getCategories()

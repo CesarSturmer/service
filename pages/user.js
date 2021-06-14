@@ -19,30 +19,34 @@ function User() {
         api.defaults.headers.common['Authorization'] = 'Bearer ' + token
     }
 
+    const endSession = (message) => {
+        sessionStorage.removeItem('session_active')
+        sessionStorage.removeItem('validated_token')
+        alert(message)
+        router.push('/login')
+    }
+
     useEffect(() => {
+        const session_active = sessionStorage.getItem('session_active')
         const getUserInfo = async () => {
             await api.get('usuario')
             .then((res) => {
                 setUserInfo(res.data)
             })
             .catch(() => {
-                sessionStorage.removeItem('session_active')
-                sessionStorage.removeItem('validated_token')
-                alert('Sessão expirada!')
-                router.push('/login')
+                EndSession('Sessão expirada!')
             })
         }
-        getUserInfo()
+        session_active ?
+            getUserInfo()
+        :
+            endSession('Sessão expirada!')
     }, [])
 
     const deleteUser = async () => {
         await api.delete('usuario')
-        .then(() => {
-            sessionStorage.removeItem('session_active')
-            sessionStorage.removeItem('validated_token')
-            alert('Usuário excluído com sucesso!')
-        })
-        .catch(() => alert('falha ao cadastrar usuário!'))
+        .then(() => endSession('Usuário excluído com sucesso!'))
+        .catch(() => alert('falha ao deletar usuário!'))
     }
 
     return (
@@ -62,6 +66,7 @@ function User() {
                     phone={userInfo.telefone}
                     editUser={() => setScreenOption(1)}
                     changePassword={() => setScreenOption(2)}
+                    serviceProvider={false}
                 />
             }
             {screenOption === 1 &&
@@ -69,12 +74,6 @@ function User() {
             }
             {screenOption === 2 &&
                 <ChangePassword back={() => setScreenOption(0)} />
-            }
-            {screenOption === 3 &&
-                <ServiceForm back={() => setScreenOption(0)} />
-            }
-            {userInfo.length !== 0 && userInfo.perfis.length === 2 &&
-                <SubmitButton onClick={() => setScreenOption(3)}>Cadastrar serviço</SubmitButton>
             }
             <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
             <Footer />

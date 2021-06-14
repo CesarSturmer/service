@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
@@ -25,51 +25,47 @@ function ModalLogin({ userInfo, handleLogout }) {
 
   const classes = useStyles()
 
-  const [open, setOpen] = React.useState(true)
-
-  const handleOpen = () => {
-    setOpen(true);
-  }
+  const [open, setOpen] = useState(true)
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen(false)
   }
 
   return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            {userInfo.length !== 0 ? (
-                      <ButtonsContainer>
-                        <a href='/user'>Minha conta</a>                           
-                        <a href="" onClick={handleLogout}>Sair</a>
-                      </ButtonsContainer>
-            ) : (
-              <ButtonsContainer>
-                <Link href="/login">
-                  <LoginButtonModal>Entrar</LoginButtonModal>
-                </Link>
-                <Link href="/userForm">
-                  <SignUpButtonModal>Cadastrar</SignUpButtonModal>
-                </Link>
-              </ButtonsContainer>
-            )}
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      className={classes.modal}
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={open}>
+        <div className={classes.paper}>
+          {userInfo.length !== 0 ? (
+                    <ButtonsContainer>
+                      <Link href='/user' >Minha conta</Link>
+                      <Link href='/' passHref>
+                        <a href='/' onClick={handleLogout}>Sair</a>  
+                      </Link>                        
+                    </ButtonsContainer>
+          ) : (
+            <ButtonsContainer>
+              <Link href="/login">
+                <LoginButtonModal>Entrar</LoginButtonModal>
+              </Link>
+              <Link href="/userForm">
+                <SignUpButtonModal>Cadastrar</SignUpButtonModal>
+              </Link>
+            </ButtonsContainer>
+          )}
+        </div>
+      </Fade>
+    </Modal>
   )
 }
 
