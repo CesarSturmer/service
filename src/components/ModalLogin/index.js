@@ -6,7 +6,7 @@ import Fade from '@material-ui/core/Fade'
 import {ButtonsContainer, SignUpButtonModal, LoginButtonModal} from './style'
 import Link from 'next/link'
 
-function ModalLogin({ userInfo, handleLogout }) {
+function ModalLogin({ userInfo, handleLogout, userProfile }) {
   const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
@@ -31,6 +31,8 @@ function ModalLogin({ userInfo, handleLogout }) {
     setOpen(false)
   }
 
+  const renderLink = userProfile == 2 ? '/serviceProvider' : 'user'
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -48,7 +50,7 @@ function ModalLogin({ userInfo, handleLogout }) {
         <div className={classes.paper}>
           {userInfo.length !== 0 ? (
                     <ButtonsContainer>
-                      <Link href='/user' >Minha conta</Link>
+                      <Link href={renderLink} >Minha conta</Link>
                       <Link href='/' passHref>
                         <a href='/' onClick={handleLogout}>Sair</a>  
                       </Link>                        

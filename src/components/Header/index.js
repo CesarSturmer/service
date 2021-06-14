@@ -93,7 +93,7 @@ const Header = () => {
       </style.Container>
       <style.ContainerIconLogin onClick={handleLogin}>
         <IoPersonCircleOutline size={60} />
-        {openIconLogin && <ModalLogin userInfo={userInfo} handleLogout={handleLogout} />}
+        {openIconLogin && <ModalLogin userProfile={userProfile} userInfo={userInfo} handleLogout={handleLogout} />}
       </style.ContainerIconLogin>
     </style.HeaderContainer>
   )
