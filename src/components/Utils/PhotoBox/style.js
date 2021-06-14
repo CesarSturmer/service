@@ -7,13 +7,13 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem auto;
+  margin: 10rem auto;
   border-radius: ${({ theme }) => theme.borderRadius.default};
 
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 35rem;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     width: 70%;
   }
 
@@ -32,6 +32,11 @@ export const Photo = styled.img`
     width: 10rem;
     height: 10rem;
     border-radius: ${({ theme }) => theme.borderRadius.max};
+
+    @media (min-width: 320px) and (max-width: 767px) {
+      width: 8rem;
+      height: 8rem;
+  }
 `
 
 export const PhotInput = styled.input`

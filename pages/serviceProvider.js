@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import {useRouter} from 'next/router'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import api from './api'
 import UserInfoBox from '../src/components/UserInfoBox'
 import ChangePassword from '../src/components/ChangePassword'
@@ -9,6 +9,8 @@ import Header from '../src/components/Header'
 import ServiceForm from '../src/components/ServiceForm'
 import ServiceList from '../src/components/ServiceList'
 import Footer from '../src/components/Footer'
+import MapBox from '../src/components/MapBox/index'
+const CepCoords = require('coordenadas-do-cep')
 
 function ServiceProvider() {
     const router = useRouter()
@@ -17,36 +19,53 @@ function ServiceProvider() {
 
     const back = () => setScreenOption(0)
     
-    if (typeof window !== 'undefined') {
-        const token = sessionStorage.getItem('validated_token')
-        api.defaults.headers.common['Authorization'] = 'Bearer ' + token
-    }
+  const router = useRouter()
+  const [userInfo, setUserInfo] = useState([])
+  const [coordinates, setCordinates] = useState([]);
 
-    useEffect(() => {
-        const getUserInfo = async () => {
-            await api.get('usuario')
-            .then((res) => {
-                setUserInfo(res.data)
-            })
-            .catch(() => {
-                sessionStorage.removeItem('session_active')
-                sessionStorage.removeItem('validated_token')
-                alert('Sessão expirada!')
-                router.push('/login')
-            })
-        }
-        getUserInfo()
-    }, [])
+  if (typeof window !== 'undefined') {
+    const token = sessionStorage.getItem('validated_token')
+    api.defaults.headers.common['Authorization'] = 'Bearer ' + token
+  }
 
-    const deleteUser = async () => {
-        await api.delete('usuario')
-        .then(() => {
-            sessionStorage.removeItem('session_active')
-            sessionStorage.removeItem('validated_token')
-            alert('Usuário excluído com sucesso!')
+  useEffect(() => {
+    const getUserInfo = async () => {
+      await api
+        .get('usuario')
+        .then((res) => {
+          if (res.data.perfis.length !== 2) {
+            router.push('/serviceSearch')
+            alert('Fazer Login como Prestador')
+          } else {
+            setUserInfo(res.data)
+            CepCoords.getByCep(res.data.endereco.cep)
+              .then((info) => {
+                const json = { lat: info.lat, lon: info.lon }
+                setCordinates((coordinates) => [...coordinates, json])
+              })
+              .catch(() => {
+                console.log('erro')
+              })
+          }
         })
-        .catch(() => alert('falha ao cadastrar usuário!'))
+        .catch(() => {
+          alert('Sessão expirada!')
+          router.push('/login')
+        })
     }
+    getUserInfo()
+  }, [])
+
+  const deleteUser = async () => {
+    await api
+      .delete('usuario')
+      .then(() => {
+        sessionStorage.removeItem('session_active')
+        sessionStorage.removeItem('validated_token')
+        alert('Usuário excluído com sucesso!')
+      })
+      .catch(() => alert('falha ao cadastrar usuário!'))
+  }
 
     return (
         <div>
@@ -86,6 +105,47 @@ function ServiceProvider() {
             <Footer />
         </div>
     )
+  return (
+    <div>
+      <Header />
+      <MapBox coordinates={coordinates} coordinatesMap={[]} />
+      
+      {userInfo.length !== 0 && !editUser && (
+        <ServiceProviderBox
+          avaliation={3}
+          provider={userInfo.nomeCompleto}
+          imageSrc={userInfo.midiaPath}
+          category="Pintor"
+          service="Pintura geral"
+          neighborhood="Campeche"
+          price={10.5}
+        />
+      )}
+      {editUser ? (
+        <>
+          <UserForm
+            edit
+            data={userInfo}
+            title="Editar informações de usuário!"
+          />
+          <SubmitButton onClick={() => setEditUser(false)}>Voltar</SubmitButton>
+        </>
+      ) : (
+        <SubmitButton onClick={() => setEditUser(true)}>
+          Editar informações
+        </SubmitButton>
+      )}
+      <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
+      {showServiceForm ? (
+        <ServiceForm />
+      ) : (
+        <SubmitButton onClick={() => setShowServiceForm(true)}>
+          Cadastrar Serviço
+        </SubmitButton>
+      )}
+      <Footer />
+    </div>
+  )
 }
 
 export default ServiceProvider

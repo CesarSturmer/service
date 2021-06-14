@@ -11,7 +11,7 @@ export const UserInfoContainer = styled.div`
     flex-direction: column;
     align-items: center;
   }
-  @media (min-width: 320px) and (max-width: 479px) {
+  @media (max-width: 479px) {
     align-items: flex-start;
     flex-direction: column;
     width: auto;
