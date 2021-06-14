@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Container, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button } from './style'
+import { Container, Title, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button } from './style'
 import api from '../../../pages/api'
 
 const AvaliationList = ({serviceId, showForm}) => {
@@ -16,7 +16,7 @@ const AvaliationList = ({serviceId, showForm}) => {
 
     return (
         <Container>
-            <h1>Avaliações</h1>
+            <Title>Avaliações</Title>
             <AvaliationBox>
                 {avaliations.length !== 0 ?
                     avaliations.map((avaliation) => {
