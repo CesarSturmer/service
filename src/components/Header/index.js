@@ -7,14 +7,29 @@ import { IoPersonCircleOutline, IoPersonCircle } from 'react-icons/io5'
 import ModalLogin from '../ModalLogin'
 import ModalServices from '../ModalServices'
 import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core/styles'
+import Popover from '@material-ui/core/Popover'
+import Typography from '@material-ui/core/Typography'
+
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    textDecoration: 'none',
+    backgroundColor: '#22AAC1',
+  },
+}))
 
 const Header = () => {
   const router = useRouter()
   const [openIconLogin, setOpenIconLogin] = useState(false)
   const [openIconService, setOpenIconService] = useState(false)
   const [userInfo, setUserInfo] = useState([])
-  const [open, setOpen] = useState(false)
   const [isUser, setIsUser] = useState(false)
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleLogin = () => setOpenIconLogin(!openIconLogin)
 
@@ -43,6 +58,17 @@ const Header = () => {
     router.push('/')
   }
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
+
   return (
     <style.HeaderContainer>
       <style.ContainerMenu onClick={handleServices}>
@@ -65,7 +91,7 @@ const Header = () => {
 
         {userInfo.length !== 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <style.ButtonsContainerInfo onClick={() => setOpen(!open)}>
+            <style.ButtonsContainerInfo onClick={handleClick}>
               <style.UserName>{userInfo.nomeCompleto}</style.UserName>
               {userInfo.midiaPath ? (
                 <style.UserPhoto
@@ -79,25 +105,44 @@ const Header = () => {
                 />
               )}
             </style.ButtonsContainerInfo>
-            {open && (
-              <style.UserAction>
-                {isUser ? (
-                  <>
-                    <a href="/user">Minha conta</a>
-                    <a href="/" onClick={handleLogout}>
-                      Sair
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <a href="/serviceProvider">Minha conta</a>
-                    <a href="/" onClick={handleLogout}>
-                      Sair
-                    </a>
-                  </>
-                )}
-              </style.UserAction>
-            )}
+            
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+                backgroundColor: '#22AAC1',
+                
+              }}
+           
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              {isUser ? (
+                <>
+                <Typography className={classes.typography}>
+                  <Link href="/user">Minha conta</Link>
+                </Typography>
+                <Typography onClick={handleLogout}>
+                  Sair
+                </Typography>
+                </>                 
+              
+              ) : (
+                <Typography className={classes.typography}>
+                  <Link href="/serviceProvider">Minha conta</Link>
+                  <Link href="" onClick={handleLogout}>
+                    Sair
+                  </Link>
+                </Typography>
+              )}
+            </Popover>
+         
           </div>
         ) : (
           <style.ButtonsContainer>
@@ -111,7 +156,13 @@ const Header = () => {
         )}
       </style.Container>
       <style.ContainerIconLogin onClick={handleLogin}>
-        <IoPersonCircleOutline size={60} />
+        {userInfo.midiaPath ? (
+          <style.UserPhoto
+            src={`https://servicos-app.herokuapp.com/${userInfo.midiaPath}`}
+          />
+        ) : (
+          <IoPersonCircleOutline size={60} />
+        )}
         {openIconLogin && (
           <ModalLogin
             userInfo={userInfo}

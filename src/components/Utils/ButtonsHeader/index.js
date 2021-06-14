@@ -13,12 +13,7 @@ const LoginButton = styled.button`
   border-radius: 18px;
   width: 140px;
   height: 40px;
-  cursor: pointer;
-
-  :hover {
-    background: ${({ theme }) => theme.colors.secondary};
-
-  }
+  cursor: pointer;  
 `;
 
 const ButtonsHeader = ({to, text, buttonSign }) => {
