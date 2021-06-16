@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import AvaliationIcons from '../Utils/AvaliationIcons'
 import { IoArrowBack } from 'react-icons/io5'
+import {FaEdit} from 'react-icons/fa'
 import api from '../../../pages/api'
 
 const Box = styled.div`
@@ -53,6 +54,7 @@ const ServiceList = ({id, back}) => {
                             <p>{service.categoria.categoria}</p>
                             <p>{service.titulo}</p>
                             <AvaliationIcons avaliation={service.notaMedia}/>
+                            <FaEdit />
                         </Service>
                     )
                 })
