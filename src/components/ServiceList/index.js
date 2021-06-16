@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import AvaliationIcons from '../Utils/AvaliationIcons'
+import { IoArrowBack } from 'react-icons/io5'
 import api from '../../../pages/api'
 
 const Box = styled.div`
@@ -9,15 +10,24 @@ const Box = styled.div`
     background-color: ${({ theme }) => theme.colors.secondary};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     margin: 0 auto;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
 `
 
-const Service = styled.div`
-    display: flex;
+const BackContainer = styled.div`
+    font-size: 1rem;
+    cursor: pointer;
 `
 
-const ServiceList = ({id}) => {
+const Service = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const ServiceList = ({id, back}) => {
     const [services, setServices] = useState([])
 
     useEffect(() => {
@@ -32,6 +42,10 @@ const ServiceList = ({id}) => {
 
     return (
         <Box>
+            <BackContainer onClick={back}>
+                <IoArrowBack />
+            </BackContainer>
+            <h1>Serviços cadastrados</h1>
             {services.length !== 0 &&
                 services.map((service) => {
                     return (

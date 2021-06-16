@@ -16,7 +16,7 @@ function MapBox({ coordinates, coordinatesMap }) {
       lat: -27.6192816,
       lng: -48.5158965,
     },
-    zoom: 12,
+    zoom: 9.5,
   };
 
   return (

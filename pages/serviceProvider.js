@@ -94,7 +94,7 @@ function ServiceProvider() {
         <ServiceForm back={back} />
       }
       {screenOption === 4 &&
-          <ServiceList id={userInfo.id} />
+          <ServiceList id={userInfo.id} back={back} />
       }
       <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
       <Footer />
