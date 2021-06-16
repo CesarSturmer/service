@@ -19,7 +19,7 @@ const ModalServiceProviderActions = ({openServiceForm, openServiceList}) => {
     return (
         <Modal>
             <p onClick={openServiceForm}>Cadastrar Serviço</p>
-            <p onClick={openServiceList}>Listar Serviço</p>
+            <p onClick={openServiceList}>Listar Serviços</p>
         </Modal>
     )
 }
