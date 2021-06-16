@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Container, Title, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button } from './style'
+import { Container, Title, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button, TextAvaliation } from './style'
 import api from '../../../pages/api'
 
 const AvaliationList = ({serviceId, showForm}) => {
@@ -24,8 +24,8 @@ const AvaliationList = ({serviceId, showForm}) => {
                             <AvaliationContainer key={avaliation.id}>
                                 <AvaliatorName>{avaliation.avaliador.nomeCompleto}</AvaliatorName>
                                 <Avaliation>
-                                    <p>{avaliation.comentario}</p>
-                                    <p>{avaliation.nota}</p>
+                                    <TextAvaliation>{avaliation.comentario}</TextAvaliation>
+                                    <TextAvaliation>{avaliation.nota}</TextAvaliation>
                                 </Avaliation>
                             </AvaliationContainer>
                         )

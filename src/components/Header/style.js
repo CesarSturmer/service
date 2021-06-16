@@ -94,7 +94,7 @@ export const Subtitle = styled.h1`
 
 export const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
-  border-radius: 18px;
+  border-radius: 1.375rem;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: none;
@@ -119,6 +119,7 @@ export const SignUpButton = styled.a`
   width: 17.438rem;
   height: 2.5rem;
   margin-right: 1rem;
+  font-size: 1.125rem;
   padding: 1rem;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.title};
@@ -146,6 +147,7 @@ export const LoginButton = styled.button`
   border-radius: 18px;
   width: 140px;
   height: 2.5rem;
+  font-size: 1.125rem;
   font-weight: bold;
 
   @media (min-width: 768px) and (max-width: 1024px) {
