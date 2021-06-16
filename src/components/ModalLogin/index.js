@@ -1,9 +1,10 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
-import {ButtonsContainer, SignUpButtonModal, LoginButtonModal} from './style'
+import { ButtonsContainer, SignUpButtonModal, LoginButtonModal } from './style'
+import { BsFillTriangleFill } from 'react-icons/bs'
 import Link from 'next/link'
 
 function ModalLogin({ userInfo, handleLogout, userProfile }) {
@@ -12,7 +13,7 @@ function ModalLogin({ userInfo, handleLogout, userProfile }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      height: '45%',
+      height: '35%',
       marginRight: '2rem',
       border: 'none',
     },
@@ -46,15 +47,19 @@ function ModalLogin({ userInfo, handleLogout, userProfile }) {
         timeout: 500,
       }}
     >
+
       <Fade in={open}>
+     
         <div className={classes.paper}>
           {userInfo.length !== 0 ? (
-                    <ButtonsContainer>
-                      <Link href={renderLink} >Minha conta</Link>
-                      <Link href='/' passHref>
-                        <a href='/' onClick={handleLogout}>Sair</a>  
-                      </Link>                        
-                    </ButtonsContainer>
+            <ButtonsContainer>
+              <Link href={renderLink}>Minha conta</Link>
+              <Link href="/" passHref>
+                <a href="/" onClick={handleLogout}>
+                  Sair
+                </a>
+              </Link>
+            </ButtonsContainer>
           ) : (
             <ButtonsContainer>
               <Link href="/login">
