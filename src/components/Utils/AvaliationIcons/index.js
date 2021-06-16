@@ -8,10 +8,10 @@ const IconsContainer = styled.div`
 const AvaliationIcons = ({avaliation}) => {
 
     const renderIcon = (position) => {
-        if(avaliation >= position) {
+        if(avaliation + 0.25 >= position) {
             return <ImStarFull />
         }
-        if(avaliation > position - 1) {
+        if(avaliation > position - 0.75) {
             return <ImStarHalf />
         }
         return <ImStarEmpty />
