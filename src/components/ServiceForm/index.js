@@ -48,6 +48,7 @@ const ServiceForm = ({back}) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 label='Categoria'
+                fullWidth
             >
                 {
                     categories.map((category) => {
