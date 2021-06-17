@@ -9,7 +9,6 @@ import FormContainer from '../Utils/FormContainer'
 const IconsContainer = styled.div`
     display: flex;
     color: ${({ theme }) => theme.colors.secondary};
-    cursor: pointer;
 `
 
 const AvaliationForm = ({back, serviceId}) => {

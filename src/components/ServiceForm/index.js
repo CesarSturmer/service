@@ -5,12 +5,18 @@ import api from '../../../pages/api'
 import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
 
-const ServiceForm = ({back}) => {
+const ServiceForm = ({back, service}) => {
     const router = useRouter()
     const [categories, setCategories] = useState([])
-    const [category, setCategory] = useState(0)
+    const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [title, setTitle] = useState('')
+    const [maxDistance, setMaxDistance] = useState('')
+
+    if (typeof window !== 'undefined') {
+        const token = sessionStorage.getItem('validated_token')
+        api.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    }
 
     useEffect(() => {
         const getCategories = async () => {
@@ -18,16 +24,22 @@ const ServiceForm = ({back}) => {
             .then((res) => setCategories(res.data))
             .catch(() => alert('erro ao pegar categorias'))
         }
+        if(service) {
+            setCategory(service.categoria.id)
+            setDescription(service.descricao)
+            setTitle(service.titulo)
+            setMaxDistance(service.distanciaMaxima)
+        }
         getCategories()
     }, [])
 
-    const postService = async (e) => {
-        e.preventDefault()
+    const postService = async () => {
         await api.post('servicos', {
             categoria: {
                 id: category
             },
             descricao: description,
+            distanciaMaxima: maxDistance,
             titulo: title
         })
         .then(() => {
@@ -37,9 +49,34 @@ const ServiceForm = ({back}) => {
         .catch(() => alert('Falha ao cadastrar serviço'))
     }
 
+    const putService = async () => {
+        await api.put(`servicos/${service.id}`, {
+            categoria: {
+                id: category
+            },
+            descricao: description,
+            distanciaMaxima: maxDistance,
+            titulo: title
+        })
+        .then(() => {
+            alert('Serviço Editado com sucesso')
+            router.reload()
+        })
+        .catch(() => alert('Falha ao editar serviço'))
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if(service) {
+            putService()
+        } else {
+            postService()
+        }
+    }
+
     return (
         <FormContainer
-            onSubmit={postService}
+            onSubmit={onSubmit}
             title='Cadastrar Serviço'
             buttonText='Cadastrar'
             back={back}
@@ -71,6 +108,17 @@ const ServiceForm = ({back}) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 label='Descrição'
+                variant='outlined'
+                size='small'
+                type='text'
+                margin='normal'
+                fullWidth
+                required
+            />
+            <TextField
+                value={maxDistance}
+                onChange={(e) => setMaxDistance(e.target.value)}
+                label='Distância máxima (Km)'
                 variant='outlined'
                 size='small'
                 type='text'
