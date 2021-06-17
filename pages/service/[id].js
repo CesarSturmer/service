@@ -20,7 +20,10 @@ const ContainerFilter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 0 auto;
+  margin: -154px auto 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
 `;
 
 
