@@ -54,7 +54,6 @@ export const ContainerIconLogin = styled.div`
   align-items: center;
   display: none;
   color: ${({ theme }) => theme.colors.title};
-  cursor: pointer;
 
   @media (min-width: 320px) and (max-width: 767px) {
     display: flex;
@@ -120,7 +119,6 @@ export const SignUpButton = styled.a`
   height: 2.5rem;
   margin-right: 1rem;
   padding: 1rem;
-  cursor: pointer;
   color: ${({ theme }) => theme.colors.title};
   font-weight: bold;
 

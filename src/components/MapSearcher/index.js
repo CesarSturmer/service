@@ -71,7 +71,6 @@ const MapSearcher = () => {
                   endAdornment: (
                     <BsSearch
                       onClick={handleCep}
-                      style={{ cursor: 'pointer' }}
                     />
                   ),
                 }}
@@ -88,7 +87,6 @@ const MapSearcher = () => {
                   endAdornment: (
                     <BsSearch
                       onClick={handleSearch}
-                      style={{ cursor: 'pointer' }}
                     />
                   ),
                 }}

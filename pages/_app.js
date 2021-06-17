@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
   }
   
-  a, button, label {
+  a, button, label, svg {
     cursor: pointer;
     border: none;
     text-decoration: none;
