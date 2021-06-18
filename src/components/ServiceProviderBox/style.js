@@ -36,4 +36,5 @@ export const DataContainer = styled.div`
 
 export const WppContainer = styled.div`
   align-self: center;
+  color: ${({ theme }) => theme.colors.title};
 `

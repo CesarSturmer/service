@@ -15,6 +15,14 @@ const AvaliationList = ({serviceId, showForm}) => {
         getAvaliations()
     }, [])
 
+    const getAvaliationAccess = async () => {
+        const token = sessionStorage.getItem('validated_token')
+        api.defaults.headers.common['Authorization'] = 'Bearer ' + token
+        await api.get(`avaliacao/libera?servicoId=${serviceId}`)
+        .then(() => showForm())
+        .catch(() => alert('Você não pode avaliar este serviço!'))
+    }
+
     return (
         <style.Container>
             <style.Title>Avaliações</style.Title>
@@ -35,7 +43,7 @@ const AvaliationList = ({serviceId, showForm}) => {
                     <p>Esse serviço ainda não foi avaliado!</p>
                 }
             </style.AvaliationBox>
-            <style.Button onClick={showForm}>Avaliar serviço</style.Button>
+            <style.Button onClick={getAvaliationAccess}>Avaliar serviço</style.Button>
         </style.Container>
     )
 }

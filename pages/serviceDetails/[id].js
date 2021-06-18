@@ -36,6 +36,7 @@ export default function ServiceDetails() {
             <Header />
             {serviceDetails.length !== 0 ?
                 <ServiceProviderBox
+                    serviceId={serviceDetails.id}
                     avaliation={serviceDetails.notaMedia}
                     provider={serviceDetails.prestadorServico.nomeCompleto}
                     imageSrc={serviceDetails.prestadorServico.midiaPath}
