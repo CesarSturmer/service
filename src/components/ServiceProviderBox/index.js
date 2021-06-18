@@ -1,7 +1,8 @@
-import {DataContainer, UserInfoContainer} from './style'
+import {DataContainer, UserInfoContainer, WppContainer} from './style'
+import WhatsappIcon from '../WhatsappIcon'
 import PhotoBox from '../Utils/PhotoBox'
 
-const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, price}) => {
+const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, phone}) => {
     return (
         <PhotoBox avaliation={avaliation} name={provider} imageSrc={imageSrc}>
             <UserInfoContainer>
@@ -11,7 +12,9 @@ const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, 
                 </DataContainer>
                 <DataContainer>
                     <p>Bairro: {neighborhood}</p>
-                    <p>Preço: R${price}</p>
+                    <WppContainer>
+                        <WhatsappIcon phone={phone} />
+                    </WppContainer>
                 </DataContainer>
             </UserInfoContainer>
         </PhotoBox>

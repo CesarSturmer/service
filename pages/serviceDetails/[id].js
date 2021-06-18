@@ -42,7 +42,7 @@ export default function ServiceDetails() {
                     category={serviceDetails.categoria.categoria}
                     service={serviceDetails.titulo}
                     neighborhood={serviceDetails.prestadorServico.endereco.bairro}
-                    price={10.50}
+                    phone={5548996294747}
                 />
             :
                 <CircularProgress style={{marginLeft: '50%'}} />

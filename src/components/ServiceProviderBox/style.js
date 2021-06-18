@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const UserInfoContainer = styled.div`
+  position: relative;
+  top: -3rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -30,4 +32,8 @@ export const DataContainer = styled.div`
   @media (min-width: 320px) and (max-width: 479px) {
     align-items: flex-start;
   }
+`
+
+export const WppContainer = styled.div`
+  align-self: center;
 `

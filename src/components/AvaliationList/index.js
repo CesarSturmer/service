@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Container, Title, AvaliationBox, AvaliationContainer, AvaliatorName, Avaliation, Button, TextAvaliation } from './style'
+import * as style from './style'
+import AvaliationIcons from '../Utils/AvaliationIcons'
 import api from '../../../pages/api'
 
 const AvaliationList = ({serviceId, showForm}) => {
@@ -15,27 +16,27 @@ const AvaliationList = ({serviceId, showForm}) => {
     }, [])
 
     return (
-        <Container>
-            <Title>Avaliações</Title>
-            <AvaliationBox>
+        <style.Container>
+            <style.Title>Avaliações</style.Title>
+            <style.AvaliationBox>
                 {avaliations.length !== 0 ?
                     avaliations.map((avaliation) => {
                         return (
-                            <AvaliationContainer key={avaliation.id}>
-                                <AvaliatorName>{avaliation.avaliador.nomeCompleto}</AvaliatorName>
-                                <Avaliation>
-                                    <TextAvaliation>{avaliation.comentario}</TextAvaliation>
-                                    <TextAvaliation>{avaliation.nota}</TextAvaliation>
-                                </Avaliation>
-                            </AvaliationContainer>
+                            <style.AvaliationContainer key={avaliation.id}>
+                                <style.AvaliatorName>{avaliation.avaliador.nomeCompleto}</style.AvaliatorName>
+                                <style.Avaliation>
+                                    <style.TextAvaliation>{avaliation.comentario}</style.TextAvaliation>
+                                    <AvaliationIcons avaliation={avaliation.nota}/>
+                                </style.Avaliation>
+                            </style.AvaliationContainer>
                         )
                     })
                 :
                     <p>Esse serviço ainda não foi avaliado!</p>
                 }
-            </AvaliationBox>
-            <Button onClick={showForm}>Avaliar serviço</Button>
-        </Container>
+            </style.AvaliationBox>
+            <style.Button onClick={showForm}>Avaliar serviço</style.Button>
+        </style.Container>
     )
 }
 

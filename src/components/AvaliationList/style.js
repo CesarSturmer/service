@@ -60,6 +60,7 @@ export const AvaliatorName = styled.p`
 export const Avaliation = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${({ theme }) => theme.colors.title};
 
