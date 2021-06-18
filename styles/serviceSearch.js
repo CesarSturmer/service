@@ -7,14 +7,14 @@ export const PageContainer = styled.div`
   align-items: flex-start;
 
   @media(min-width: 1025px) and (max-width: 1100px) {
-    margin: 3rem 0 0 5rem;
+    margin: 4rem 0 0 10rem;
   }  
   @media (min-width: 768px) and (max-width: 1024px) {
-    margin: 4rem 0;
+    margin: 4rem 5rem;
     justify-content: center;
     align-items: center;
   }  
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     margin: 4rem 0;
     justify-content: center;
     align-items: center;

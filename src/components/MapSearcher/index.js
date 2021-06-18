@@ -4,6 +4,7 @@ import Select from '../Utils/Select'
 import { BsSearch } from 'react-icons/bs'
 import { TextField, MenuItem } from '@material-ui/core'
 import api from '../../../pages/api'
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const CepCoords = require('coordenadas-do-cep')
 
@@ -25,6 +26,7 @@ const MapSearcher = () => {
     const [city, setCity] = useState('');
     const [cep, setCep] = useState('');
     const [search, setSearch] = useState('');
+    const [coordinates, setCordinates] = useState([])
 
     useEffect(() => {
         const getCities = async () => {

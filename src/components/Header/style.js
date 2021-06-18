@@ -11,8 +11,8 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-around;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
-    margin: 0 2rem;
+  @media(max-width: 767px) {
+    margin: 0 1rem;
     display: flex;
     justify-content: space-between;
   }
@@ -43,7 +43,7 @@ export const ContainerMenu = styled.div`
   color: ${({ theme }) => theme.colors.title};
   cursor: pointer;
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     display: flex;
   }
 `
@@ -55,7 +55,7 @@ export const ContainerIconLogin = styled.div`
   display: none;
   color: ${({ theme }) => theme.colors.title};
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     display: flex;
   }
 `
@@ -68,7 +68,7 @@ export const Title = styled.h1`
   @media (min-width: 768px) and (max-width: 1024px) {
     font-size: 3rem;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 2.5rem;
   }
 `
@@ -86,7 +86,7 @@ export const Subtitle = styled.h1`
     padding: 0.938rem;
     font-size: 1rem;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media  (max-width: 767px) {
     display: none;
   }
 `
@@ -95,7 +95,7 @@ export const ButtonsContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 1.375rem;
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     display: none;
   }
 `
@@ -109,7 +109,7 @@ export const ButtonsContainerInfo = styled.div`
     padding: 0.938rem;
   }
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     display: none;
   }
 `
@@ -123,18 +123,13 @@ export const SignUpButton = styled.a`
   color: ${({ theme }) => theme.colors.title};
   font-weight: bold;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (max-width: 1024px) {
     padding: 0.938rem;
     font-size: 1rem;
     width: 8.75rem;
     margin-right: 0;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
-    padding: 0.938rem;
-    font-size: 1rem;
-    width: 8.75rem;
-    margin-right: 0;
-  }
+
 `
 
 export const LoginButton = styled.button`
@@ -148,16 +143,12 @@ export const LoginButton = styled.button`
   font-size: 1.125rem;
   font-weight: bold;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (max-width: 1024px) {
     padding: 0.938rem;
     font-size: 1rem;
     width: 100px;
   }
-  @media (min-width: 320px) and (max-width: 767px) {
-    padding: 0.938rem;
-    font-size: 1rem;
-    width: 100px;
-  }
+
 `
 
 export const UserName = styled.button`
