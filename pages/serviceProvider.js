@@ -81,6 +81,7 @@ function ServiceProvider() {
             changePassword={() => setScreenOption(2)}
             openServiceForm={() => setScreenOption(3)}
             openServiceList={() => setScreenOption(4)}
+            deleteAccount={deleteUser}
             serviceProvider={true}
           />
       }
@@ -96,7 +97,6 @@ function ServiceProvider() {
       {screenOption === 4 &&
         <ServiceList id={userInfo.id} back={back} />
       }
-      <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
       <Footer />
     </div>
   )

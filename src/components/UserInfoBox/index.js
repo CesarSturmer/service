@@ -16,10 +16,12 @@ function UserInfoBox({
   changePassword,
   openServiceForm,
   openServiceList,
+  deleteAccount,
   serviceProvider
 }) {
   return (
     <PhotoBox 
+      deleteAccount={deleteAccount}
       openServiceList={openServiceList}
       openServiceForm={openServiceForm} 
       serviceProvider={serviceProvider}  

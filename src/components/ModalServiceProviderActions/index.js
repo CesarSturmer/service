@@ -13,13 +13,14 @@ const Modal = styled.div `
     padding: 1rem;
 `
 
-const ModalServiceProviderActions = ({openServiceForm, openServiceList}) => {
+const ModalServiceProviderActions = ({openServiceForm, openServiceList, deleteAccount}) => {
 
 
     return (
         <Modal>
             <p onClick={openServiceForm}>Cadastrar Serviço</p>
             <p onClick={openServiceList}>Listar Serviços</p>
+            <p onClick={deleteAccount}>Deletar conta</p>
         </Modal>
     )
 }

@@ -65,7 +65,13 @@ const PhotoBox = (props) => {
                                                 <MdAdd size='2rem' />
                                                 {renderExpandIcon()}
                                             </style.AddContainer>
-                                            {open && <ModalServiceProviderActions openServiceList={props.openServiceList} openServiceForm={props.openServiceForm} />}
+                                            {open && 
+                                                <ModalServiceProviderActions 
+                                                    openServiceList={props.openServiceList} 
+                                                    openServiceForm={props.openServiceForm} 
+                                                    deleteAccount={props.deleteAccount}
+                                                />
+                                            }
 
                                         </>
                                     :
