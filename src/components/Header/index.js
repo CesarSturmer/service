@@ -48,7 +48,7 @@ const Header = () => {
           setUserInfo(res.data)
           setUserProfile(res.data.perfis.length)
         })
-        .catch(() => {})
+        .catch(() => alert('ssessão expirada!'))
     }
     sessionActive && getUserInfo()
   }, [])
@@ -125,11 +125,9 @@ const Header = () => {
             >
               <Typography className={classes.typography}>
                 <Link href={link}>Minha conta</Link>
-                <Link href={link} passHref>
                   <a href="/" onClick={handleLogout}>
                     Sair
                   </a>
-                </Link>
               </Typography>
             </Popover>
           </div>
