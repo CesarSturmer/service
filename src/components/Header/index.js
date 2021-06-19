@@ -57,7 +57,7 @@ const Header = () => {
   const handleLogout = () => {
     sessionStorage.removeItem('session_active')
     sessionStorage.removeItem('validated_token')
-    
+    router.push('/login ')
   }
 
   const open = Boolean(anchorEl)
@@ -125,14 +125,25 @@ const Header = () => {
                 horizontal: 'center',
               }}
             >
-              <Typography className={classes.typography}>
-                <Link href={link}>Minha conta</Link>
-                <Link href={link} passHref>
-                  <a href="/" onClick={handleLogout}>
-                    Sair
-                  </a>
-                </Link>
-              </Typography>
+              {link === 'user' ? (
+                <Typography className={classes.typography}>
+                  <Link href={`${link}`}>Minha conta</Link>
+                  <Link href={link} passHref>
+                    <a href="/" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </Link>
+                </Typography>
+              ) : (
+                <Typography className={classes.typography}>
+                  <Link href={`${link}/${userInfo.id}`}>Minha conta</Link>
+                  <Link href={link} passHref>
+                    <a href="/" onClick={handleLogout}>
+                      Sair
+                    </a>
+                  </Link>
+                </Typography>
+              )}
             </Popover>
           </div>
         ) : (

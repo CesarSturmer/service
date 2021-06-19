@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Header from '../../src/components/Header'
 import Footer from '../../src/components/Footer'
 import ServiceBox from '../../src/components/ServiceBox'
-import ButtonsContainerService  from '../../src/components/Utils/ButtonsContainerService'
+import ButtonsContainerService from '../../src/components/Utils/ButtonsContainerService'
 import api from '../api'
 import MapBox from '../../src/components/MapBox'
 import { FaMapMarkerAlt } from 'react-icons/fa'
@@ -73,6 +73,13 @@ export default function Service() {
     getServices()
   }, [])
 
+  useEffect(() => {
+    const getCities = async () => {
+      await api.get('cidades').then((res) => setCities(res.data))
+    }
+    getCities()
+  }, [])
+
   const resetFilter = () => {
     setCordinates([])
     setCep('')
@@ -93,13 +100,6 @@ export default function Service() {
     getServices()
   }
 
-  useEffect(() => {
-    const getCities = async () => {
-      await api.get('cidades').then((res) => setCities(res.data))
-    }
-    getCities()
-  }, [])
-
   const renderEmptyList = () => {
     if (loaded) {
       return <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
@@ -116,21 +116,17 @@ export default function Service() {
       const latitude = info.lat
       const longitude = info.lon
       const getServicesSearch = async () => {
-        await api.get(`servicos?categoriaId=${id}&latitude=${latitude}&longitude=%20${longitude}`)
+        await api
+          .get(
+            `servicos?categoriaId=${id}&latitude=${latitude}&longitude=%20${longitude}`
+          )
           .then((res) => {
             setServices(res.data)
-         
           })
       }
       getServicesSearch()
     })
- 
-    
   }
-
- 
-
- 
 
   const AnyReactComponent = () => (
     <div>
@@ -157,6 +153,7 @@ export default function Service() {
                 onChange={(e) => setCity(e.target.value)}
                 label="Cidade"
                 type="text"
+                
               >
                 {cities.map((city) => {
                   return (
@@ -185,9 +182,9 @@ export default function Service() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   cursor: 'pointer',
-                }}                
+                }}
               >
-                <AiOutlineCloseCircle size={25} onClick={resetFilter}/>
+                <AiOutlineCloseCircle size={25} onClick={resetFilter} />
               </div>
             </>
           </ContainerFilter>

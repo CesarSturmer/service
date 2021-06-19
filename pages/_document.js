@@ -7,6 +7,9 @@ export default class MyDocument extends Document {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
+ 
+
+
     try {
       ctx.renderPage = () =>
         originalRenderPage({
@@ -18,12 +21,8 @@ export default class MyDocument extends Document {
       return {
         
         ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
+     
+        styles: [...React.Children.toArray(initialProps.styles), sheet.getStyleElement()],
       }
     } finally {
       sheet.seal()
