@@ -9,6 +9,7 @@ import ModalServices from '../ModalServices'
 import { makeStyles } from '@material-ui/core/styles'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Header = () => {
+  const router = useRouter()
   const [openIconLogin, setOpenIconLogin] = useState(false)
   const [openIconService, setOpenIconService] = useState(false)
   const [userInfo, setUserInfo] = useState([])
@@ -39,7 +41,6 @@ const Header = () => {
 
   useEffect(() => {
     const sessionActive = sessionStorage.getItem('session_active')
-
     const getUserInfo = async () => {
       const token = sessionStorage.getItem('validated_token')
       await api
@@ -56,6 +57,7 @@ const Header = () => {
   const handleLogout = () => {
     sessionStorage.removeItem('session_active')
     sessionStorage.removeItem('validated_token')
+    router.push('/login ')
   }
 
   const open = Boolean(anchorEl)
@@ -69,7 +71,7 @@ const Header = () => {
     setAnchorEl(event.currentTarget)
   }
 
-  const link = userProfile == 2 ? '/serviceProvider' : 'user'
+  const link = userProfile == 2 ? `/serviceProvider/${userInfo.id}` : 'user'
 
   return (
     <style.HeaderContainer>

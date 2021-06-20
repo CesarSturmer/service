@@ -5,12 +5,11 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Header from '../../src/components/Header'
 import Footer from '../../src/components/Footer'
 import ServiceBox from '../../src/components/ServiceBox'
-import ButtonsContainer from '../../src/components/Utils/ButtonsContainer'
-import MapSearcher from '../../src/components/MapSearcher'
+import ButtonsContainerService from '../../src/components/Utils/ButtonsContainerService'
 import api from '../api'
 import MapBox from '../../src/components/MapBox'
-
-const CepCoords = require('coordenadas-do-cep')
+import MapSearcher from '../../src/components/MapSearcher'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 const HelperText = styled.h1`
   width: 100%;
@@ -19,10 +18,12 @@ const HelperText = styled.h1`
 `
 
 export default function Service() {
+  const CepCoords = require('coordenadas-do-cep')
   const router = useRouter()
   const { id } = router.query
   const [loaded, setLoaded] = useState(false)
   const [services, setServices] = useState([])
+  const [cep, setCep] = useState('')
   const [coordinates, setCordinates] = useState([])
 
   useEffect(() => {
@@ -43,22 +44,85 @@ export default function Service() {
     getServices()
   }, [])
 
+  const resetFilter = () => {
+    setCordinates([])
+    setCep('')
+    const getServices = async () => {
+      await api.get(`servicos?categoriaId=${id}`).then((res) => {
+        setServices(res.data)
+        setLoaded(true)
+        res.data.map((item) => {
+          CepCoords.getByCep(item.prestadorServico.endereco.cep).then(
+            (info) => {
+              const json = { lat: info.lat, lon: info.lon }
+              setCordinates((coordinates) => [...coordinates, json])
+            }
+          )
+        })
+      })
+    }
+    getServices()
+  }
+
+  const handleSearchCep = (ev) => {
+    setCep(ev.target.value)
+  }
+
+  const handleCep = () => {
+    setCordinates([])
+    CepCoords.getByCep(cep).then((info) => {
+      const json = { lat: info.lat, lon: info.lon }
+      setCordinates((coordinatesMap) => [...coordinatesMap, json])
+      const latitude = info.lat
+      const longitude = info.lon
+      const getServicesSearch = async () => {
+        await api
+          .get(
+            `servicos?categoriaId=${id}&latitude=${latitude}&longitude=%20${longitude}`
+          )
+          .then((res) => {
+            setServices(res.data)
+          })
+      }
+      getServicesSearch()
+    })
+  }
+
   const renderEmptyList = () => {
-    if(loaded) {
+    if (loaded) {
       return <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
     }
 
-    return <CircularProgress style={{marginLeft: '50%'}} />
+    return <CircularProgress style={{ marginLeft: '50%' }} />
   }
+
+  const AnyReactComponent = () => (
+    <div>
+      <FaMapMarkerAlt size={15} />
+    </div>
+  )
+
+
 
   return (
     <>
       <Header />
       {services.length >= 1 ? (
         <>
-          <MapBox coordinates={coordinates} coordinatesMap={[]} />
-          <MapSearcher />
-          <ButtonsContainer>
+          <MapBox zoom={9.5} coordinatesProvider={[]}>
+            {coordinates.map((item, index) => {
+              return (
+                <AnyReactComponent key={index} lat={item.lat} lng={item.lon} />
+              )
+            })}
+          </MapBox>
+          <MapSearcher
+            handleCep={handleCep}
+            handleSearchCep={handleSearchCep}
+            resetFilter={resetFilter}
+          />
+
+          <ButtonsContainerService>
             {services.map((service) => {
               return (
                 <ServiceBox
@@ -71,7 +135,7 @@ export default function Service() {
                 />
               )
             })}
-          </ButtonsContainer>
+          </ButtonsContainerService>
         </>
       ) : (
         renderEmptyList()

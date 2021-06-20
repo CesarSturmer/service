@@ -72,8 +72,7 @@ const ServiceForm = ({back, service}) => {
         } else {
             postService()
         }
-    }
-
+    }  
     return (
         <FormContainer
             onSubmit={onSubmit}

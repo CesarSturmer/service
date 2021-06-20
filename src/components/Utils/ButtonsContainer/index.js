@@ -1,8 +1,8 @@
 import {ContainerButtons, ContainerButtonsCenter} from './style'
 
-const ButtonsContainer = ({children, backGround}) => {
+const ButtonsContainer = ({children}) => {
     return (
-        <ContainerButtons style={ backGround &&{ backgroundColor: 'transparent'}}>
+        <ContainerButtons>
             <ContainerButtonsCenter>
                 {children}
             </ContainerButtonsCenter>

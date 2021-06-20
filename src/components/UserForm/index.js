@@ -8,6 +8,7 @@ import FormValidations from '../../contexts/FormValidations'
 import useError from '../../hooks/useError'
 import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
+const CepCoords = require('coordenadas-do-cep')
 
 function UserForm(props) {
   const router = useRouter()
@@ -25,10 +26,13 @@ function UserForm(props) {
   const [number, setNumber] = useState('')
   const [neighborhood, setNeighborhood] = useState('')
   const [city, setCity] = useState('')
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLlongitude] = useState(0)
   const [serviceProvider, setServiceProvider] = useState(false)
   const [complement, setComplement] = useState('')
   const validations = useContext(FormValidations)
   const [error, fieldValidator, canSend] = useError(validations)
+
 
   if (typeof window !== 'undefined') {
     const token = sessionStorage.getItem('validated_token')
@@ -66,6 +70,10 @@ function UserForm(props) {
       .catch(() => setCepError({ error: true, text: 'CEP inválido!' }))
   }
 
+
+
+  
+
   const confirmPasswordValidator = () => {
     password === confirmPassword
       ? setConfirmPasswordError({ error: false, text: '' })
@@ -83,6 +91,8 @@ function UserForm(props) {
           cidade: {
             id: city,
           },
+          latitude: latitude,
+          longitude: longitude,
           complemento: complement,
           logradouro: street,
           numero: number,
@@ -122,11 +132,18 @@ function UserForm(props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
+    CepCoords.getByCep(cep).then((info) => {  
+      setLatitude(info.lat)
+      setLlongitude(info.lon) 
+    })
+    
     if (canSend()) {
       if (props.edit) {
         editUser()
       } else {
         postUser()
+        router.push('/login')
+
       }
     }
   }

@@ -12,6 +12,7 @@ const AvaliationList = ({serviceId, showForm}) => {
             .then((res) => setAvaliations(res.data))
             .catch(() => alert('Não foi possível carregar as avaliações'))
         }
+        
         getAvaliations()
     }, [])
 

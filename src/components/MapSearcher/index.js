@@ -1,49 +1,26 @@
 import { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import * as style from './style'
 import Select from '../Utils/Select'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import { TextField, MenuItem } from '@material-ui/core'
 import api from '../../../pages/api'
 
-const CepCoords = require('coordenadas-do-cep')
 
-const ContainerFilter = styled.div`
-  width: 80%;
-  height: 70px;
-  position: relative;
-  top: -6rem;
-  background-color: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0 auto;
-`
 
-const MapSearcher = () => {
+const MapSearcher = ({handleCep, resetFilter, handleSearchCep }) => {
     const [cities, setCities] = useState([]);
     const [city, setCity] = useState('');
-    const [cep, setCep] = useState('');
-    const [search, setSearch] = useState('');
-
+    
     useEffect(() => {
         const getCities = async () => {
           await api.get('cidades').then((res) => setCities(res.data))
         }
         getCities()
       }, [])
-    
-      const handleCep = () => {
-        CepCoords.getByCep(cep).then((info) => {
-          const json = { lat: info.lat, lon: info.lon }
-          setCoordinatesMap((coordinatesMap) => [...cordinatesMap, json])
-        })
-      }
-
-      const handleSearch = () => {}
 
     return (
-        <ContainerFilter>
+        <style.ContainerFilter>
             <>
               <Select
                 value={city}
@@ -59,9 +36,8 @@ const MapSearcher = () => {
                   )
                 })}
               </Select>
-              <TextField
-                value={cep}
-                onChange={(ev) => setCep(ev.target.value)}
+              <TextField                
+                onChange={handleSearchCep}
                 label="CEP"
                 variant="outlined"
                 size="small"
@@ -74,25 +50,21 @@ const MapSearcher = () => {
                     />
                   ),
                 }}
-              ></TextField>
-              <TextField
-                value={search}
-                onChange={(ev) => setSearch(ev.target.value)}
-                label="Serviços Próximos"
-                variant="outlined"
-                size="small"
-                type="search"
-                margin="normal"
-                InputProps={{
-                  endAdornment: (
-                    <BsSearch
-                      onClick={handleSearch}
-                    />
-                  ),
-                }}
               />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
+              >
+                <AiOutlineCloseCircle size={25} onClick={resetFilter} />
+              </div>
+    
             </>
-          </ContainerFilter>
+          </style.ContainerFilter>
     )
 }
 

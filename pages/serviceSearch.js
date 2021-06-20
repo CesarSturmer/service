@@ -21,7 +21,7 @@ function Search() {
     }
     getCategory()
   }, [])
-  
+
 
   function getServiceIcons(categoria) {
     const ImageHouseMade = './Caseiro.svg'

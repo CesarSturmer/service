@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
-export const ContainerButtons = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: 6.25rem;
+export const ContainerButtonService = styled.div`
+  
   width: 80%;
-  margin: 12rem 4rem;;
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;
@@ -16,10 +15,7 @@ export const ContainerButtons = styled.div`
     justify-content: center;
   }  
   @media (max-width: 767px) {
-    width: 70%;
-    margin: 0 auto;
-    border-radius: 3.25rem;
-    justify-content: center;
+
 
   }  
  
@@ -30,18 +26,16 @@ export const ContainerButtonsCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 4rem;
+  
   flex-wrap: wrap;
-  padding: 0 4rem;
+  
 
   
   @media (min-width: 768px) and (max-width: 1024px) {
-    padding: 0 2rem;
-    margin: 2rem;
+    justify-content: space-between;
   }  
   @media(max-width: 767px) {
-    padding: 0 2rem;
-    margin: 2rem;
+ 
 
   }  
 `
