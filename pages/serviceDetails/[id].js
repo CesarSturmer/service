@@ -31,6 +31,7 @@ export default function ServiceDetails() {
         getService()
     }, [])
 
+  
     return (
         <>
             <Header />
@@ -44,6 +45,7 @@ export default function ServiceDetails() {
                     service={serviceDetails.titulo}
                     neighborhood={serviceDetails.prestadorServico.endereco.bairro}
                     phone={5548996294747}
+                    
                 />
             :
                 <CircularProgress style={{marginLeft: '50%'}} />

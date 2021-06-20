@@ -33,7 +33,7 @@ export const Photo = styled.img`
     height: 10rem;
     border-radius: ${({ theme }) => theme.borderRadius.max};
 
-    @media (min-width: 320px) and (max-width: 767px) {
+    @media (max-width: 767px) {
       width: 8rem;
       height: 8rem;
   }
