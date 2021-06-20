@@ -47,7 +47,6 @@ export default function ServiceProvider() {
             })
         })
         .catch(() => {
-          alert('Sessão expirada!')
           router.push('/login')
         })
     }
@@ -81,7 +80,7 @@ export default function ServiceProvider() {
           setRadius(maxDistance.distanciaMaxima);      
           res.data.map((item) => {            
             CepCoords.getByCep(item.prestadorServico.endereco.cep)
-            .then((info) => {            
+            .then((info) => {                         
                 setLatitude(info.lat)
                 setLongitude(info.lon)
               })
@@ -90,17 +89,19 @@ export default function ServiceProvider() {
               })
           })
         })
-        .catch(() => alert('Falha ao listar serviços!'))
+        .catch(() => console.log('Nenhum serviço cadastrado!'))
     }
     getServices()
   }, [])
+
+  console.log(radius);
 
   return (
     <div>
       <Header />
       {coordinates.map((item, index) => {
         return (
-          <MapBox key={index} lat={latitude} lon={longitude} radius={radius} zoom={11}>
+          <MapBox key={index} latCircle={latitude} lonCircle={longitude} radius={radius} zoom={13} coordinatesProvider={coordinates}>
             <AnyReactComponent key={index} lat={item.lat} lng={item.lon} />
           </MapBox>
         )

@@ -71,7 +71,7 @@ const Header = () => {
     setAnchorEl(event.currentTarget)
   }
 
-  const link = userProfile == 2 ? '/serviceProvider' : 'user'
+  const link = userProfile == 2 ? `/serviceProvider/${userInfo.id}` : 'user'
 
   return (
     <style.HeaderContainer>
@@ -125,25 +125,14 @@ const Header = () => {
                 horizontal: 'center',
               }}
             >
-              {link === 'user' ? (
-                <Typography className={classes.typography}>
-                  <Link href={`${link}`}>Minha conta</Link>
-                  <Link href={link} passHref>
-                    <a href="/" onClick={handleLogout}>
-                      Sair
-                    </a>
-                  </Link>
-                </Typography>
-              ) : (
-                <Typography className={classes.typography}>
-                  <Link href={`${link}/${userInfo.id}`}>Minha conta</Link>
-                  <Link href={link} passHref>
-                    <a href="/" onClick={handleLogout}>
-                      Sair
-                    </a>
-                  </Link>
-                </Typography>
-              )}
+              <Typography className={classes.typography}>
+                <Link href={`${link}`}>Minha conta</Link>
+                <Link href={link} passHref>
+                  <a href="/" onClick={handleLogout}>
+                    Sair
+                  </a>
+                </Link>
+              </Typography>
             </Popover>
           </div>
         ) : (

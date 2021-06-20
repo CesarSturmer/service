@@ -8,20 +8,58 @@ const ContainerMap = styled.div`
   z-index: -9999;
 `
 
-function MapBox({ children, lat, lon, radius, zoom }) {
+function MapBox({ children, latCircle, lonCircle, radius, zoom, coordinatesProvider }) {
+
   const defaultProps = {
     center: {
       lat: -27.6192816,
       lng: -48.5158965,
-    },
-    zoom: 9.5,
+    }    
   }
-
   return (
     <>
       <ContainerMap>
         <div style={{ height: '50vh', width: '100%' }}>
-          <GoogleMapReact
+          {coordinatesProvider.length !== 0 ? (
+            coordinatesProvider.map((cepMap, index) => {
+              const setDefaultProps = {
+                center: {
+                  lat: cepMap.lat,
+                  lng: cepMap.lon,
+                }                
+              }
+              return(
+                <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: 'AIzaSyCuuOD2A1EY-0qrAy5jpR8-kAR4utBmA0Q',
+                }}
+                key={index}
+                defaultCenter={setDefaultProps.center}
+                defaultZoom={zoom}
+                onGoogleApiLoaded={({ map, maps }) =>
+                  new maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.3,
+                    map,
+                    center: {
+                      lat: +latCircle,
+                      lng: +lonCircle,
+                    },
+                    zoom: 13,
+                    radius: radius,
+                  })
+                }
+                yesIWantToUseGoogleMapApiInternals = {true}
+              >
+                {children}
+              </GoogleMapReact>
+              )
+            })
+          ) : (
+            <GoogleMapReact
             bootstrapURLKeys={{
               key: 'AIzaSyCuuOD2A1EY-0qrAy5jpR8-kAR4utBmA0Q',
             }}
@@ -36,8 +74,8 @@ function MapBox({ children, lat, lon, radius, zoom }) {
                 fillOpacity: 0.3,
                 map,
                 center: {
-                  lat: +lat,
-                  lng: +lon,
+                  lat: +latCircle,
+                  lng: +lonCircle,
                 },
                 zoom: 13,
                 radius: radius,
@@ -47,6 +85,8 @@ function MapBox({ children, lat, lon, radius, zoom }) {
           >
             {children}
           </GoogleMapReact>
+          )}          
+         
         </div>
       </ContainerMap>
     </>

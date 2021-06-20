@@ -8,35 +8,8 @@ import ServiceBox from '../../src/components/ServiceBox'
 import ButtonsContainerService from '../../src/components/Utils/ButtonsContainerService'
 import api from '../api'
 import MapBox from '../../src/components/MapBox'
+import MapSearcher from '../../src/components/MapSearcher'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-import { AiOutlineCloseCircle } from 'react-icons/ai'
-import Select from '../../src/components/Utils/Select'
-import { BsSearch } from 'react-icons/bs'
-import { TextField, MenuItem } from '@material-ui/core'
-
-const ContainerFilter = styled.div`
-  width: 80%;
-  height: 70px;
-  position: relative;
-  top: -6rem;
-  background-color: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 0 auto;
-
-  @media (min-width: 560px) and (max-width: 767px) {
-    width: 90%;
-    margin: 0 2rem;
-  }
-  @media (max-width: 560px) {
-    width: 95%;
-    margin: 0 auto;
-    flex-direction: column;
-    height: auto;
-  }
-`
 
 const HelperText = styled.h1`
   width: 100%;
@@ -50,8 +23,6 @@ export default function Service() {
   const { id } = router.query
   const [loaded, setLoaded] = useState(false)
   const [services, setServices] = useState([])
-  const [cities, setCities] = useState([])
-  const [city, setCity] = useState('')
   const [cep, setCep] = useState('')
   const [coordinates, setCordinates] = useState([])
 
@@ -71,13 +42,6 @@ export default function Service() {
       })
     }
     getServices()
-  }, [])
-
-  useEffect(() => {
-    const getCities = async () => {
-      await api.get('cidades').then((res) => setCities(res.data))
-    }
-    getCities()
   }, [])
 
   const resetFilter = () => {
@@ -100,12 +64,8 @@ export default function Service() {
     getServices()
   }
 
-  const renderEmptyList = () => {
-    if (loaded) {
-      return <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
-    }
-
-    return <CircularProgress style={{ marginLeft: '50%' }} />
+  const handleSearchCep = (ev) => {
+    setCep(ev.target.value)
   }
 
   const handleCep = () => {
@@ -128,66 +88,40 @@ export default function Service() {
     })
   }
 
+  const renderEmptyList = () => {
+    if (loaded) {
+      return <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
+    }
+
+    return <CircularProgress style={{ marginLeft: '50%' }} />
+  }
+
   const AnyReactComponent = () => (
     <div>
       <FaMapMarkerAlt size={15} />
     </div>
   )
 
+
+
   return (
     <>
       <Header />
       {services.length >= 1 ? (
         <>
-          <MapBox zoom={9.5}>
+          <MapBox zoom={9.5} coordinatesProvider={[]}>
             {coordinates.map((item, index) => {
               return (
                 <AnyReactComponent key={index} lat={item.lat} lng={item.lon} />
               )
             })}
           </MapBox>
-          <ContainerFilter>
-            <>
-              <Select
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                label="Cidade"
-                type="text"
-                
-              >
-                {cities.map((city) => {
-                  return (
-                    <MenuItem key={city.id} value={city.id}>
-                      {city.nome}
-                    </MenuItem>
-                  )
-                })}
-              </Select>
-              <TextField
-                value={cep}
-                onChange={(ev) => setCep(ev.target.value)}
-                label="CEP"
-                variant="outlined"
-                size="small"
-                type="number"
-                margin="normal"
-                InputProps={{
-                  endAdornment: <BsSearch onClick={handleCep} />,
-                }}
-              />
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                }}
-              >
-                <AiOutlineCloseCircle size={25} onClick={resetFilter} />
-              </div>
-            </>
-          </ContainerFilter>
+          <MapSearcher
+            handleCep={handleCep}
+            handleSearchCep={handleSearchCep}
+            resetFilter={resetFilter}
+          />
+
           <ButtonsContainerService>
             {services.map((service) => {
               return (
