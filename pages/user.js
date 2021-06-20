@@ -66,6 +66,7 @@ function User() {
                     phone={userInfo.telefone}
                     editUser={() => setScreenOption(1)}
                     changePassword={() => setScreenOption(2)}
+                    deleteAccount={deleteUser}
                     serviceProvider={false}
                 />
             }
@@ -75,7 +76,7 @@ function User() {
             {screenOption === 2 &&
                 <ChangePassword back={() => setScreenOption(0)} />
             }
-            <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
+            
             <Footer />
         </div>
     )

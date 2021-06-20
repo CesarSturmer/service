@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import api from '../api'
 import UserInfoBox from '../../src/components/UserInfoBox'
 import ChangePassword from '../../src/components/ChangePassword'
-import SubmitButton from '../../src/components/SubmitButton'
 import UserForm from '../../src/components/UserForm'
 import Header from '../../src/components/Header'
 import ServiceForm from '../../src/components/ServiceForm'
@@ -53,24 +52,6 @@ export default function ServiceProvider() {
     getUserInfo()
   }, []) 
 
-  const deleteUser = async () => {
-    await api
-      .delete('usuario')
-      .then(() => {
-        sessionStorage.removeItem('session_active')
-        sessionStorage.removeItem('validated_token')
-        alert('Usuário excluído com sucesso!')
-        router.push('/')
-      })
-      .catch(() => alert('falha ao excluir o usuário!'))
-  }
-
-  const AnyReactComponent = () => (
-    <div>
-      <FaMapMarkerAlt size={15} />
-    </div>
-  )
-
   useEffect(() => {
     const getServices = async () => {
       await api
@@ -94,7 +75,23 @@ export default function ServiceProvider() {
     getServices()
   }, [])
 
-  console.log(radius);
+  const deleteUser = async () => {
+    await api
+      .delete('usuario')
+      .then(() => {
+        sessionStorage.removeItem('session_active')
+        sessionStorage.removeItem('validated_token')
+        alert('Usuário excluído com sucesso!')
+        router.push('/')
+      })
+      .catch(() => alert('falha ao excluir o usuário!'))
+  }
+
+  const AnyReactComponent = () => (
+    <div>
+      <FaMapMarkerAlt size={15} />
+    </div>
+  )
 
   return (
     <div>
@@ -124,20 +121,22 @@ export default function ServiceProvider() {
           openServiceForm={() => setScreenOption(3)}
           openServiceList={() => setScreenOption(4)}
           serviceProvider={true}
+          deleteAccount={deleteUser}
         />
       )}
-      {screenOption === 1 && (
-        <UserForm
-          edit
-          data={userInfo}
-          title="Editar informações de usuário!"
-          back={back}
-        />
-      )}
-      {screenOption === 2 && <ChangePassword back={back} />}
-      {screenOption === 3 && <ServiceForm back={back} />}
-      {screenOption === 4 && <ServiceList id={userInfo.id} back={back} />}
-      <SubmitButton onClick={deleteUser}>Deletar Conta</SubmitButton>
+       {screenOption === 1 && 
+        <UserForm edit data={userInfo} title='Editar informações de usuário!' back={back} />
+      }
+      {screenOption === 2 &&
+        <ChangePassword back={back} />
+      }
+      {screenOption === 3 &&
+        <ServiceForm back={back} />
+      }
+      {screenOption === 4 &&
+        <ServiceList id={userInfo.id} back={back} />
+      }
+     
       <Footer />
     </div>
   )

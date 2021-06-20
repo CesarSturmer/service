@@ -2,8 +2,12 @@ import {DataContainer, UserInfoContainer, WppContainer} from './style'
 import WhatsappIcon from '../WhatsappIcon'
 import PhotoBox from '../Utils/PhotoBox'
 
-const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, phone, serviceId}) => {
+
+const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, phone, serviceId,}) => {
     return (
+        
+        
+            
         <PhotoBox avaliation={avaliation} name={provider} imageSrc={imageSrc}>
             <UserInfoContainer>
                 <DataContainer>
@@ -18,6 +22,7 @@ const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, 
                 </DataContainer>
             </UserInfoContainer>
         </PhotoBox>
+        
     )
 }
 
