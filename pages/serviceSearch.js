@@ -48,7 +48,7 @@ function Search() {
         return ImageAnimals
       case 'Idosos':
         return ImageSeniors
-      case 'Elétrica':
+      case 'Eletrica':
         return ImageElectrician
       case 'Cozinha':
         return ImageKitchen
