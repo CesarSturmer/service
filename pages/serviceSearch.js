@@ -75,7 +75,6 @@ function Search() {
           secondTitle={'Buscando alguém bem recomendado?'}
         />
       </PageContainer>
-
       <ButtonsContainer>
         {categoryInfo.length !== 0 ?
           categoryInfo.map((item) => (
