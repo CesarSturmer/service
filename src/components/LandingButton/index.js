@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import {BsLightning} from 'react-icons/bs'
 import {Button, ButtonText, ImageContainer} from './style'
 
 function LandingButton({ serviceButton, imageSrc, text, to }) {
@@ -10,7 +11,11 @@ function LandingButton({ serviceButton, imageSrc, text, to }) {
         }
       >
         <ImageContainer>
-          <img src={imageSrc} alt="Busca por serviço" />
+          {text === 'Elétrica' ?
+            <BsLightning color='#fff' size={30} />
+          :
+            <img src={imageSrc} alt="Busca por serviço" />
+          }
         </ImageContainer>
         <ButtonText>{text}</ButtonText>
       </Button>
