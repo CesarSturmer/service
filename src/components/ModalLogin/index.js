@@ -31,7 +31,7 @@ function ModalLogin({ userInfo, handleLogout, userProfile }) {
     setOpen(false)
   }
 
-  const renderLink = userProfile == 2 ? '/serviceProvider' : 'user'
+  const renderLink = userProfile == 2 ? `/serviceProvider/${userInfo.id}` : 'user'
 
   return (
     <Modal

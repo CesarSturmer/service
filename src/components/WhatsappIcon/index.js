@@ -15,6 +15,10 @@ const WhatsappIcon = ({phone, serviceId}) => {
             podeComentar: true
         })
         .then(() => router.push(`https://wa.me/${phone}`))
+        .catch(() => {
+            alert('Precisar fazer login para entrar em contato')
+            
+        })
     }
 
     return (

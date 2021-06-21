@@ -1,6 +1,11 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import {TwoInputsContainer, Text, OptionButton} from './styled'
+import {
+  TwoInputsContainer,
+  Text,
+  OptionButton,
+  OptionButtonProvider,
+} from './styled'
 import { TextField, MenuItem } from '@material-ui/core'
 import api from '../../../pages/api'
 import { useRouter } from 'next/router'
@@ -17,7 +22,10 @@ function UserForm(props) {
   const [cpf, setCpf] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [confirmPassworError, setConfirmPasswordError] = useState({error: false, text: ''})
+  const [confirmPassworError, setConfirmPasswordError] = useState({
+    error: false,
+    text: '',
+  })
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [cep, setCep] = useState('')
@@ -32,7 +40,8 @@ function UserForm(props) {
   const [complement, setComplement] = useState('')
   const validations = useContext(FormValidations)
   const [error, fieldValidator, canSend] = useError(validations)
-
+  const [active, setActive] = useState(false)
+  const [activeProvider, setActiveProvider] = useState(false)
 
   if (typeof window !== 'undefined') {
     const token = sessionStorage.getItem('validated_token')
@@ -69,10 +78,6 @@ function UserForm(props) {
       })
       .catch(() => setCepError({ error: true, text: 'CEP inválido!' }))
   }
-
-
-
-  
 
   const confirmPasswordValidator = () => {
     password === confirmPassword
@@ -132,21 +137,21 @@ function UserForm(props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    CepCoords.getByCep(cep).then((info) => {  
+    CepCoords.getByCep(cep).then((info) => {
       setLatitude(info.lat)
-      setLlongitude(info.lon) 
+      setLlongitude(info.lon)
     })
-    
+
     if (canSend()) {
       if (props.edit) {
         editUser()
       } else {
         postUser()
         router.push('/login')
-
       }
     }
   }
+
 
   return (
     <FormContainer
@@ -316,19 +321,31 @@ function UserForm(props) {
       {!props.edit && (
         <>
           <Text>Como você deseja se cadastrar?</Text>
+
           <TwoInputsContainer>
             <OptionButton
               type="button"
-              onClick={() => setServiceProvider(false)}              
+              onClick={() => {
+                setServiceProvider(false)
+                setActive(!active)
+                setActiveProvider(false)
+              }}
+              active={active}
+             
             >
               Contratante
             </OptionButton>
-            <OptionButton
+            <OptionButtonProvider
               type="button"
-              onClick={() => setServiceProvider(true)}
+              onClick={() => {
+                setServiceProvider(true)
+                setActiveProvider(!activeProvider)
+                setActive(false)
+              }}
+              activeProvider={activeProvider}
             >
               Prestador de serviços
-            </OptionButton>
+            </OptionButtonProvider>
           </TwoInputsContainer>
         </>
       )}

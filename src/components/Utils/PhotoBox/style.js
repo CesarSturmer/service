@@ -72,6 +72,21 @@ export const IconsContainer = styled.div`
   cursor: pointer;
   flex-direction: column;
   z-index: 99;
+
+  @media (max-width: 767px) {
+    top: -2rem;
+    margin-right: 1rem;
+  }
+`
+
+export const DeleteContainer = styled.div `
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media (max-width: 767px) {
+    align-items: flex-end;
+  }
 `
 
 export const AddContainer = styled.div`

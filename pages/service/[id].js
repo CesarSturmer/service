@@ -15,6 +15,7 @@ const HelperText = styled.h1`
   width: 100%;
   color: ${({ theme }) => theme.colors.title};
   text-align: center;
+  margin: 16rem 0;
 `
 
 export default function Service() {
@@ -90,8 +91,12 @@ export default function Service() {
 
   const renderEmptyList = () => {
     if (loaded) {
-      return <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
-    }
+      return (
+      <ButtonsContainerService>
+        <HelperText>Nenhum serviço cadastrado nessa categoria!</HelperText>
+
+      </ButtonsContainerService>
+    )}
 
     return <CircularProgress style={{ marginLeft: '50%' }} />
   }
