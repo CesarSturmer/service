@@ -4,6 +4,8 @@ import PhotoBox from '../Utils/PhotoBox'
 
 
 const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, neighborhood, phone, serviceId,}) => {
+
+
     return (
         
         
@@ -16,7 +18,7 @@ const ServiceProviderBox = ({avaliation, provider, imageSrc, category, service, 
                 </DataContainer>
                 <DataContainer>
                     <p>Bairro: {neighborhood}</p>
-                    <WppContainer>
+                    <WppContainer enabled>
                         <WhatsappIcon serviceId={serviceId} phone={phone} />
                     </WppContainer>
                 </DataContainer>

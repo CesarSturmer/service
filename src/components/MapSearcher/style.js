@@ -21,5 +21,6 @@ export const ContainerFilter = styled.div`
     margin: 0 auto;
     flex-direction: column;
     height: auto;
+    top: -2 rem;
   }
 `

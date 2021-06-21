@@ -5,19 +5,22 @@ export const PageContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     flex-direction: column;
     margin-top: 1.25rem;
+    align-items: center;
   }
   @media (min-width: 480px) and (max-width: 767px) {
     flex-direction: column;
     margin-top: 1.25rem;
+    align-items: center;
   }
   @media (max-width: 479px) {
     flex-direction: column;
     margin-top: 1.25rem;
+    align-items: center;
   }
 `
 

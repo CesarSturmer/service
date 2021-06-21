@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     background: no-repeat url('/background.svg');
     background-size: cover !important;
     font-family: 'Open Sans', sans-serif;
+    
   }
   
   a, button, label, svg {

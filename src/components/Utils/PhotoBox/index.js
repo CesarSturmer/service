@@ -75,10 +75,10 @@ const PhotoBox = (props) => {
 
                                         </>
                                     :
-                                        <>
+                                        <style.DeleteContainer>
                                             <MdDelete />
                                             <p>Apagar conta</p>
-                                        </>}
+                                        </style.DeleteContainer>}
                                 </style.IconsContainer>
                                 <style.EditInputLabel htmlFor='image'>
                                     <MdAddAPhoto />
