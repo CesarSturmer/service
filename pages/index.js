@@ -35,7 +35,7 @@ export default function Landing() {
             <LandingButton
               imageSrc="./Group.svg"
               text="Prestar Serviço"
-              to="/"
+              to="/userForm"
               serviceButton
             />
           </ContainerButtons>
