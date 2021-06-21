@@ -57,8 +57,9 @@ export default function ServiceProvider() {
       await api
         .get(`servicos?prestadorId=${id}`)
         .then((res) => {
-          const maxDistance = res.data[0]
-          setRadius(maxDistance.distanciaMaxima);      
+          const item = res.data[0]
+          const maxDistance = item.distanciaMaxima * 1000
+          setRadius(maxDistance);      
           res.data.map((item) => {            
             CepCoords.getByCep(item.prestadorServico.endereco.cep)
             .then((info) => {                         
@@ -96,13 +97,13 @@ export default function ServiceProvider() {
   return (
     <div>
       <Header />
-      {coordinates.map((item, index) => {
-        return (
-          <MapBox key={index} latCircle={latitude} lonCircle={longitude} radius={radius} zoom={13} coordinatesProvider={coordinates}>
-            <AnyReactComponent key={index} lat={item.lat} lng={item.lon} />
-          </MapBox>
-        )
-      })}
+      <MapBox latCircle={latitude} lonCircle={longitude} radius={radius} zoom={10} coordinatesProvider={coordinates}>
+        {
+          coordinates.map((item, index) => {
+            return <AnyReactComponent key={index} lat={item.lat} lng={item.lon} />  
+          })
+        }
+      </MapBox>
 
       {userInfo.length !== 0 && screenOption === 0 && (
         <UserInfoBox

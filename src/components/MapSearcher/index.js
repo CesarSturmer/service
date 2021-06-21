@@ -6,8 +6,6 @@ import { BsSearch } from 'react-icons/bs'
 import { TextField, MenuItem } from '@material-ui/core'
 import api from '../../../pages/api'
 
-
-
 const MapSearcher = ({handleCep, resetFilter, handleSearchCep }) => {
     const [cities, setCities] = useState([]);
     const [city, setCity] = useState('');

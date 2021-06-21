@@ -4,7 +4,7 @@ export const ContainerButtons = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: 6.25rem;
   width: 80%;
-  margin: 12rem 4rem;;
+  margin: 12rem auto;
   display: flex;
   align-items: flex-start;
   flex-flow: row wrap;

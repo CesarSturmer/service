@@ -107,7 +107,10 @@ function UserForm(props) {
         senha: password,
         telefone: phone,
       })
-      .then(() => alert('usuario cadastrado com sucesso'))
+      .then(() => {
+        alert('usuario cadastrado com sucesso')
+        router.push('/login')
+      })
       .catch(() => alert('Falha ao cadastrar usuário!'))
   }
 
@@ -147,7 +150,6 @@ function UserForm(props) {
         editUser()
       } else {
         postUser()
-        router.push('/login')
       }
     }
   }
