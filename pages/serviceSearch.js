@@ -37,6 +37,7 @@ function Search() {
     const ImageConstruction = './Obras.svg'
     const ImageOtherServices = './Outros.svg'
 
+    
     switch (categoria) {
       case 'Caseiro':
         return ImageHouseMade
