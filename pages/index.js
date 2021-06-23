@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import {PageContainer, Left, ContainerButtons, ContainerImg} from '../styles/landing'
-import LandingButton from '../src/components/LandingButton'
-import TexContainer from '../src/components/Utils/TexContainer'
+import LandingButton from '@components/LandingButton'
+import TexContainer from '@components/Utils/TexContainer'
 
 const GlobalStyle = createGlobalStyle`
   body {

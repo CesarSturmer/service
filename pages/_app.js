@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import FormValidations from '../src/contexts/FormValidations'
-import {passwordValidator, cpfValidator, phoneValidator} from '../src/models/Form'
+import FormValidations from '@contexts/FormValidations'
+import {passwordValidator, cpfValidator, phoneValidator} from '@models/Form'
 
 const GlobalStyle = createGlobalStyle`
   body {

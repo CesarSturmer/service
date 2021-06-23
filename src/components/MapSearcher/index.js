@@ -4,7 +4,7 @@ import Select from '../Utils/Select'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import { TextField, MenuItem } from '@material-ui/core'
-import api from '../../../pages/api'
+import api from 'pages/api'
 
 const MapSearcher = ({handleCep, resetFilter, handleSearchCep }) => {
     const [cities, setCities] = useState([]);

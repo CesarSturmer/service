@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {TextField, MenuItem} from '@material-ui/core'
 import {useRouter} from 'next/router'
-import api from '../../../pages/api'
+import api from 'pages/api'
 import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
 

@@ -1,9 +1,9 @@
 import {useState, useContext} from 'react'
 import {useRouter} from 'next/router'
 import {TextField} from '@material-ui/core'
-import api from '../../../pages/api'
-import FormValidations from '../../contexts/FormValidations'
-import useError from '../../hooks/useError'
+import api from 'pages/api'
+import FormValidations from '@contexts/FormValidations'
+import useError from '@hooks/useError'
 import FormContainer from '../Utils/FormContainer'
 
 const ChangePassword = ({back}) => {

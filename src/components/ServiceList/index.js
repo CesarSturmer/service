@@ -4,7 +4,7 @@ import ServiceForm from '../ServiceForm'
 import { IoArrowBack } from 'react-icons/io5'
 import {FaEdit} from 'react-icons/fa'
 import * as style from './style'
-import api from '../../../pages/api'
+import api from 'pages/api'
 
 const ServiceList = ({id, back}) => {
     const [services, setServices] = useState([])

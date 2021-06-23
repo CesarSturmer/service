@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as style from './style'
 import AvaliationIcons from '../Utils/AvaliationIcons'
-import api from '../../../pages/api'
+import api from 'pages/api'
 
 const AvaliationList = ({serviceId, showForm}) => {
     const [avaliations, setAvaliations] = useState([])

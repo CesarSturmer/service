@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { TextField } from '@material-ui/core'
-import api from './api'
-import FormContainer from '../src/components/Utils/FormContainer'
-import Header from '../src/components/Header'
-import Footer from '../src/components/Footer'
+import api from 'pages/api'
+import FormContainer from '@components/Utils/FormContainer'
+import Header from '@components/Header'
+import Footer from '@components/Footer'
 
 const Container = styled.div`
   height: 100vh;

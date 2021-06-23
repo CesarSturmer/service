@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-import {PageContainer, ButtonsContainer, MenuButton, List, ListItem} from '../styles/admin'
+import {PageContainer, ButtonsContainer, MenuButton, List, ListItem} from 'styles/admin'
 import {TextField, MenuItem} from '@material-ui/core'
-import api from './api'
-import FormContainer from '../src/components/Utils/FormContainer'
-import Select from '../src/components/Utils/Select'
+import api from 'pages/api'
+import FormContainer from '@components/Utils/FormContainer'
+import Select from '@components/Utils/Select'
 
 function Admin() {
     const router = useRouter()

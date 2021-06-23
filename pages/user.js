@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
-import api from './api'
-import UserInfoBox from '../src/components/UserInfoBox'
-import SubmitButton from '../src/components/SubmitButton'
-import UserForm from '../src/components/UserForm'
-import ChangePassword from '../src/components/ChangePassword'
-import ServiceForm from '../src/components/ServiceForm'
-import Header from '../src/components/Header'
-import Footer from '../src/components/Footer'
+import api from 'pages/api'
+import UserInfoBox from '@components/UserInfoBox'
+import SubmitButton from '@components/SubmitButton'
+import UserForm from '@components/UserForm'
+import ChangePassword from '@components/ChangePassword'
+import ServiceForm from '@components/ServiceForm'
+import Header from '@components/Header'
+import Footer from '@components/Footer'
 
 function User() {
     const router = useRouter()

@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {useRouter} from 'next/router'
-import api from '../../../../pages/api'
+import api from 'pages/api'
 import * as style from './style'
 import AvaliationIcons from '../AvaliationIcons'
 import {FaUserCircle} from 'react-icons/fa'

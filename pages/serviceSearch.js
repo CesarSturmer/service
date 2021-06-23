@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import Header from '../src/components/Header'
-import LandingButton from '../src/components/LandingButton'
-import api from './api'
+import Header from '@components/Header'
+import LandingButton from '@components/LandingButton'
+import api from 'pages/api'
 import {PageContainer} from '../styles/serviceSearch'
-import TexContainer from '../src/components/Utils/TexContainer'
-import ButtonsContainer from '../src/components/Utils/ButtonsContainer'
-import Footer from '../src/components/Footer'
+import TexContainer from '@components/Utils/TexContainer'
+import ButtonsContainer from '@components/Utils/ButtonsContainer'
+import Footer from '@components/Footer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 function Search() {

@@ -1,6 +1,6 @@
 import {ImWhatsapp} from 'react-icons/im'
 import { useRouter } from 'next/router'
-import api from '../../../pages/api'
+import api from 'pages/api'
 
 const WhatsappIcon = ({phone, serviceId}) => {
     const router = useRouter()

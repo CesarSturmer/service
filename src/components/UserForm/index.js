@@ -7,10 +7,10 @@ import {
   OptionButtonProvider,
 } from './styled'
 import { TextField, MenuItem } from '@material-ui/core'
-import api from '../../../pages/api'
+import api from 'pages/api'
 import { useRouter } from 'next/router'
-import FormValidations from '../../contexts/FormValidations'
-import useError from '../../hooks/useError'
+import FormValidations from '@contexts/FormValidations'
+import useError from '@hooks/useError'
 import FormContainer from '../Utils/FormContainer'
 import Select from '../Utils/Select'
 const CepCoords = require('coordenadas-do-cep')

@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import styled from 'styled-components'
 import {TextField} from '@material-ui/core'
 import {ImStarFull, ImStarEmpty} from 'react-icons/im'
-import api from '../../../pages/api'
+import api from 'pages/api'
 import FormContainer from '../Utils/FormContainer'
 
 const IconsContainer = styled.div`

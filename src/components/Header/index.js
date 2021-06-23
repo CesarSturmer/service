@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import * as style from './style'
-import api from '../../../pages/api'
+import api from 'pages/api'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoPersonCircleOutline, IoPersonCircle } from 'react-icons/io5'
 import ModalLogin from '../ModalLogin'

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Header from '../../src/components/Header'
-import Footer from '../../src/components/Footer'
-import ServiceProviderBox from '../../src/components/ServiceProviderBox'
-import AvaliationList from '../../src/components/AvaliationList'
-import AvaliationForm from '../../src/components/AvaliationForm'
-import api from '../api'
+import Header from '@components/Header'
+import Footer from '@components/Footer'
+import ServiceProviderBox from '@components/ServiceProviderBox'
+import AvaliationList from '@components/AvaliationList'
+import AvaliationForm from '@components/AvaliationForm'
+import api from 'pages/api'
 
 export default function ServiceDetails() {
   const router = useRouter()
