@@ -31,7 +31,7 @@ function MapBox({ children, latCircle, lonCircle, radius, zoom, coordinatesProvi
               return(
                 <GoogleMapReact
                 bootstrapURLKeys={{
-                  key: 'AIzaSyCuuOD2A1EY-0qrAy5jpR8-kAR4utBmA0Q',
+                  key: process.env.NEXT_PUBLIC_API_KEY,
                 }}
                 key={index}
                 defaultCenter={setDefaultProps.center}
@@ -61,7 +61,7 @@ function MapBox({ children, latCircle, lonCircle, radius, zoom, coordinatesProvi
           ) : (
             <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyCuuOD2A1EY-0qrAy5jpR8-kAR4utBmA0Q',
+              key: process.env.NEXT_PUBLIC_API_KEY,
             }}
             defaultCenter={defaultProps.center}
             defaultZoom={zoom}
